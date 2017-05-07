@@ -116,6 +116,9 @@ class MIPV1ClientConnection: ClientConnection {
                 }
             }
         }
+        else {
+            complete(error);
+        }
     }
     
     /**
