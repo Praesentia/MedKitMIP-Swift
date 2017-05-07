@@ -1,0 +1,12 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title"  : "Authenticator V1, Phase 1 Arguments",
+    "type"   : "object",
+    
+    "properties" : {
+        "nonce"  : { "type" : "string", "format" : "base64" }
+    },
+    
+    "required" : [ "nonce" ],
+    "additionalProperties" : false
+}

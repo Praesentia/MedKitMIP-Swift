@@ -1,0 +1,45 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title"  : "RPC Message",
+    "type"   : "object",
+    "oneOf"  : [
+               { "$ref" : "#/definitions/Sync" },
+               { "$ref" : "#/definitions/Reply" },
+               { "$ref" : "#/definitions/Async" }
+        ],
+    
+    "definitions" : {
+        "Sync" : {
+            "type" : "object",
+            "properties" : {
+                "type"    : { "enum" : [ 1 ] },
+                "id"      : { "type" : "integer", "minumum" : 0 },
+                "message" : { }
+            },
+            "required" : [ "type", "id", "message" ],
+            "additionalProperties" : false
+        },
+        
+        "Reply" : {
+            "type" : "object",
+            "properties" : {
+                "type"  : { "enum" : [ 2 ] },
+                "id"    : { "type" : "integer", "minumum" : 0 },
+                "error" : { "type" : "integer", "minimum" : 1 },
+                "reply" : { }
+            },
+            "required" : [ "type", "id" ],
+            "additionalProperties" : false
+        },
+        
+        "Async" : {
+            "type" : "object",
+            "properties" : {
+                "type"    : { "enum" : [ 3 ] },
+                "message" : { }
+            },
+            "required" : [ "type", "message" ],
+            "additionalProperties" : false
+        }
+    }
+}

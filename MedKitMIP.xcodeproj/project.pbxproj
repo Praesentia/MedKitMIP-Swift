@@ -1,0 +1,1216 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		220A34291EBE17460024DF9E /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 220A34281EBE17460024DF9E /* LICENSE.txt */; };
+		220A34411EBF414A0024DF9E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 220A34401EBF414A0024DF9E /* README.md */; };
+		220A344C1EBF462E0024DF9E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 220A34401EBF414A0024DF9E /* README.md */; };
+		220A344D1EBF46310024DF9E /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 220A34281EBE17460024DF9E /* LICENSE.txt */; };
+		220A344E1EBF46340024DF9E /* Release Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 225A467D1EB37E39004EE389 /* Release Notes.rtf */; };
+		224DD80F1E88444900727706 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20341E8842A00091CB87 /* Authenticator.swift */; };
+		224DD8101E88444900727706 /* AuthenticatorV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20351E8842A00091CB87 /* AuthenticatorV1.swift */; };
+		224DD8111E88444900727706 /* AuthenticateV1Accept.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA20361E8842A00091CB87 /* AuthenticateV1Accept.json */; };
+		224DD8121E88444900727706 /* AuthenticateV1Phase1.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA20371E8842A00091CB87 /* AuthenticateV1Phase1.json */; };
+		224DD8131E88444900727706 /* AuthenticateV1Reject.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA20381E8842A00091CB87 /* AuthenticateV1Reject.json */; };
+		224DD8141E88444900727706 /* AuthenticatV1Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20391E8842A00091CB87 /* AuthenticatV1Schema.swift */; };
+		224DD8171E88444E00727706 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FE31E883D580091CB87 /* HTTPClient.swift */; };
+		224DD8181E88444E00727706 /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FE51E883D580091CB87 /* HTTPHeader.swift */; };
+		224DD8191E88444E00727706 /* HTTPMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FE61E883D580091CB87 /* HTTPMessage.swift */; };
+		224DD81A1E88444E00727706 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FE71E883D580091CB87 /* HTTPMethod.swift */; };
+		224DD81B1E88444E00727706 /* HTTPReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FE81E883D580091CB87 /* HTTPReader.swift */; };
+		224DD81C1E88444E00727706 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FE91E883D580091CB87 /* HTTPRequest.swift */; };
+		224DD81D1E88444E00727706 /* HTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FEA1E883D580091CB87 /* HTTPResponse.swift */; };
+		224DD81E1E88444E00727706 /* HTTPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FEB1E883D580091CB87 /* HTTPServer.swift */; };
+		224DD81F1E88444E00727706 /* HTTPStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FEC1E883D580091CB87 /* HTTPStatus.swift */; };
+		224DD8201E88445400727706 /* MIPV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FEF1E883D580091CB87 /* MIPV1.swift */; };
+		224DD8211E88445400727706 /* MIPV1Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF01E883D580091CB87 /* MIPV1Client.swift */; };
+		224DD8221E88445400727706 /* MIPV1ClientConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF11E883D580091CB87 /* MIPV1ClientConnection.swift */; };
+		224DD8231E88445400727706 /* MIPV1ClientDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF21E883D580091CB87 /* MIPV1ClientDecoder.swift */; };
+		224DD8241E88445400727706 /* MIPV1ServerDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF31E883D580091CB87 /* MIPV1ServerDecoder.swift */; };
+		224DD8251E88445400727706 /* MIPV1DeviceProfile.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA1FF41E883D580091CB87 /* MIPV1DeviceProfile.json */; };
+		224DD8261E88445400727706 /* MIPV1DeviceSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF51E883D580091CB87 /* MIPV1DeviceSchema.swift */; };
+		224DD8271E88445400727706 /* MIPV1ServerEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF61E883D580091CB87 /* MIPV1ServerEncoder.swift */; };
+		224DD8281E88445400727706 /* MIPV1MessageSchema.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA1FF71E883D580091CB87 /* MIPV1MessageSchema.json */; };
+		224DD8291E88445400727706 /* MIPV1MessageSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF81E883D580091CB87 /* MIPV1MessageSchema.swift */; };
+		224DD82A1E88445400727706 /* MIPV1ResourceSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF91E883D580091CB87 /* MIPV1ResourceSchema.swift */; };
+		224DD82B1E88445400727706 /* MIPV1Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFA1E883D580091CB87 /* MIPV1Server.swift */; };
+		224DD82C1E88445400727706 /* MIPV1ServerConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFB1E883D580091CB87 /* MIPV1ServerConnection.swift */; };
+		224DD82D1E88445400727706 /* MIPV1ServiceSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFC1E883D580091CB87 /* MIPV1ServiceSchema.swift */; };
+		224DD82E1E88445900727706 /* MIPClientRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FED1E883D580091CB87 /* MIPClientRegistry.swift */; };
+		224DD82F1E88445900727706 /* MIPServerRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FEE1E883D580091CB87 /* MIPServerRegistry.swift */; };
+		224DD8301E88445D00727706 /* RPCV1.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA202C1E883E500091CB87 /* RPCV1.json */; };
+		224DD8311E88445D00727706 /* RPCV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA202D1E883E500091CB87 /* RPCV1.swift */; };
+		224DD8321E88445D00727706 /* RPCV1Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA202E1E883E500091CB87 /* RPCV1Schema.swift */; };
+		224DD8331E88446300727706 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFD1E883D580091CB87 /* WebSocket.swift */; };
+		224DD8341E88446300727706 /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFE1E883D580091CB87 /* WebSocketClient.swift */; };
+		224DD8351E88446300727706 /* WebSocketServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFF1E883D580091CB87 /* WebSocketServer.swift */; };
+		224DD8361E88446300727706 /* WSFP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20001E883D580091CB87 /* WSFP.swift */; };
+		224DD8371E88446300727706 /* WSFPReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20011E883D580091CB87 /* WSFPReader.swift */; };
+		224DD8381E88446300727706 /* WSFPReaderWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20021E883D580091CB87 /* WSFPReaderWriter.swift */; };
+		224DD8391E88446300727706 /* WSFPWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20031E883D580091CB87 /* WSFPWriter.swift */; };
+		225A46631EB36847004EE389 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225A46621EB36847004EE389 /* Device.swift */; };
+		225A46641EB36849004EE389 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225A46621EB36847004EE389 /* Device.swift */; };
+		225A46661EB36894004EE389 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225A46651EB36894004EE389 /* Service.swift */; };
+		225A46681EB368BB004EE389 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225A46671EB368BB004EE389 /* Resource.swift */; };
+		225A46691EB3699B004EE389 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225A46651EB36894004EE389 /* Service.swift */; };
+		225A466A1EB3699E004EE389 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225A46671EB368BB004EE389 /* Resource.swift */; };
+		225A466C1EB36C28004EE389 /* MIPV1ClientEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225A466B1EB36C28004EE389 /* MIPV1ClientEncoder.swift */; };
+		225A466D1EB36CDD004EE389 /* MIPV1ClientEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225A466B1EB36C28004EE389 /* MIPV1ClientEncoder.swift */; };
+		225A467E1EB37E39004EE389 /* Release Notes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 225A467D1EB37E39004EE389 /* Release Notes.rtf */; };
+		22B143961E8936A5005A35B9 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B143951E8936A5005A35B9 /* Main.swift */; };
+		22B144511E893E55005A35B9 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B143951E8936A5005A35B9 /* Main.swift */; };
+		22CA1FA31E883B490091CB87 /* MedKitMIP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CA1F9A1E883B490091CB87 /* MedKitMIP.framework */; };
+		22CA1FA81E883B490091CB87 /* MedKitMIP_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FA71E883B490091CB87 /* MedKitMIP_iOSTests.swift */; };
+		22CA1FAA1E883B490091CB87 /* MedKitMIP.h in Headers */ = {isa = PBXBuildFile; fileRef = 22CA1F9C1E883B490091CB87 /* MedKitMIP.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22CA1FBF1E883B5B0091CB87 /* MedKitMIP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CA1FB61E883B5B0091CB87 /* MedKitMIP.framework */; };
+		22CA1FC41E883B5B0091CB87 /* MedKitMIP_macOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FC31E883B5B0091CB87 /* MedKitMIP_macOSTests.swift */; };
+		22CA1FC61E883B5B0091CB87 /* MedKitMIP.h in Headers */ = {isa = PBXBuildFile; fileRef = 22CA1FB81E883B5B0091CB87 /* MedKitMIP.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22CA1FDD1E883CDB0091CB87 /* MedKitCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CA1FD61E883CCF0091CB87 /* MedKitCore.framework */; };
+		22CA1FDE1E883CE00091CB87 /* MedKitCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CA1FDA1E883CCF0091CB87 /* MedKitCore.framework */; };
+		22CA20041E883D580091CB87 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FE31E883D580091CB87 /* HTTPClient.swift */; };
+		22CA20061E883D580091CB87 /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FE51E883D580091CB87 /* HTTPHeader.swift */; };
+		22CA20071E883D580091CB87 /* HTTPMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FE61E883D580091CB87 /* HTTPMessage.swift */; };
+		22CA20081E883D580091CB87 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FE71E883D580091CB87 /* HTTPMethod.swift */; };
+		22CA20091E883D580091CB87 /* HTTPReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FE81E883D580091CB87 /* HTTPReader.swift */; };
+		22CA200A1E883D580091CB87 /* HTTPRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FE91E883D580091CB87 /* HTTPRequest.swift */; };
+		22CA200B1E883D580091CB87 /* HTTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FEA1E883D580091CB87 /* HTTPResponse.swift */; };
+		22CA200C1E883D580091CB87 /* HTTPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FEB1E883D580091CB87 /* HTTPServer.swift */; };
+		22CA200D1E883D580091CB87 /* HTTPStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FEC1E883D580091CB87 /* HTTPStatus.swift */; };
+		22CA200E1E883D580091CB87 /* MIPClientRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FED1E883D580091CB87 /* MIPClientRegistry.swift */; };
+		22CA200F1E883D580091CB87 /* MIPServerRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FEE1E883D580091CB87 /* MIPServerRegistry.swift */; };
+		22CA20101E883D580091CB87 /* MIPV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FEF1E883D580091CB87 /* MIPV1.swift */; };
+		22CA20111E883D580091CB87 /* MIPV1Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF01E883D580091CB87 /* MIPV1Client.swift */; };
+		22CA20121E883D580091CB87 /* MIPV1ClientConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF11E883D580091CB87 /* MIPV1ClientConnection.swift */; };
+		22CA20131E883D580091CB87 /* MIPV1ClientDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF21E883D580091CB87 /* MIPV1ClientDecoder.swift */; };
+		22CA20141E883D580091CB87 /* MIPV1ServerDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF31E883D580091CB87 /* MIPV1ServerDecoder.swift */; };
+		22CA20151E883D580091CB87 /* MIPV1DeviceProfile.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA1FF41E883D580091CB87 /* MIPV1DeviceProfile.json */; };
+		22CA20161E883D580091CB87 /* MIPV1DeviceSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF51E883D580091CB87 /* MIPV1DeviceSchema.swift */; };
+		22CA20171E883D580091CB87 /* MIPV1ServerEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF61E883D580091CB87 /* MIPV1ServerEncoder.swift */; };
+		22CA20181E883D580091CB87 /* MIPV1MessageSchema.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA1FF71E883D580091CB87 /* MIPV1MessageSchema.json */; };
+		22CA20191E883D580091CB87 /* MIPV1MessageSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF81E883D580091CB87 /* MIPV1MessageSchema.swift */; };
+		22CA201A1E883D580091CB87 /* MIPV1ResourceSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF91E883D580091CB87 /* MIPV1ResourceSchema.swift */; };
+		22CA201B1E883D580091CB87 /* MIPV1Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFA1E883D580091CB87 /* MIPV1Server.swift */; };
+		22CA201C1E883D580091CB87 /* MIPV1ServerConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFB1E883D580091CB87 /* MIPV1ServerConnection.swift */; };
+		22CA201D1E883D580091CB87 /* MIPV1ServiceSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFC1E883D580091CB87 /* MIPV1ServiceSchema.swift */; };
+		22CA201E1E883D580091CB87 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFD1E883D580091CB87 /* WebSocket.swift */; };
+		22CA201F1E883D580091CB87 /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFE1E883D580091CB87 /* WebSocketClient.swift */; };
+		22CA20201E883D580091CB87 /* WebSocketServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFF1E883D580091CB87 /* WebSocketServer.swift */; };
+		22CA20211E883D580091CB87 /* WSFP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20001E883D580091CB87 /* WSFP.swift */; };
+		22CA20221E883D580091CB87 /* WSFPReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20011E883D580091CB87 /* WSFPReader.swift */; };
+		22CA20231E883D580091CB87 /* WSFPReaderWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20021E883D580091CB87 /* WSFPReaderWriter.swift */; };
+		22CA20241E883D580091CB87 /* WSFPWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20031E883D580091CB87 /* WSFPWriter.swift */; };
+		22CA20301E883E500091CB87 /* RPCV1.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA202C1E883E500091CB87 /* RPCV1.json */; };
+		22CA20311E883E500091CB87 /* RPCV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA202D1E883E500091CB87 /* RPCV1.swift */; };
+		22CA20321E883E500091CB87 /* RPCV1Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA202E1E883E500091CB87 /* RPCV1Schema.swift */; };
+		22CA203A1E8842A00091CB87 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20341E8842A00091CB87 /* Authenticator.swift */; };
+		22CA203B1E8842A00091CB87 /* AuthenticatorV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20351E8842A00091CB87 /* AuthenticatorV1.swift */; };
+		22CA203C1E8842A00091CB87 /* AuthenticateV1Accept.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA20361E8842A00091CB87 /* AuthenticateV1Accept.json */; };
+		22CA203D1E8842A00091CB87 /* AuthenticateV1Phase1.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA20371E8842A00091CB87 /* AuthenticateV1Phase1.json */; };
+		22CA203E1E8842A00091CB87 /* AuthenticateV1Reject.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA20381E8842A00091CB87 /* AuthenticateV1Reject.json */; };
+		22CA203F1E8842A00091CB87 /* AuthenticatV1Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20391E8842A00091CB87 /* AuthenticatV1Schema.swift */; };
+		22CB98141EB0CDE700F4A3D0 /* RPCV1MessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CB98131EB0CDE700F4A3D0 /* RPCV1MessageHandler.swift */; };
+		22CB98171EB0CDEB00F4A3D0 /* RPCV1MessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CB98131EB0CDE700F4A3D0 /* RPCV1MessageHandler.swift */; };
+		22DD6E531E8E97DE00F1B6D2 /* HTTPDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DD6E521E8E97DE00F1B6D2 /* HTTPDecoder.swift */; };
+		22DD6E551E8E980100F1B6D2 /* RPCDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DD6E541E8E980100F1B6D2 /* RPCDecoder.swift */; };
+		22DD6E561E8E984E00F1B6D2 /* HTTPDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DD6E521E8E97DE00F1B6D2 /* HTTPDecoder.swift */; };
+		22DD6E571E8E985100F1B6D2 /* RPCDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DD6E541E8E980100F1B6D2 /* RPCDecoder.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		22CA1FA41E883B490091CB87 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22CA1F561E883AEE0091CB87 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 22CA1F991E883B490091CB87;
+			remoteInfo = "MedKitMIP iOS";
+		};
+		22CA1FC01E883B5B0091CB87 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22CA1F561E883AEE0091CB87 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 22CA1FB51E883B5B0091CB87;
+			remoteInfo = "MedKitMIP macOS";
+		};
+		22CA1FD51E883CCF0091CB87 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22CA1FCE1E883CCF0091CB87 /* MedKitCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2243DC791E872BDB00A188FD;
+			remoteInfo = "MedKitCore iOS";
+		};
+		22CA1FD71E883CCF0091CB87 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22CA1FCE1E883CCF0091CB87 /* MedKitCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2243DC811E872BDB00A188FD;
+			remoteInfo = "MedKitCore iOSTests";
+		};
+		22CA1FD91E883CCF0091CB87 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22CA1FCE1E883CCF0091CB87 /* MedKitCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2243DC951E872BF100A188FD;
+			remoteInfo = "MedKitCore macOS";
+		};
+		22CA1FDB1E883CCF0091CB87 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22CA1FCE1E883CCF0091CB87 /* MedKitCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2243DC9D1E872BF100A188FD;
+			remoteInfo = "MedKitCore macOSTests";
+		};
+		22CA1FDF1E883CEA0091CB87 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22CA1FCE1E883CCF0091CB87 /* MedKitCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2243DC941E872BF100A188FD;
+			remoteInfo = "MedKitCore macOS";
+		};
+		22CA1FE11E883CEF0091CB87 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22CA1FCE1E883CCF0091CB87 /* MedKitCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2243DC781E872BDB00A188FD;
+			remoteInfo = "MedKitCore iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		220A34281EBE17460024DF9E /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		220A34401EBF414A0024DF9E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		225A46621EB36847004EE389 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Device.swift; path = Source/Device.swift; sourceTree = "<group>"; };
+		225A46651EB36894004EE389 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Service.swift; path = Source/Service.swift; sourceTree = "<group>"; };
+		225A46671EB368BB004EE389 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Resource.swift; path = Source/Resource.swift; sourceTree = "<group>"; };
+		225A466B1EB36C28004EE389 /* MIPV1ClientEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ClientEncoder.swift; path = Source/MIPV1ClientEncoder.swift; sourceTree = "<group>"; };
+		225A467D1EB37E39004EE389 /* Release Notes.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = "Release Notes.rtf"; path = "Documentation/Release Notes.rtf"; sourceTree = "<group>"; };
+		22B143951E8936A5005A35B9 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Main.swift; path = Source/Main.swift; sourceTree = "<group>"; };
+		22CA1F9A1E883B490091CB87 /* MedKitMIP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MedKitMIP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		22CA1F9C1E883B490091CB87 /* MedKitMIP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MedKitMIP.h; sourceTree = "<group>"; };
+		22CA1F9D1E883B490091CB87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22CA1FA21E883B490091CB87 /* MedKitMIP iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MedKitMIP iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		22CA1FA71E883B490091CB87 /* MedKitMIP_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedKitMIP_iOSTests.swift; sourceTree = "<group>"; };
+		22CA1FA91E883B490091CB87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22CA1FB61E883B5B0091CB87 /* MedKitMIP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MedKitMIP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		22CA1FB81E883B5B0091CB87 /* MedKitMIP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MedKitMIP.h; sourceTree = "<group>"; };
+		22CA1FB91E883B5B0091CB87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22CA1FBE1E883B5B0091CB87 /* MedKitMIP macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MedKitMIP macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		22CA1FC31E883B5B0091CB87 /* MedKitMIP_macOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedKitMIP_macOSTests.swift; sourceTree = "<group>"; };
+		22CA1FC51E883B5B0091CB87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22CA1FCE1E883CCF0091CB87 /* MedKitCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MedKitCore.xcodeproj; path = ../MedKitCore-Swift/MedKitCore.xcodeproj; sourceTree = "<group>"; };
+		22CA1FE31E883D580091CB87 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPClient.swift; path = Source/HTTPClient.swift; sourceTree = "<group>"; };
+		22CA1FE51E883D580091CB87 /* HTTPHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPHeader.swift; path = Source/HTTPHeader.swift; sourceTree = "<group>"; };
+		22CA1FE61E883D580091CB87 /* HTTPMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPMessage.swift; path = Source/HTTPMessage.swift; sourceTree = "<group>"; };
+		22CA1FE71E883D580091CB87 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPMethod.swift; path = Source/HTTPMethod.swift; sourceTree = "<group>"; };
+		22CA1FE81E883D580091CB87 /* HTTPReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPReader.swift; path = Source/HTTPReader.swift; sourceTree = "<group>"; };
+		22CA1FE91E883D580091CB87 /* HTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPRequest.swift; path = Source/HTTPRequest.swift; sourceTree = "<group>"; };
+		22CA1FEA1E883D580091CB87 /* HTTPResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPResponse.swift; path = Source/HTTPResponse.swift; sourceTree = "<group>"; };
+		22CA1FEB1E883D580091CB87 /* HTTPServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPServer.swift; path = Source/HTTPServer.swift; sourceTree = "<group>"; };
+		22CA1FEC1E883D580091CB87 /* HTTPStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPStatus.swift; path = Source/HTTPStatus.swift; sourceTree = "<group>"; };
+		22CA1FED1E883D580091CB87 /* MIPClientRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPClientRegistry.swift; path = Source/MIPClientRegistry.swift; sourceTree = "<group>"; };
+		22CA1FEE1E883D580091CB87 /* MIPServerRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPServerRegistry.swift; path = Source/MIPServerRegistry.swift; sourceTree = "<group>"; };
+		22CA1FEF1E883D580091CB87 /* MIPV1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1.swift; path = Source/MIPV1.swift; sourceTree = "<group>"; };
+		22CA1FF01E883D580091CB87 /* MIPV1Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1Client.swift; path = Source/MIPV1Client.swift; sourceTree = "<group>"; };
+		22CA1FF11E883D580091CB87 /* MIPV1ClientConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ClientConnection.swift; path = Source/MIPV1ClientConnection.swift; sourceTree = "<group>"; };
+		22CA1FF21E883D580091CB87 /* MIPV1ClientDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ClientDecoder.swift; path = Source/MIPV1ClientDecoder.swift; sourceTree = "<group>"; };
+		22CA1FF31E883D580091CB87 /* MIPV1ServerDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ServerDecoder.swift; path = Source/MIPV1ServerDecoder.swift; sourceTree = "<group>"; };
+		22CA1FF41E883D580091CB87 /* MIPV1DeviceProfile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MIPV1DeviceProfile.json; path = Source/MIPV1DeviceProfile.json; sourceTree = "<group>"; };
+		22CA1FF51E883D580091CB87 /* MIPV1DeviceSchema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1DeviceSchema.swift; path = Source/MIPV1DeviceSchema.swift; sourceTree = "<group>"; };
+		22CA1FF61E883D580091CB87 /* MIPV1ServerEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ServerEncoder.swift; path = Source/MIPV1ServerEncoder.swift; sourceTree = "<group>"; };
+		22CA1FF71E883D580091CB87 /* MIPV1MessageSchema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MIPV1MessageSchema.json; path = Source/MIPV1MessageSchema.json; sourceTree = "<group>"; };
+		22CA1FF81E883D580091CB87 /* MIPV1MessageSchema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1MessageSchema.swift; path = Source/MIPV1MessageSchema.swift; sourceTree = "<group>"; };
+		22CA1FF91E883D580091CB87 /* MIPV1ResourceSchema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ResourceSchema.swift; path = Source/MIPV1ResourceSchema.swift; sourceTree = "<group>"; };
+		22CA1FFA1E883D580091CB87 /* MIPV1Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1Server.swift; path = Source/MIPV1Server.swift; sourceTree = "<group>"; };
+		22CA1FFB1E883D580091CB87 /* MIPV1ServerConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ServerConnection.swift; path = Source/MIPV1ServerConnection.swift; sourceTree = "<group>"; };
+		22CA1FFC1E883D580091CB87 /* MIPV1ServiceSchema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ServiceSchema.swift; path = Source/MIPV1ServiceSchema.swift; sourceTree = "<group>"; };
+		22CA1FFD1E883D580091CB87 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = Source/WebSocket.swift; sourceTree = "<group>"; };
+		22CA1FFE1E883D580091CB87 /* WebSocketClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSocketClient.swift; path = Source/WebSocketClient.swift; sourceTree = "<group>"; };
+		22CA1FFF1E883D580091CB87 /* WebSocketServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSocketServer.swift; path = Source/WebSocketServer.swift; sourceTree = "<group>"; };
+		22CA20001E883D580091CB87 /* WSFP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSFP.swift; path = Source/WSFP.swift; sourceTree = "<group>"; };
+		22CA20011E883D580091CB87 /* WSFPReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSFPReader.swift; path = Source/WSFPReader.swift; sourceTree = "<group>"; };
+		22CA20021E883D580091CB87 /* WSFPReaderWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSFPReaderWriter.swift; path = Source/WSFPReaderWriter.swift; sourceTree = "<group>"; };
+		22CA20031E883D580091CB87 /* WSFPWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSFPWriter.swift; path = Source/WSFPWriter.swift; sourceTree = "<group>"; };
+		22CA202C1E883E500091CB87 /* RPCV1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = RPCV1.json; path = Source/RPCV1.json; sourceTree = "<group>"; };
+		22CA202D1E883E500091CB87 /* RPCV1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RPCV1.swift; path = Source/RPCV1.swift; sourceTree = "<group>"; };
+		22CA202E1E883E500091CB87 /* RPCV1Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RPCV1Schema.swift; path = Source/RPCV1Schema.swift; sourceTree = "<group>"; };
+		22CA20341E8842A00091CB87 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Authenticator.swift; path = Source/Authenticator.swift; sourceTree = "<group>"; };
+		22CA20351E8842A00091CB87 /* AuthenticatorV1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthenticatorV1.swift; path = Source/AuthenticatorV1.swift; sourceTree = "<group>"; };
+		22CA20361E8842A00091CB87 /* AuthenticateV1Accept.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = AuthenticateV1Accept.json; path = Source/AuthenticateV1Accept.json; sourceTree = "<group>"; };
+		22CA20371E8842A00091CB87 /* AuthenticateV1Phase1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = AuthenticateV1Phase1.json; path = Source/AuthenticateV1Phase1.json; sourceTree = "<group>"; };
+		22CA20381E8842A00091CB87 /* AuthenticateV1Reject.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = AuthenticateV1Reject.json; path = Source/AuthenticateV1Reject.json; sourceTree = "<group>"; };
+		22CA20391E8842A00091CB87 /* AuthenticatV1Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthenticatV1Schema.swift; path = Source/AuthenticatV1Schema.swift; sourceTree = "<group>"; };
+		22CB98131EB0CDE700F4A3D0 /* RPCV1MessageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RPCV1MessageHandler.swift; path = Source/RPCV1MessageHandler.swift; sourceTree = "<group>"; };
+		22DD6E521E8E97DE00F1B6D2 /* HTTPDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPDecoder.swift; path = Source/HTTPDecoder.swift; sourceTree = "<group>"; };
+		22DD6E541E8E980100F1B6D2 /* RPCDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RPCDecoder.swift; path = Source/RPCDecoder.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		22CA1F961E883B490091CB87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22CA1FDD1E883CDB0091CB87 /* MedKitCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22CA1F9F1E883B490091CB87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22CA1FA31E883B490091CB87 /* MedKitMIP.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22CA1FB21E883B5B0091CB87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22CA1FDE1E883CE00091CB87 /* MedKitCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22CA1FBB1E883B5B0091CB87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22CA1FBF1E883B5B0091CB87 /* MedKitMIP.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		225A465F1EB36763004EE389 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				225A46621EB36847004EE389 /* Device.swift */,
+				225A46651EB36894004EE389 /* Service.swift */,
+				225A46671EB368BB004EE389 /* Resource.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		225A467C1EB37E28004EE389 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				220A34401EBF414A0024DF9E /* README.md */,
+				220A34281EBE17460024DF9E /* LICENSE.txt */,
+				225A467D1EB37E39004EE389 /* Release Notes.rtf */,
+			);
+			name = Documentation;
+			sourceTree = "<group>";
+		};
+		22B143941E893690005A35B9 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				22B143951E8936A5005A35B9 /* Main.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		22B143971E8936AD005A35B9 /* V1 */ = {
+			isa = PBXGroup;
+			children = (
+				22CA20351E8842A00091CB87 /* AuthenticatorV1.swift */,
+				22CA20391E8842A00091CB87 /* AuthenticatV1Schema.swift */,
+				22CA20361E8842A00091CB87 /* AuthenticateV1Accept.json */,
+				22CA20371E8842A00091CB87 /* AuthenticateV1Phase1.json */,
+				22CA20381E8842A00091CB87 /* AuthenticateV1Reject.json */,
+			);
+			name = V1;
+			sourceTree = "<group>";
+		};
+		22CA1F551E883AEE0091CB87 = {
+			isa = PBXGroup;
+			children = (
+				22CA1FCE1E883CCF0091CB87 /* MedKitCore.xcodeproj */,
+				225A467C1EB37E28004EE389 /* Documentation */,
+				22CA1FCD1E883B800091CB87 /* Source */,
+				22CA1F9B1E883B490091CB87 /* MedKitMIP iOS */,
+				22CA1FA61E883B490091CB87 /* MedKitMIP iOSTests */,
+				22CA1FB71E883B5B0091CB87 /* MedKitMIP macOS */,
+				22CA1FC21E883B5B0091CB87 /* MedKitMIP macOSTests */,
+				22CA1F601E883AEE0091CB87 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		22CA1F601E883AEE0091CB87 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22CA1F9A1E883B490091CB87 /* MedKitMIP.framework */,
+				22CA1FA21E883B490091CB87 /* MedKitMIP iOSTests.xctest */,
+				22CA1FB61E883B5B0091CB87 /* MedKitMIP.framework */,
+				22CA1FBE1E883B5B0091CB87 /* MedKitMIP macOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		22CA1F9B1E883B490091CB87 /* MedKitMIP iOS */ = {
+			isa = PBXGroup;
+			children = (
+				22CA1F9C1E883B490091CB87 /* MedKitMIP.h */,
+				22CA1F9D1E883B490091CB87 /* Info.plist */,
+			);
+			path = "MedKitMIP iOS";
+			sourceTree = "<group>";
+		};
+		22CA1FA61E883B490091CB87 /* MedKitMIP iOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				22CA1FA71E883B490091CB87 /* MedKitMIP_iOSTests.swift */,
+				22CA1FA91E883B490091CB87 /* Info.plist */,
+			);
+			path = "MedKitMIP iOSTests";
+			sourceTree = "<group>";
+		};
+		22CA1FB71E883B5B0091CB87 /* MedKitMIP macOS */ = {
+			isa = PBXGroup;
+			children = (
+				22CA1FB81E883B5B0091CB87 /* MedKitMIP.h */,
+				22CA1FB91E883B5B0091CB87 /* Info.plist */,
+			);
+			path = "MedKitMIP macOS";
+			sourceTree = "<group>";
+		};
+		22CA1FC21E883B5B0091CB87 /* MedKitMIP macOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				22CA1FC31E883B5B0091CB87 /* MedKitMIP_macOSTests.swift */,
+				22CA1FC51E883B5B0091CB87 /* Info.plist */,
+			);
+			path = "MedKitMIP macOSTests";
+			sourceTree = "<group>";
+		};
+		22CA1FCD1E883B800091CB87 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				22B143941E893690005A35B9 /* Main */,
+				22CA20331E88428F0091CB87 /* Authenticator */,
+				22DD6E4F1E8E97C100F1B6D2 /* Decoder */,
+				22CA20251E883D640091CB87 /* HTTP */,
+				22CA20271E883D810091CB87 /* MIP */,
+				22CA202A1E883E420091CB87 /* RPC */,
+				22CA20291E883D950091CB87 /* WebSocket */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		22CA1FCF1E883CCF0091CB87 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22CA1FD61E883CCF0091CB87 /* MedKitCore.framework */,
+				22CA1FD81E883CCF0091CB87 /* MedKitCore iOSTests.xctest */,
+				22CA1FDA1E883CCF0091CB87 /* MedKitCore.framework */,
+				22CA1FDC1E883CCF0091CB87 /* MedKitCore macOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		22CA20251E883D640091CB87 /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				22CA1FE31E883D580091CB87 /* HTTPClient.swift */,
+				22CA1FE51E883D580091CB87 /* HTTPHeader.swift */,
+				22CA1FE61E883D580091CB87 /* HTTPMessage.swift */,
+				22CA1FE71E883D580091CB87 /* HTTPMethod.swift */,
+				22CA1FE81E883D580091CB87 /* HTTPReader.swift */,
+				22CA1FE91E883D580091CB87 /* HTTPRequest.swift */,
+				22CA1FEA1E883D580091CB87 /* HTTPResponse.swift */,
+				22CA1FEB1E883D580091CB87 /* HTTPServer.swift */,
+				22CA1FEC1E883D580091CB87 /* HTTPStatus.swift */,
+			);
+			name = HTTP;
+			sourceTree = "<group>";
+		};
+		22CA20261E883D6F0091CB87 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				22CA1FED1E883D580091CB87 /* MIPClientRegistry.swift */,
+				22CA1FEE1E883D580091CB87 /* MIPServerRegistry.swift */,
+				225A465F1EB36763004EE389 /* Extensions */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		22CA20271E883D810091CB87 /* MIP */ = {
+			isa = PBXGroup;
+			children = (
+				22CA20281E883D890091CB87 /* V1 */,
+				22CA20261E883D6F0091CB87 /* Shared */,
+			);
+			name = MIP;
+			sourceTree = "<group>";
+		};
+		22CA20281E883D890091CB87 /* V1 */ = {
+			isa = PBXGroup;
+			children = (
+				22CA1FEF1E883D580091CB87 /* MIPV1.swift */,
+				22F0959C1E8958AC000AC0A4 /* Client */,
+				22F0959F1E8958B6000AC0A4 /* Server */,
+				22F095A11E8958D3000AC0A4 /* Schemas */,
+			);
+			name = V1;
+			sourceTree = "<group>";
+		};
+		22CA20291E883D950091CB87 /* WebSocket */ = {
+			isa = PBXGroup;
+			children = (
+				22CA1FFD1E883D580091CB87 /* WebSocket.swift */,
+				22CA1FFE1E883D580091CB87 /* WebSocketClient.swift */,
+				22CA1FFF1E883D580091CB87 /* WebSocketServer.swift */,
+				22CA20001E883D580091CB87 /* WSFP.swift */,
+				22CA20011E883D580091CB87 /* WSFPReader.swift */,
+				22CA20021E883D580091CB87 /* WSFPReaderWriter.swift */,
+				22CA20031E883D580091CB87 /* WSFPWriter.swift */,
+			);
+			name = WebSocket;
+			sourceTree = "<group>";
+		};
+		22CA202A1E883E420091CB87 /* RPC */ = {
+			isa = PBXGroup;
+			children = (
+				22CA202D1E883E500091CB87 /* RPCV1.swift */,
+				22CB98131EB0CDE700F4A3D0 /* RPCV1MessageHandler.swift */,
+				22CA202E1E883E500091CB87 /* RPCV1Schema.swift */,
+				22CA202C1E883E500091CB87 /* RPCV1.json */,
+			);
+			name = RPC;
+			sourceTree = "<group>";
+		};
+		22CA20331E88428F0091CB87 /* Authenticator */ = {
+			isa = PBXGroup;
+			children = (
+				22CA20341E8842A00091CB87 /* Authenticator.swift */,
+				22B143971E8936AD005A35B9 /* V1 */,
+			);
+			name = Authenticator;
+			sourceTree = "<group>";
+		};
+		22DD6E4F1E8E97C100F1B6D2 /* Decoder */ = {
+			isa = PBXGroup;
+			children = (
+				22DD6E521E8E97DE00F1B6D2 /* HTTPDecoder.swift */,
+				22DD6E541E8E980100F1B6D2 /* RPCDecoder.swift */,
+			);
+			name = Decoder;
+			sourceTree = "<group>";
+		};
+		22F0959C1E8958AC000AC0A4 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				22CA1FF01E883D580091CB87 /* MIPV1Client.swift */,
+				22CA1FF11E883D580091CB87 /* MIPV1ClientConnection.swift */,
+				22CA1FF21E883D580091CB87 /* MIPV1ClientDecoder.swift */,
+				225A466B1EB36C28004EE389 /* MIPV1ClientEncoder.swift */,
+			);
+			name = Client;
+			sourceTree = "<group>";
+		};
+		22F0959F1E8958B6000AC0A4 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				22CA1FFA1E883D580091CB87 /* MIPV1Server.swift */,
+				22CA1FFB1E883D580091CB87 /* MIPV1ServerConnection.swift */,
+				22CA1FF31E883D580091CB87 /* MIPV1ServerDecoder.swift */,
+				22CA1FF61E883D580091CB87 /* MIPV1ServerEncoder.swift */,
+			);
+			name = Server;
+			sourceTree = "<group>";
+		};
+		22F095A11E8958D3000AC0A4 /* Schemas */ = {
+			isa = PBXGroup;
+			children = (
+				22CA1FF51E883D580091CB87 /* MIPV1DeviceSchema.swift */,
+				22CA1FF81E883D580091CB87 /* MIPV1MessageSchema.swift */,
+				22CA1FF91E883D580091CB87 /* MIPV1ResourceSchema.swift */,
+				22CA1FFC1E883D580091CB87 /* MIPV1ServiceSchema.swift */,
+				22CA1FF71E883D580091CB87 /* MIPV1MessageSchema.json */,
+				22CA1FF41E883D580091CB87 /* MIPV1DeviceProfile.json */,
+			);
+			name = Schemas;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		22CA1F971E883B490091CB87 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22CA1FAA1E883B490091CB87 /* MedKitMIP.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22CA1FB31E883B5B0091CB87 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22CA1FC61E883B5B0091CB87 /* MedKitMIP.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		22CA1F991E883B490091CB87 /* MedKitMIP iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22CA1FAB1E883B490091CB87 /* Build configuration list for PBXNativeTarget "MedKitMIP iOS" */;
+			buildPhases = (
+				22CA1F951E883B490091CB87 /* Sources */,
+				22CA1F961E883B490091CB87 /* Frameworks */,
+				22CA1F971E883B490091CB87 /* Headers */,
+				22CA1F981E883B490091CB87 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				22CA1FE21E883CEF0091CB87 /* PBXTargetDependency */,
+			);
+			name = "MedKitMIP iOS";
+			productName = "MedKitMIP iOS";
+			productReference = 22CA1F9A1E883B490091CB87 /* MedKitMIP.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		22CA1FA11E883B490091CB87 /* MedKitMIP iOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22CA1FAE1E883B490091CB87 /* Build configuration list for PBXNativeTarget "MedKitMIP iOSTests" */;
+			buildPhases = (
+				22CA1F9E1E883B490091CB87 /* Sources */,
+				22CA1F9F1E883B490091CB87 /* Frameworks */,
+				22CA1FA01E883B490091CB87 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				22CA1FA51E883B490091CB87 /* PBXTargetDependency */,
+			);
+			name = "MedKitMIP iOSTests";
+			productName = "MedKitMIP iOSTests";
+			productReference = 22CA1FA21E883B490091CB87 /* MedKitMIP iOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		22CA1FB51E883B5B0091CB87 /* MedKitMIP macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22CA1FC71E883B5B0091CB87 /* Build configuration list for PBXNativeTarget "MedKitMIP macOS" */;
+			buildPhases = (
+				22CA1FB11E883B5B0091CB87 /* Sources */,
+				22CA1FB21E883B5B0091CB87 /* Frameworks */,
+				22CA1FB31E883B5B0091CB87 /* Headers */,
+				22CA1FB41E883B5B0091CB87 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				22CA1FE01E883CEA0091CB87 /* PBXTargetDependency */,
+			);
+			name = "MedKitMIP macOS";
+			productName = "MedKitMIP macOS";
+			productReference = 22CA1FB61E883B5B0091CB87 /* MedKitMIP.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		22CA1FBD1E883B5B0091CB87 /* MedKitMIP macOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22CA1FCA1E883B5B0091CB87 /* Build configuration list for PBXNativeTarget "MedKitMIP macOSTests" */;
+			buildPhases = (
+				22CA1FBA1E883B5B0091CB87 /* Sources */,
+				22CA1FBB1E883B5B0091CB87 /* Frameworks */,
+				22CA1FBC1E883B5B0091CB87 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				22CA1FC11E883B5B0091CB87 /* PBXTargetDependency */,
+			);
+			name = "MedKitMIP macOSTests";
+			productName = "MedKitMIP macOSTests";
+			productReference = 22CA1FBE1E883B5B0091CB87 /* MedKitMIP macOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		22CA1F561E883AEE0091CB87 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Jon Griffeth";
+				TargetAttributes = {
+					22CA1F991E883B490091CB87 = {
+						CreatedOnToolsVersion = 8.3;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
+					};
+					22CA1FA11E883B490091CB87 = {
+						CreatedOnToolsVersion = 8.3;
+						ProvisioningStyle = Automatic;
+					};
+					22CA1FB51E883B5B0091CB87 = {
+						CreatedOnToolsVersion = 8.3;
+						ProvisioningStyle = Automatic;
+					};
+					22CA1FBD1E883B5B0091CB87 = {
+						CreatedOnToolsVersion = 8.3;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 22CA1F591E883AEE0091CB87 /* Build configuration list for PBXProject "MedKitMIP" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 22CA1F551E883AEE0091CB87;
+			productRefGroup = 22CA1F601E883AEE0091CB87 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 22CA1FCF1E883CCF0091CB87 /* Products */;
+					ProjectRef = 22CA1FCE1E883CCF0091CB87 /* MedKitCore.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				22CA1F991E883B490091CB87 /* MedKitMIP iOS */,
+				22CA1FA11E883B490091CB87 /* MedKitMIP iOSTests */,
+				22CA1FB51E883B5B0091CB87 /* MedKitMIP macOS */,
+				22CA1FBD1E883B5B0091CB87 /* MedKitMIP macOSTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		22CA1FD61E883CCF0091CB87 /* MedKitCore.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MedKitCore.framework;
+			remoteRef = 22CA1FD51E883CCF0091CB87 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22CA1FD81E883CCF0091CB87 /* MedKitCore iOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "MedKitCore iOSTests.xctest";
+			remoteRef = 22CA1FD71E883CCF0091CB87 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22CA1FDA1E883CCF0091CB87 /* MedKitCore.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MedKitCore.framework;
+			remoteRef = 22CA1FD91E883CCF0091CB87 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22CA1FDC1E883CCF0091CB87 /* MedKitCore macOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "MedKitCore macOSTests.xctest";
+			remoteRef = 22CA1FDB1E883CCF0091CB87 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		22CA1F981E883B490091CB87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22CA20301E883E500091CB87 /* RPCV1.json in Resources */,
+				22CA20181E883D580091CB87 /* MIPV1MessageSchema.json in Resources */,
+				22CA203E1E8842A00091CB87 /* AuthenticateV1Reject.json in Resources */,
+				225A467E1EB37E39004EE389 /* Release Notes.rtf in Resources */,
+				220A34291EBE17460024DF9E /* LICENSE.txt in Resources */,
+				22CA20151E883D580091CB87 /* MIPV1DeviceProfile.json in Resources */,
+				22CA203D1E8842A00091CB87 /* AuthenticateV1Phase1.json in Resources */,
+				22CA203C1E8842A00091CB87 /* AuthenticateV1Accept.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22CA1FA01E883B490091CB87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22CA1FB41E883B5B0091CB87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				224DD8301E88445D00727706 /* RPCV1.json in Resources */,
+				224DD8111E88444900727706 /* AuthenticateV1Accept.json in Resources */,
+				224DD8281E88445400727706 /* MIPV1MessageSchema.json in Resources */,
+				224DD8251E88445400727706 /* MIPV1DeviceProfile.json in Resources */,
+				224DD8121E88444900727706 /* AuthenticateV1Phase1.json in Resources */,
+				220A344E1EBF46340024DF9E /* Release Notes.rtf in Resources */,
+				224DD8131E88444900727706 /* AuthenticateV1Reject.json in Resources */,
+				220A344D1EBF46310024DF9E /* LICENSE.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22CA1FBC1E883B5B0091CB87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		22CA1F951E883B490091CB87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22CA20141E883D580091CB87 /* MIPV1ServerDecoder.swift in Sources */,
+				22CA20321E883E500091CB87 /* RPCV1Schema.swift in Sources */,
+				22DD6E551E8E980100F1B6D2 /* RPCDecoder.swift in Sources */,
+				22CA200F1E883D580091CB87 /* MIPServerRegistry.swift in Sources */,
+				22CA203F1E8842A00091CB87 /* AuthenticatV1Schema.swift in Sources */,
+				22CA20061E883D580091CB87 /* HTTPHeader.swift in Sources */,
+				22CA20111E883D580091CB87 /* MIPV1Client.swift in Sources */,
+				22CA201E1E883D580091CB87 /* WebSocket.swift in Sources */,
+				22CA20211E883D580091CB87 /* WSFP.swift in Sources */,
+				22CA200E1E883D580091CB87 /* MIPClientRegistry.swift in Sources */,
+				22CA20231E883D580091CB87 /* WSFPReaderWriter.swift in Sources */,
+				22CA20221E883D580091CB87 /* WSFPReader.swift in Sources */,
+				22CA20071E883D580091CB87 /* HTTPMessage.swift in Sources */,
+				22CA203A1E8842A00091CB87 /* Authenticator.swift in Sources */,
+				22CA20131E883D580091CB87 /* MIPV1ClientDecoder.swift in Sources */,
+				22CA20241E883D580091CB87 /* WSFPWriter.swift in Sources */,
+				22CA201B1E883D580091CB87 /* MIPV1Server.swift in Sources */,
+				22CA20161E883D580091CB87 /* MIPV1DeviceSchema.swift in Sources */,
+				22CA20311E883E500091CB87 /* RPCV1.swift in Sources */,
+				22B143961E8936A5005A35B9 /* Main.swift in Sources */,
+				22CA201D1E883D580091CB87 /* MIPV1ServiceSchema.swift in Sources */,
+				22CA201C1E883D580091CB87 /* MIPV1ServerConnection.swift in Sources */,
+				22CA203B1E8842A00091CB87 /* AuthenticatorV1.swift in Sources */,
+				22CA20081E883D580091CB87 /* HTTPMethod.swift in Sources */,
+				22CA201F1E883D580091CB87 /* WebSocketClient.swift in Sources */,
+				22CA20191E883D580091CB87 /* MIPV1MessageSchema.swift in Sources */,
+				22CA20171E883D580091CB87 /* MIPV1ServerEncoder.swift in Sources */,
+				225A46681EB368BB004EE389 /* Resource.swift in Sources */,
+				225A46661EB36894004EE389 /* Service.swift in Sources */,
+				22CA20101E883D580091CB87 /* MIPV1.swift in Sources */,
+				22CA200B1E883D580091CB87 /* HTTPResponse.swift in Sources */,
+				22CA201A1E883D580091CB87 /* MIPV1ResourceSchema.swift in Sources */,
+				22CA200A1E883D580091CB87 /* HTTPRequest.swift in Sources */,
+				22CB98141EB0CDE700F4A3D0 /* RPCV1MessageHandler.swift in Sources */,
+				22CA20201E883D580091CB87 /* WebSocketServer.swift in Sources */,
+				225A466C1EB36C28004EE389 /* MIPV1ClientEncoder.swift in Sources */,
+				22CA20091E883D580091CB87 /* HTTPReader.swift in Sources */,
+				22CA20041E883D580091CB87 /* HTTPClient.swift in Sources */,
+				22CA20121E883D580091CB87 /* MIPV1ClientConnection.swift in Sources */,
+				22CA200C1E883D580091CB87 /* HTTPServer.swift in Sources */,
+				22CA200D1E883D580091CB87 /* HTTPStatus.swift in Sources */,
+				22DD6E531E8E97DE00F1B6D2 /* HTTPDecoder.swift in Sources */,
+				220A34411EBF414A0024DF9E /* README.md in Sources */,
+				225A46631EB36847004EE389 /* Device.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22CA1F9E1E883B490091CB87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22CA1FA81E883B490091CB87 /* MedKitMIP_iOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22CA1FB11E883B5B0091CB87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				224DD82E1E88445900727706 /* MIPClientRegistry.swift in Sources */,
+				224DD8241E88445400727706 /* MIPV1ServerDecoder.swift in Sources */,
+				22DD6E571E8E985100F1B6D2 /* RPCDecoder.swift in Sources */,
+				224DD8371E88446300727706 /* WSFPReader.swift in Sources */,
+				224DD81E1E88444E00727706 /* HTTPServer.swift in Sources */,
+				224DD80F1E88444900727706 /* Authenticator.swift in Sources */,
+				224DD8211E88445400727706 /* MIPV1Client.swift in Sources */,
+				224DD8361E88446300727706 /* WSFP.swift in Sources */,
+				224DD8351E88446300727706 /* WebSocketServer.swift in Sources */,
+				224DD8191E88444E00727706 /* HTTPMessage.swift in Sources */,
+				224DD81D1E88444E00727706 /* HTTPResponse.swift in Sources */,
+				224DD8311E88445D00727706 /* RPCV1.swift in Sources */,
+				224DD8231E88445400727706 /* MIPV1ClientDecoder.swift in Sources */,
+				224DD81A1E88444E00727706 /* HTTPMethod.swift in Sources */,
+				224DD82B1E88445400727706 /* MIPV1Server.swift in Sources */,
+				224DD8261E88445400727706 /* MIPV1DeviceSchema.swift in Sources */,
+				224DD82D1E88445400727706 /* MIPV1ServiceSchema.swift in Sources */,
+				224DD82C1E88445400727706 /* MIPV1ServerConnection.swift in Sources */,
+				224DD8381E88446300727706 /* WSFPReaderWriter.swift in Sources */,
+				22B144511E893E55005A35B9 /* Main.swift in Sources */,
+				224DD8101E88444900727706 /* AuthenticatorV1.swift in Sources */,
+				225A466D1EB36CDD004EE389 /* MIPV1ClientEncoder.swift in Sources */,
+				224DD8331E88446300727706 /* WebSocket.swift in Sources */,
+				224DD8291E88445400727706 /* MIPV1MessageSchema.swift in Sources */,
+				224DD8271E88445400727706 /* MIPV1ServerEncoder.swift in Sources */,
+				224DD8321E88445D00727706 /* RPCV1Schema.swift in Sources */,
+				224DD8201E88445400727706 /* MIPV1.swift in Sources */,
+				224DD8341E88446300727706 /* WebSocketClient.swift in Sources */,
+				225A466A1EB3699E004EE389 /* Resource.swift in Sources */,
+				225A46691EB3699B004EE389 /* Service.swift in Sources */,
+				224DD8181E88444E00727706 /* HTTPHeader.swift in Sources */,
+				224DD82A1E88445400727706 /* MIPV1ResourceSchema.swift in Sources */,
+				224DD8171E88444E00727706 /* HTTPClient.swift in Sources */,
+				224DD81C1E88444E00727706 /* HTTPRequest.swift in Sources */,
+				22CB98171EB0CDEB00F4A3D0 /* RPCV1MessageHandler.swift in Sources */,
+				224DD81B1E88444E00727706 /* HTTPReader.swift in Sources */,
+				224DD8221E88445400727706 /* MIPV1ClientConnection.swift in Sources */,
+				224DD8141E88444900727706 /* AuthenticatV1Schema.swift in Sources */,
+				224DD82F1E88445900727706 /* MIPServerRegistry.swift in Sources */,
+				224DD8391E88446300727706 /* WSFPWriter.swift in Sources */,
+				224DD81F1E88444E00727706 /* HTTPStatus.swift in Sources */,
+				22DD6E561E8E984E00F1B6D2 /* HTTPDecoder.swift in Sources */,
+				220A344C1EBF462E0024DF9E /* README.md in Sources */,
+				225A46641EB36849004EE389 /* Device.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		22CA1FBA1E883B5B0091CB87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22CA1FC41E883B5B0091CB87 /* MedKitMIP_macOSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		22CA1FA51E883B490091CB87 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 22CA1F991E883B490091CB87 /* MedKitMIP iOS */;
+			targetProxy = 22CA1FA41E883B490091CB87 /* PBXContainerItemProxy */;
+		};
+		22CA1FC11E883B5B0091CB87 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 22CA1FB51E883B5B0091CB87 /* MedKitMIP macOS */;
+			targetProxy = 22CA1FC01E883B5B0091CB87 /* PBXContainerItemProxy */;
+		};
+		22CA1FE01E883CEA0091CB87 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "MedKitCore macOS";
+			targetProxy = 22CA1FDF1E883CEA0091CB87 /* PBXContainerItemProxy */;
+		};
+		22CA1FE21E883CEF0091CB87 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "MedKitCore iOS";
+			targetProxy = 22CA1FE11E883CEF0091CB87 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		22CA1F711E883AEE0091CB87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 23;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		22CA1F721E883AEE0091CB87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 23;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		22CA1FAC1E883B490091CB87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 23;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 23;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "MedKitMIP iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Private.MedKitMIP;
+				PRODUCT_NAME = MedKitMIP;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		22CA1FAD1E883B490091CB87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 23;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 23;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "MedKitMIP iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Private.MedKitMIP;
+				PRODUCT_NAME = MedKitMIP;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		22CA1FAF1E883B490091CB87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "MedKitMIP iOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Private.MedKitMIP-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		22CA1FB01E883B490091CB87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "MedKitMIP iOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Private.MedKitMIP-iOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		22CA1FC81E883B5B0091CB87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 23;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 23;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "MedKitMIP macOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = Private.MedKitMIP;
+				PRODUCT_NAME = MedKitMIP;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		22CA1FC91E883B5B0091CB87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 23;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 23;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "MedKitMIP macOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = Private.MedKitMIP;
+				PRODUCT_NAME = MedKitMIP;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		22CA1FCB1E883B5B0091CB87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "MedKitMIP macOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "Private.MedKitMIP-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		22CA1FCC1E883B5B0091CB87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "MedKitMIP macOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "Private.MedKitMIP-macOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		22CA1F591E883AEE0091CB87 /* Build configuration list for PBXProject "MedKitMIP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22CA1F711E883AEE0091CB87 /* Debug */,
+				22CA1F721E883AEE0091CB87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22CA1FAB1E883B490091CB87 /* Build configuration list for PBXNativeTarget "MedKitMIP iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22CA1FAC1E883B490091CB87 /* Debug */,
+				22CA1FAD1E883B490091CB87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22CA1FAE1E883B490091CB87 /* Build configuration list for PBXNativeTarget "MedKitMIP iOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22CA1FAF1E883B490091CB87 /* Debug */,
+				22CA1FB01E883B490091CB87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22CA1FC71E883B5B0091CB87 /* Build configuration list for PBXNativeTarget "MedKitMIP macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22CA1FC81E883B5B0091CB87 /* Debug */,
+				22CA1FC91E883B5B0091CB87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22CA1FCA1E883B5B0091CB87 /* Build configuration list for PBXNativeTarget "MedKitMIP macOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22CA1FCB1E883B5B0091CB87 /* Debug */,
+				22CA1FCC1E883B5B0091CB87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 22CA1F561E883AEE0091CB87 /* Project object */;
+}
