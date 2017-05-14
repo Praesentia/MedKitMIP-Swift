@@ -172,7 +172,7 @@ class RPCV1: ProtocolStack {
         - data: Bytes for a single message.
      
      - Returns:
-        Returns a JSON structure reactivating the RPC message, or nil if the
+        Returns a JSON structure representing the RPC message, or nil if the
         data is invalid and could not be decoded or verified.
      */
     private func decode(data: Data) -> JSON?

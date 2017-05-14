@@ -30,6 +30,8 @@ class MIPV1Client: Backend {
     
     let registry = MIPClientRegistry();
     
+    let isOpen = true;
+    
     private var server        : MIPV1ClientEncoder;
     private let authenticator : Authenticator;
     
@@ -72,9 +74,9 @@ class MIPV1Client: Backend {
         
         for service in device.serviceBackends {
             for resource in service.resourceBackends {
-                resource.backend = resource.getDefaultBackend();
+                resource.backend = resource.defaultBackend;
             }
-            service.backend = service.getDefaultBackend();
+            service.backend = service.defaultBackend;
         }
         
         device.backend = device.defaultBackend;

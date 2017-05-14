@@ -48,7 +48,7 @@ extension ServiceBackend {
      */
     var path: JSON
     {
-        return JSON([ JSON(deviceBackend!.identifier), JSON(identifier) ]);
+        return JSON([ JSON(deviceBackend.identifier), JSON(identifier) ]);
     }
     
 }

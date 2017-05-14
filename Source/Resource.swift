@@ -48,7 +48,7 @@ extension ResourceBackend {
      */
     var path: JSON
     {
-        return JSON([ JSON(serviceBackend!.deviceBackend!.identifier), JSON(serviceBackend!.identifier), JSON(identifier) ]);
+        return JSON([ JSON(serviceBackend.deviceBackend.identifier), JSON(serviceBackend.identifier), JSON(identifier) ]);
     }
     
 }

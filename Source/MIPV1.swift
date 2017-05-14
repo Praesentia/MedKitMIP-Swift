@@ -33,7 +33,7 @@ class MIPV1: DeviceProtocol {
     
     static let main = MIPV1();
     
-    let description   : String = "Medical Interoperability Protocol, Version 1 Beta 1";
+    let description   : String = "Medical Interoperability Protocol, Version 1 Beta (1)";
     let identifier    : String = ProtocolNameMIPV1;
     let name          : String = "MIP";
     let priority      : Int    = 0;
