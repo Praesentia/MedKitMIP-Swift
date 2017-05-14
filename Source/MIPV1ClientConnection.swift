@@ -100,24 +100,27 @@ class MIPV1ClientConnection: ClientConnection {
      */
     override func protocolStackDidInitialize(_ stack: ProtocolStack, with error: Error?)
     {
-        if error == nil {
-            if stack === http {
-                webc.upgrade("", MIPV1WSPath, ProtocolNameMIPV1) { error in
-                    if error == nil {
-                        self.rpc.start() { error in
-                            self.complete(error);
-                        }
-                        self.wsfp.enable(port: self.port);
+        let sync = Sync(error);
+        
+        if error == nil && stack === http {
+            
+            sync.incr();
+            webc.upgrade("", MIPV1WSPath, ProtocolNameMIPV1) { error in
+                
+                if error == nil {
+                    sync.incr();
+                    self.rpc.start() { error in
+                        sync.decr(error);
                     }
-                    else
-                    {
-                        self.complete(error);
-                    }
+                    self.wsfp.enable(port: self.port);
                 }
+                
+                sync.decr(error);
             }
         }
-        else {
-            complete(error);
+        
+        sync.close() { error in
+            self.complete(error);
         }
     }
     
