@@ -26,7 +26,7 @@ import MedKitCore;
 /**
  Remote Procedure Call
  */
-class RPCV1: ProtocolStack {
+class RPCV1: ProtocolStackBase {
 
     weak var messageHandler: RPCV1MessageHandler?;
     

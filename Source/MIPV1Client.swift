@@ -166,7 +166,7 @@ class MIPV1Client: Backend {
         sync.close(completionHandler: completion);
     }
     
-    func deviceClose(_ device: DeviceBackend, reason: Error?, completionHandler completion: @escaping (Error?) -> Void)
+    func deviceClose(_ device: DeviceBackend, for reason: Error?, completionHandler completion: @escaping (Error?) -> Void)
     {
         detach(device);
         DispatchQueue.main.async() { completion(nil); }

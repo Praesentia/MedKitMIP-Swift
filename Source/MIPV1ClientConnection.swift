@@ -26,29 +26,31 @@ import MedKitCore;
 /**
  MIP Version 1 client connection.
  */
-class MIPV1ClientConnection: ClientConnection {
+class MIPV1ClientConnection: ClientConnectionBase {
     
-    // public
+    // MARK: - Class Properties
     static let factory = ClientConnectionFactoryTemplate<MIPV1ClientConnection>(priority: MIPV1Priority);
     
-    override var backend  : Backend   { return mip; }
-    override var dataSink : DataSink? {
-        get        { return loggerA.dataSink;  }
-        set(value) { loggerA.dataSink = value; loggerB.dataSink = value; }
+    // MARK: - Properties
+    override var dataTap : DataTap? {
+        get        { return wsfpTap.dataTap;  }
+        set(value) { wsfpTap.dataTap = value; httpTap.dataTap = value; }
     }
     
-    // MARK: - Private
+    // MARK: - Private Properties
     private let authenticator: AuthenticatorV1;
     private let wsfp         : WSFP;
-    private let loggerA      : PortLogger; // TODO: make dynamically insertable
+    private let wsfpTap      : PortTap;
     private let rpc          : RPCV1;
     private let decoder      : MIPV1ClientDecoder;
     private let encoder      : MIPV1ClientEncoder;
     private let mip          : MIPV1Client;
     
-    private let loggerB      : PortLogger; // TODO: make dynamically insertable
-    private let http         : HTTPClient;
-    private let webc         : WebSocketClient;
+    private let httpTap : PortTap;
+    private let http    : HTTPClient;
+    private let webc    : WebSocketClient;
+    
+    // MARK: - Initializers
     
     /**
      Initialize instance.
@@ -61,8 +63,8 @@ class MIPV1ClientConnection: ClientConnection {
     {
         // websocket
         wsfp          = WSFP(nil);
-        loggerA       = PortLogger(wsfp, decoderFactory: RPCDecoder.factory);
-        rpc           = RPCV1(loggerA);
+        wsfpTap       = PortTap(wsfp, decoderFactory: RPCDecoder.factory);
+        rpc           = RPCV1(wsfpTap);
         authenticator = AuthenticatorV1(rpc: rpc, myself: principal);
         encoder       = MIPV1ClientEncoder(rpc: rpc);
         mip           = MIPV1Client(encoder: encoder, authenticator: authenticator);
@@ -72,8 +74,8 @@ class MIPV1ClientConnection: ClientConnection {
         decoder.client     = mip;
         
         // http
-        loggerB = PortLogger(port, decoderFactory: HTTPDecoder.factory);
-        http    = HTTPClient(loggerB);
+        httpTap = PortTap(port, decoderFactory: HTTPDecoder.factory);
+        http    = HTTPClient(httpTap);
         webc    = WebSocketClient(http: http);
         
         super.init(to: port, as: principal);
@@ -83,6 +85,21 @@ class MIPV1ClientConnection: ClientConnection {
     }
     
     // MARK: - ProtocolStackDelegate
+    
+    /**
+     ProtocolStack did close.
+     
+     - Parameters:
+        - stack:  The ProtocolStack instance generating the call.
+        - reason: The reason the stack closed.
+     */
+    override func protocolStackDidClose(_ stack: ProtocolStack, for reason: Error?)
+    {
+        _backend = nil; // retract the backend
+        authenticator.didClose();
+        
+        super.protocolStackDidClose(stack, for: reason);
+    }
     
     /**
      ProtocolStack did initialize.
@@ -120,21 +137,11 @@ class MIPV1ClientConnection: ClientConnection {
         }
         
         sync.close() { error in
+            if error == nil {
+                self._backend = self.mip; // publish the backend
+            }
             self.complete(error);
         }
-    }
-    
-    /**
-     ProtocolStack did close.
-     
-     - Parameters:
-        - stack:  The ProtocolStack instance generating the call.
-        - reason: The reason the stack closed.
-     */
-    override func protocolStackDidClose(_ stack: ProtocolStack, reason: Error?)
-    {
-        authenticator.didClose();
-        super.protocolStackDidClose(stack, reason: reason)
     }
     
 }

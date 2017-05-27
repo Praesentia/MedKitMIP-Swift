@@ -26,7 +26,7 @@ import MedKitCore;
 /**
  HTTP Client
  */
-class HTTPClient: ProtocolStack {
+class HTTPClient: ProtocolStackBase {
     
     typealias CompletionHandler = ((HTTPResponse?, Error?) -> Void);
     

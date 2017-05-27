@@ -101,13 +101,13 @@ class WebSocketClient: WebSocket {
     private func verify(_ response: HTTPResponse, _ proto: String, _ key: String) -> Bool
     {
         let check  = Check();
-        let sha1  = SecurityManagerShared.main.digest(using: .SHA1);
+        let digest = SecurityManagerShared.main.digest(using: .SHA1);
         var accept : String;
         
         // generate expected accept response
-        sha1.update(string: key);
-        sha1.update(string: Key);
-        accept = sha1.final().base64EncodedString;
+        digest.update(string: key);
+        digest.update(string: Key);
+        accept = digest.final().base64EncodedString;
         
         check += (response.status == .SwitchingProtocols);
         check += (response.getField(key: HTTPHeader.Connection)           == Upgrade);

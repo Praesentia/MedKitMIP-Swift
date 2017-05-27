@@ -62,16 +62,16 @@ class WebSocketServer: WebSocket, HTTPServerRouter {
         if (check.value)
         {
             let response = HTTPResponse(status: .SwitchingProtocols);
-            let sha1    = SecurityManagerShared.main.digest(using: .SHA1);
+            let digest   = SecurityManagerShared.main.digest(using: .SHA1);
             
             // generate acceptance signature
-            sha1.update(string: request.getField(key: HTTPHeader.SecWebSocketKey));
-            sha1.update(string: Key);
+            digest.update(string: request.getField(key: HTTPHeader.SecWebSocketKey));
+            digest.update(string: Key);
             
             // populate response
             response.setField(key: HTTPHeader.Connection,           value: Upgrade);
             response.setField(key: HTTPHeader.Upgrade,              value: WebSocket);
-            response.setField(key: HTTPHeader.SecWebSocketAccept,   value: sha1.final().base64EncodedString);
+            response.setField(key: HTTPHeader.SecWebSocketAccept,   value: digest.final().base64EncodedString);
             response.setField(key: HTTPHeader.SecWebSocketProtocol, value: ProtocolNameMIPV1); // TODO
             response.setField(key: HTTPHeader.SecWebSocketVersion,  value: Version);
             

@@ -1,9 +1,12 @@
 
 ## Synopsis
 
-MedKit is the concept for a client API, facilitating bi-directional communication with medical devices.
+MedKit is an open source framework facilitating secure, bi-directional
+communication with medical devices.
 
-MedKitMIP implements an experimental device oriented network protocol.
+MedKitMIP is one of a number of MedKit modules which include: MedKit,
+MedKitCore, MedKitDomain and MedKitSecurity.  MedKitMIP implements an
+experimental device oriented network protocol.
 
 ## Dependencies
 

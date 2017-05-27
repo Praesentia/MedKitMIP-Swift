@@ -62,14 +62,14 @@ class AuthenticatorV1: Authenticator {
             phase0();
         }
         else {
-            rejected(reason: MedKitError.BadCredentials, fatal: true);
+            rejected(for: MedKitError.BadCredentials, fatal: true);
         }
     }
     
     override func didClose()
     {
         if state != .idle {
-            rejected(reason: .ProtocolError, fatal: false);
+            rejected(for: .ProtocolError, fatal: false);
         }
     }
     
@@ -96,7 +96,7 @@ class AuthenticatorV1: Authenticator {
      */
     private func phase0()
     {
-        guard(state == .idle) else { rejected(reason: MedKitError.ProtocolError, fatal: true); return; }
+        guard(state == .idle) else { rejected(for: MedKitError.ProtocolError, fatal: true); return; }
         
         let args = JSON();
         
@@ -113,7 +113,7 @@ class AuthenticatorV1: Authenticator {
      */
     private func phase1(_ args: JSON)
     {
-        guard(state == .idle) else { rejected(reason: MedKitError.ProtocolError, fatal: true); return; }
+        guard(state == .idle) else { rejected(for: MedKitError.ProtocolError, fatal: true); return; }
         
         nonceClient = decodeBase64(args[KeyNonce].string!);
         nonceServer = SecurityManagerShared.main.randomBytes(count: NonceSize);
@@ -132,7 +132,7 @@ class AuthenticatorV1: Authenticator {
      */
     private func phase2(_ args: JSON)
     {
-        guard(state == .Phase2) else { rejected(reason: MedKitError.ProtocolError, fatal: true); return; }
+        guard(state == .Phase2) else { rejected(for: MedKitError.ProtocolError, fatal: true); return; }
         
         peer        = Principal(from: args[KeyPrincipal]);
         nonceServer = decodeBase64(args[KeyNonce].string!);
@@ -147,7 +147,7 @@ class AuthenticatorV1: Authenticator {
             send(method: .Phase3, args: reply);
         }
         else {
-            reject(reason: MedKitError.BadCredentials, fatal: true);
+            reject(for: MedKitError.BadCredentials, fatal: true);
         }
     }
     
@@ -156,7 +156,7 @@ class AuthenticatorV1: Authenticator {
      */
     private func phase3(_ args: JSON)
     {
-        guard(state == .Phase3) else { rejected(reason: MedKitError.ProtocolError, fatal: true); return; }
+        guard(state == .Phase3) else { rejected(for: MedKitError.ProtocolError, fatal: true); return; }
         
         let client = Principal(from: args[KeyPrincipal])
         let key    = decodeBase64(args[KeyKey].string!)!;
@@ -166,11 +166,11 @@ class AuthenticatorV1: Authenticator {
                 accept(principal: client);
             }
             else {
-                reject(reason: MedKitError.Rejected, fatal: true);
+                reject(for: MedKitError.Rejected, fatal: true);
             }
         }
         else {
-            reject(reason: MedKitError.BadCredentials, fatal: true);
+            reject(for: MedKitError.BadCredentials, fatal: true);
         }
     }
     
@@ -181,7 +181,7 @@ class AuthenticatorV1: Authenticator {
      */
     private func phase4()
     {
-        guard(state == .Phase4) else { rejected(reason: MedKitError.ProtocolError, fatal: true); return; }
+        guard(state == .Phase4) else { rejected(for: MedKitError.ProtocolError, fatal: true); return; }
     
         accepted(principal: peer!);
     }
@@ -210,10 +210,10 @@ class AuthenticatorV1: Authenticator {
     /**
      Reject
      */
-    private func reject(reason error: MedKitError, fatal: Bool)
+    private func reject(for reason: MedKitError, fatal: Bool)
     {
-        sendReject(reason: error);
-        rejected(reason: error, fatal: fatal);
+        sendReject(for: reason);
+        rejected(for: reason, fatal: fatal);
     }
     
     /**
@@ -296,11 +296,11 @@ class AuthenticatorV1: Authenticator {
                 phase4();
                 
             case .Reject :
-                rejected(reason: MedKitError(rawValue: args[KeyError].int!)!, fatal: false);
+                rejected(for: MedKitError(rawValue: args[KeyError].int!)!, fatal: false);
             }
         }
         else {
-            reject(reason: MedKitError.BadArgs, fatal: true);
+            reject(for: MedKitError.BadArgs, fatal: true);
         }
     }
     
@@ -331,11 +331,11 @@ class AuthenticatorV1: Authenticator {
      - Parameters:
         - reason: Reason for rejection.
      */
-    private func sendReject(reason error: MedKitError)
+    private func sendReject(for reason: MedKitError)
     {
         let args = JSON();
         
-        args[KeyError] = error.rawValue;
+        args[KeyError] = reason.rawValue;
         
         send(method: .Reject, args: args);
     }

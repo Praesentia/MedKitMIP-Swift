@@ -35,9 +35,9 @@ protocol HTTPServerRouter: class {
 /**
  HTTP Server
  */
-class HTTPServer: ProtocolStack {
+class HTTPServer: ProtocolStackBase {
     
-    // public
+    // MARK: - Properties
     weak var messageHandler: HTTPServerRouter?;
 
     // MARK: - Private

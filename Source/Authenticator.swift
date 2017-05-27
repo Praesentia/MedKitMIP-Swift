@@ -40,7 +40,7 @@ protocol AuthenticatorDelegate: class {
  */
 class Authenticator {
     
-    // public
+    // MARK: - Properties
     weak var delegate  : AuthenticatorDelegate?;
     var      principal : Principal?;
     
@@ -116,11 +116,11 @@ class Authenticator {
         - reason: The reason for rejection.
         - fatal:  Indicates whether or not the connection should be closed.
      */
-    func rejected(reason error: MedKitError, fatal: Bool)
+    func rejected(for reason: MedKitError, fatal: Bool)
     {
         if let completion = self.completion {
             DispatchQueue.main.async() {
-                completion(error);
+                completion(reason);
             }
         }
         
@@ -128,7 +128,7 @@ class Authenticator {
         
         if fatal {
             DispatchQueue.main.async() {
-                self.rpc.shutdown(reason: error);
+                self.rpc.shutdown(for: reason);
             }
         }
     }

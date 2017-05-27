@@ -66,9 +66,9 @@ class WSFP: MedKitCore.Port, MedKitCore.PortDelegate {
         port?.send(writer.makeFrame(opcode: .BinaryFrame, payload: data));
     }
     
-    func shutdown(reason: Error?)
+    func shutdown(for reason: Error?)
     {
-        port?.shutdown(reason: reason);
+        port?.shutdown(for: reason);
     }
     
     func start()
@@ -78,7 +78,7 @@ class WSFP: MedKitCore.Port, MedKitCore.PortDelegate {
     func close()
     {
         sendClose();
-        port?.shutdown(reason: nil);
+        port?.shutdown(for: nil);
     }
     
     private func sendClose()
@@ -104,7 +104,7 @@ class WSFP: MedKitCore.Port, MedKitCore.PortDelegate {
     private func terminate()
     {
         heartbeat?.invalidate();
-        port?.shutdown(reason: nil);
+        port?.shutdown(for: nil);
     }
     
     private func startHeartbeat()
@@ -137,9 +137,9 @@ class WSFP: MedKitCore.Port, MedKitCore.PortDelegate {
         }
     }
     
-    func portDidClose(_ port: MedKitCore.Port, reason: Error?)
+    func portDidClose(_ port: MedKitCore.Port, for reason: Error?)
     {
-        delegate?.portDidClose(self, reason: reason);
+        delegate?.portDidClose(self, for: reason);
     }
     
     func port(_ port: MedKitCore.Port, didReceive data: Data)
