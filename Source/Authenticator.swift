@@ -118,6 +118,8 @@ class Authenticator {
      */
     func rejected(for reason: MedKitError, fatal: Bool)
     {
+        print("rejected \(reason.localizedDescription)");
+        
         if let completion = self.completion {
             DispatchQueue.main.async() {
                 completion(reason);

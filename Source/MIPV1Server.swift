@@ -207,9 +207,11 @@ class MIPV1Server: DeviceObserver, ServiceObserver, ResourceObserver {
     
     // MARK: - ResourceObserver
     
-    func resourceDidUpdate(_ resource: Resource, value: JSON?, at time: TimeInterval)
+    func resourceDidUpdate(_ resource: Resource)
     {
-        client.resource(resource, didUpdate: value, at: time);
+        if let cache = resource.cache {
+            client.resource(resource, didUpdate: cache.value, at: cache.timeModified)
+        }
     }
     
 }

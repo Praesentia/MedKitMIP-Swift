@@ -38,6 +38,9 @@ class MIPV1ClientConnection: ClientConnectionBase {
     }
     
     // MARK: - Private Properties
+    private let tls       : PortSecure;
+    private let tlsPolicy : MIPV1ClientPolicy;
+    
     private let authenticator: AuthenticatorV1;
     private let wsfp         : WSFP;
     private let wsfpTap      : PortTap;
@@ -59,8 +62,13 @@ class MIPV1ClientConnection: ClientConnectionBase {
         - port:      The base port, typically TCP.
         - principal: The client principal associated with the connection.
      */
-    required init(to port: MedKitCore.Port, as principal: Principal?)
+    required init(to port: MedKitCore.Port, for device: DeviceBackend, as principal: Principal?)
     {
+        // tls
+        tlsPolicy     = MIPV1ClientPolicy(for: Identity(named: device.identifier.uuidstring, type: .Device));
+        tls           = PortSecure(port);
+        tls.policy    = tlsPolicy;
+        
         // websocket
         wsfp          = WSFP(nil);
         wsfpTap       = PortTap(wsfp, decoderFactory: RPCDecoder.factory);
@@ -74,11 +82,11 @@ class MIPV1ClientConnection: ClientConnectionBase {
         decoder.client     = mip;
         
         // http
-        httpTap = PortTap(port, decoderFactory: HTTPDecoder.factory);
+        httpTap = PortTap(tls, decoderFactory: HTTPDecoder.factory);
         http    = HTTPClient(httpTap);
         webc    = WebSocketClient(http: http);
         
-        super.init(to: port, as: principal);
+        super.init(to: port, for: device, as: principal);
         
         http.delegate = self;
         rpc.delegate  = self;
@@ -129,7 +137,7 @@ class MIPV1ClientConnection: ClientConnectionBase {
                     self.rpc.start() { error in
                         sync.decr(error);
                     }
-                    self.wsfp.enable(port: self.port);
+                    self.wsfp.enable(port: self.tls);
                 }
                 
                 sync.decr(error);

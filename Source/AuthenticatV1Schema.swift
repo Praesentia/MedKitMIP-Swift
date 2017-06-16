@@ -136,8 +136,7 @@ class AuthenticatorV1Schema {
         check += profile.contains(key: KeyType);
         
         if check.value {
-            check += profile[KeyType].type    == .String;
-            check += profile[KeyType].string! == "Shared Secret";
+            check += profile[KeyType].type == .String;
         }
         
         return check.value;

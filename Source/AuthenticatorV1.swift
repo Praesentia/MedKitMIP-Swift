@@ -36,6 +36,8 @@ class AuthenticatorV1: Authenticator {
         case Reject = 5;
     }
     
+    // MARK: - Private Properties
+    
     private enum State {
         case idle;   // Idle state.
         case Phase2; // waiting for phase2 message
@@ -50,6 +52,8 @@ class AuthenticatorV1: Authenticator {
     private var state       : State = .idle;
     private var nonceClient : [UInt8]!;
     private var nonceServer : [UInt8]!;
+    
+    // MARK: -
     
     /**
      Authenticator identity.
@@ -69,6 +73,7 @@ class AuthenticatorV1: Authenticator {
     override func didClose()
     {
         if state != .idle {
+            print("closed");
             rejected(for: .ProtocolError, fatal: false);
         }
     }
@@ -87,6 +92,8 @@ class AuthenticatorV1: Authenticator {
         
         super.reset();
     }
+    
+    // MARK: - Phases
     
     /**
      Phase 0 (Client-Side).
@@ -113,18 +120,26 @@ class AuthenticatorV1: Authenticator {
      */
     private func phase1(_ args: JSON)
     {
+        print("phase 1");
+        
         guard(state == .idle) else { rejected(for: MedKitError.ProtocolError, fatal: true); return; }
         
         nonceClient = decodeBase64(args[KeyNonce].string!);
         nonceServer = SecurityManagerShared.main.randomBytes(count: NonceSize);
         
-        let reply = JSON();
-        
-        reply[KeyPrincipal] = myself.profile;
-        reply[KeyNonce]     = nonceServer.base64EncodedString;
-        
-        state = .Phase3;
-        send(method: .Phase2, args: reply);
+        if let serverKey = calculateServerKey(server: myself) {
+            let reply = JSON();
+            
+            reply[KeyPrincipal] = myself.profile;
+            reply[KeyNonce]     = nonceServer.base64EncodedString;
+            reply[KeyKey]       = serverKey.base64EncodedString;
+            
+            state = .Phase3;
+            send(method: .Phase2, args: reply);
+        }
+        else {
+            reject(for: MedKitError.BadCredentials, fatal: true);
+        }
     }
     
     /**
@@ -132,22 +147,28 @@ class AuthenticatorV1: Authenticator {
      */
     private func phase2(_ args: JSON)
     {
+        print("phase 2");
+        
         guard(state == .Phase2) else { rejected(for: MedKitError.ProtocolError, fatal: true); return; }
         
         peer        = Principal(from: args[KeyPrincipal]);
         nonceServer = decodeBase64(args[KeyNonce].string!);
         
-        if let clientKey = calculateClientKey(client: myself) {
-            let reply = JSON();
-            
-            reply[KeyPrincipal] = myself.profile;
-            reply[KeyKey] = clientKey.base64EncodedString;
+        let key = decodeBase64(args[KeyKey].string!)!;
         
-            state = .Phase4;
-            send(method: .Phase3, args: reply);
-        }
-        else {
-            reject(for: MedKitError.BadCredentials, fatal: true);
+        if verifyServer(server: peer!, key: key) {
+            if let clientKey = calculateClientKey(client: myself) {
+                let reply = JSON();
+                
+                reply[KeyPrincipal] = myself.profile;
+                reply[KeyKey]       = clientKey.base64EncodedString;
+            
+                state = .Phase4;
+                send(method: .Phase3, args: reply);
+            }
+            else {
+                reject(for: MedKitError.BadCredentials, fatal: true);
+            }
         }
     }
     
@@ -156,6 +177,8 @@ class AuthenticatorV1: Authenticator {
      */
     private func phase3(_ args: JSON)
     {
+        print("phase 3");
+        
         guard(state == .Phase3) else { rejected(for: MedKitError.ProtocolError, fatal: true); return; }
         
         let client = Principal(from: args[KeyPrincipal])
@@ -181,8 +204,10 @@ class AuthenticatorV1: Authenticator {
      */
     private func phase4()
     {
+        print("phase 4");
+        
         guard(state == .Phase4) else { rejected(for: MedKitError.ProtocolError, fatal: true); return; }
-    
+        
         accepted(principal: peer!);
     }
     
@@ -191,9 +216,24 @@ class AuthenticatorV1: Authenticator {
      */
     private func accept(principal: Principal)
     {
+        print("accept");
+        
         send(method: .Accept);
         accepted(principal: principal);
     }
+    
+    /**
+     Reject
+     */
+    private func reject(for reason: MedKitError, fatal: Bool)
+    {
+        print("reject \(reason.localizedDescription)");
+        
+        sendReject(for: reason);
+        rejected(for: reason, fatal: fatal);
+    }
+    
+    // MARK: - Utilities
     
     /**
      Clear authenticator state. TODO
@@ -208,15 +248,6 @@ class AuthenticatorV1: Authenticator {
     }
     
     /**
-     Reject
-     */
-    private func reject(for reason: MedKitError, fatal: Bool)
-    {
-        sendReject(for: reason);
-        rejected(for: reason, fatal: fatal);
-    }
-    
-    /**
      Generate client key for myself.
      */
     private func calculateClientKey(client: Principal) -> [UInt8]?
@@ -225,8 +256,6 @@ class AuthenticatorV1: Authenticator {
         
         sha256.update(bytes: nonceClient);
         sha256.update(bytes: nonceServer);
-        sha256.update(string: client.identity.string);
-        sha256.update(string: client.authorization.string);
         
         return client.credentials.sign(bytes: sha256.final());
     }
@@ -236,14 +265,12 @@ class AuthenticatorV1: Authenticator {
      */
     private func verifyClientKey(client: Principal, key: [UInt8]) -> Bool
     {
-        let sha256 = SecurityManagerShared.main.digest(using: .SHA256);
+        let digest = SecurityManagerShared.main.digest(using: .SHA256);
         
-        sha256.update(bytes: nonceClient);
-        sha256.update(bytes: nonceServer);
-        sha256.update(string: client.identity.string);
-        sha256.update(string: client.authorization.string);
+        digest.update(bytes: nonceClient);
+        digest.update(bytes: nonceServer);
         
-        return client.credentials.verify(signature: key, bytes: sha256.final());
+        return client.credentials.verify(signature: key, for: digest.final());
     }
     
     /**
@@ -251,34 +278,69 @@ class AuthenticatorV1: Authenticator {
      */
     private func calculateServerKey(server: Principal) -> [UInt8]?
     {
-        let sha256 = SecurityManagerShared.main.digest(using: .SHA256);
+        let digest = SecurityManagerShared.main.digest(using: .SHA256);
         
-        sha256.update(bytes: nonceServer);
-        sha256.update(bytes: nonceClient);
-        sha256.update(string: server.identity.string);
+        digest.update(bytes: nonceServer);
+        digest.update(bytes: nonceClient);
         
-        return server.credentials.sign(bytes: sha256.final());
+        return server.credentials.sign(bytes: digest.final());
+    }
+    
+    /**
+     Verify server identity.
+     
+     - Parameters:
+        - server: A principal representing the server.
+        - key:    The key presented by the server.
+     */
+    private func verifyServer(server: Principal, key: [UInt8]) -> Bool
+    {
+        if server.trusted {
+            if verifyServerKey(server: server, key: key) {
+                if shouldAccept(principal: server) {
+                    return true;
+                }
+                reject(for: MedKitError.Rejected, fatal: true);
+                return false;
+            }
+        }
+
+        reject(for: MedKitError.BadCredentials, fatal: true);
+        return false;
     }
     
     /**
      Verify server key.
+     
+     - Parameters:
+        - server: A principal representing the server.
+        - key:    The key presented by the server.
      */
     private func verifyServerKey(server: Principal, key: [UInt8]) -> Bool
     {
-        let sha256 = SecurityManagerShared.main.digest(using: .SHA256);
+        let digest = SecurityManagerShared.main.digest(using: .SHA256);
         
-        sha256.update(bytes: nonceServer);
-        sha256.update(bytes: nonceClient);
-        sha256.update(string: server.identity.string);
+        digest.update(bytes: nonceServer);
+        digest.update(bytes: nonceClient);
         
-        return server.credentials.verify(signature: key, bytes: sha256.final());
+        return server.credentials.verify(signature: key, for: digest.final());
     }
     
+    // MARK: - Message Handling
+    
+    /**
+     Decode synchronous message.
+     
+     Unsupported.
+     */
     override func decode(method: Int, args: JSON, completionHandler completion: @escaping (JSON?, Error?) -> Void)
     {
         DispatchQueue.main.async() { completion(nil, MedKitError.NotSupported); }
     }
     
+    /**
+     Decode asynchronous message.
+     */
     override func decode(method: Int, args: JSON)
     {
         if schema.verifyAsync(method: method, args: args) {

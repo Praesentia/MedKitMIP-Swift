@@ -38,17 +38,20 @@ class MIPV1ServerConnection: ServerConnectionBase {
     }
     
     // MARK: - Private Properties
-    private var wsfp         : WSFP;
-    private var wsfpTap      : PortTap;
-    private var rpc          : RPCV1;
-    private let authenticator: AuthenticatorV1;
-    private var decoder      : MIPV1ServerDecoder;
-    private var encoder      : MIPV1ServerEncoder;
-    private var mip          : MIPV1Server;
+    private let tls       : PortSecure;
+    private let tlsPolicy : MIPV1ServerPolicy;
     
-    private var httpTap : PortTap;
-    private var http    : HTTPServer;
-    private var webc    : WebSocketServer;
+    private let wsfp         : WSFP;
+    private let wsfpTap      : PortTap;
+    private let rpc          : RPCV1;
+    private let authenticator: AuthenticatorV1;
+    private let decoder      : MIPV1ServerDecoder;
+    private let encoder      : MIPV1ServerEncoder;
+    private let mip          : MIPV1Server;
+    
+    private let httpTap : PortTap;
+    private let http    : HTTPServer;
+    private let webc    : WebSocketServer;
     
     // MARK: - Initializers
     
@@ -57,6 +60,11 @@ class MIPV1ServerConnection: ServerConnectionBase {
      */
     required init(from port: MedKitCore.Port, to device: DeviceFrontend, as principal: Principal)
     {
+        // tls
+        tlsPolicy     = MIPV1ServerPolicy();
+        tls           = PortSecure(port);
+        tls.policy    = tlsPolicy;
+        
         // websocket
         wsfp          = WSFP(nil);
         wsfpTap       = PortTap(wsfp, decoderFactory: RPCDecoder.factory);
@@ -70,9 +78,9 @@ class MIPV1ServerConnection: ServerConnectionBase {
         decoder.server     = mip;
 
         // http
-        httpTap = PortTap(port, decoderFactory: HTTPDecoder.factory);
+        httpTap = PortTap(tls, decoderFactory: HTTPDecoder.factory);
         http    = HTTPServer(httpTap);
-        webc    = WebSocketServer(http: http, port: port, wsfp: wsfp);
+        webc    = WebSocketServer(http: http, port: tls, wsfp: wsfp);
         
         super.init(from: port, to: device, as: principal);
         
