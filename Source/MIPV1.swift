@@ -19,28 +19,28 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 // WebSocket Constants
-let MIPV1Priority     = 0;        //: Protocol priority.
-let MIPV1WSPath       = "/mip";   //: WebSocket URL path.
-let ProtocolNameMIPV1 = "mip-v1"; //: Protocol type.
+let MIPV1Priority     = 0        //: Protocol priority.
+let MIPV1WSPath       = "/mip"   //: WebSocket URL path.
+let ProtocolNameMIPV1 = "mip-v1" //: Protocol type.
 
 
 class MIPV1: DeviceProtocol {
     
-    static let main = MIPV1();
+    static let main = MIPV1()
     
-    let description   : String = "Medical Interoperability Protocol, Version 1 Beta (1)";
-    let identifier    : String = ProtocolNameMIPV1;
-    let name          : String = "MIP";
-    let priority      : Int    = 0;
-    let version       : String = "1";
+    let description   : String = "Medical Interoperability Protocol, Version 1 Beta (1)"
+    let identifier    : String = ProtocolNameMIPV1
+    let name          : String = "MIP"
+    let priority      : Int    = 0
+    let version       : String = "1"
     
-    let clientFactory : ClientConnectionFactory = MIPV1ClientConnection.factory;
-    let serverFactory : ServerConnectionFactory = MIPV1ServerConnection.factory;
+    let clientFactory : ClientConnectionFactory = MIPV1ClientConnection.factory
+    let serverFactory : ServerConnectionFactory = MIPV1ServerConnection.factory
     
 }
 
@@ -48,52 +48,52 @@ class MIPV1: DeviceProtocol {
  MIP Version 1, Device Method
  */
 enum MIPV1DeviceMethod: Int {
-    case GetProfile = 1;
-    case UpdateName = 2;
+    case GetProfile = 1
+    case UpdateName = 2
 }
 
 /**
  MIP Version 1, Device Notification
  */
 enum MIPV1DeviceNotification: Int {
-    case DidUpdateName          = 1;
-    case DidAddBridgedDevice    = 2;
-    case DidRemoveBridgedDevice = 3;
-    case DidAddService          = 4;
-    case DidRemoveService       = 5;
+    case DidUpdateName          = 1
+    case DidAddBridgedDevice    = 2
+    case DidRemoveBridgedDevice = 3
+    case DidAddService          = 4
+    case DidRemoveService       = 5
 }
 
 /**
  MIP Version 1, Service Method
  */
 enum MIPV1ServiceMethod: Int {
-    case UpdateName = 1;
+    case UpdateName = 1
 }
 
 /**
  MIP Version 1, Service Notification
  */
 enum MIPV1ServiceNotification: Int {
-    case DidUpdateName     = 1;
-    case DidAddResource    = 2;
-    case DidRemoveResource = 3;
+    case DidUpdateName     = 1
+    case DidAddResource    = 2
+    case DidRemoveResource = 3
 }
 
 /**
  MIP Version 1, Resource Method
  */
 enum MIPV1ResourceMethod: Int {
-    case DisableNotification = 1;
-    case EnableNotification  = 2;
-    case ReadValue           = 3;
-    case WriteValue          = 4;
+    case DisableNotification = 1
+    case EnableNotification  = 2
+    case ReadValue           = 3
+    case WriteValue          = 4
 }
 
 /**
  MIP Version 1, Resource Notification
  */
 enum MIPV1ResourceNotification: Int {
-    case DidUpdate = 1;
+    case DidUpdate = 1
 }
 
 

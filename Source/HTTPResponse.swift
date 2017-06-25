@@ -19,7 +19,7 @@
  */
 
 
-import Foundation;
+import Foundation
 
 
 /**
@@ -27,23 +27,23 @@ import Foundation;
  */
 class HTTPResponse: HTTPMessage {
     
-    var status : HTTPStatus? { return HTTPStatus(rawValue: CFHTTPMessageGetResponseStatusCode(message)); }
+    var status : HTTPStatus? { return HTTPStatus(rawValue: CFHTTPMessageGetResponseStatusCode(message)) }
     
     init(status: HTTPStatus)
     {
-        let response = CFHTTPMessageCreateResponse(kCFAllocatorDefault, status.rawValue, nil, kCFHTTPVersion1_1).takeRetainedValue();
+        let response = CFHTTPMessageCreateResponse(kCFAllocatorDefault, status.rawValue, nil, kCFHTTPVersion1_1).takeRetainedValue()
 
-        super.init(message: response);
+        super.init(message: response)
     }
     
     init(fromData data: Data)
     {
-        let bytes    = [UInt8](data);
-        let response = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, false).takeRetainedValue();
+        let bytes    = [UInt8](data)
+        let response = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, false).takeRetainedValue()
         
-        CFHTTPMessageAppendBytes(response, bytes, bytes.count);
+        CFHTTPMessageAppendBytes(response, bytes, bytes.count)
 
-        super.init(message: response);
+        super.init(message: response)
     }
     
 }

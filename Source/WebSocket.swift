@@ -19,7 +19,7 @@
  */
 
 
-import Foundation;
+import Foundation
 
 
 /**
@@ -28,10 +28,10 @@ import Foundation;
 class WebSocket {
     
     // constants
-    let Key       = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11";
-    let Upgrade   = "Upgrade";
-    let Version   = "13";
-    let WebSocket = "websocket";
+    let Key       = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
+    let Upgrade   = "Upgrade"
+    let Version   = "13"
+    let WebSocket = "websocket"
     
 }
 

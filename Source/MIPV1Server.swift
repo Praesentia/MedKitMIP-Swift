@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -28,20 +28,20 @@ import MedKitCore;
  */
 class MIPV1Server: DeviceObserver, ServiceObserver, ResourceObserver {
     
-    let registry = MIPServerRegistry();
+    let registry = MIPServerRegistry()
     
-    private var client : MIPV1ServerEncoder;
-    private let device : DeviceFrontend;
+    private var client : MIPV1ServerEncoder
+    private let device : DeviceFrontend
     
     /**
      Initialize instance.
      */
     init(device: DeviceFrontend, encoder: MIPV1ServerEncoder)
     {
-        self.device = device;
-        self.client = encoder;
+        self.device = device
+        self.client = encoder
         
-        attach(device);
+        attach(device)
     }
     
     /**
@@ -51,38 +51,38 @@ class MIPV1Server: DeviceObserver, ServiceObserver, ResourceObserver {
      */
     func close()
     {
-        detach(device);
+        detach(device)
     }
     
     private func attach(_ device: DeviceFrontend)
     {
-        registry.addDevice(device);
-        device.addObserver(self);
+        registry.addDevice(device)
+        device.addObserver(self)
         
         for service in device.services {
-            service.addObserver(self);
+            service.addObserver(self)
         }
         
         for bridgedDevice in device.bridgedDevices {
-            attach(bridgedDevice as! DeviceFrontend);
+            attach(bridgedDevice as! DeviceFrontend)
         }
     }
     
     private func detach(_ device: DeviceFrontend)
     {
         for bridgedDevice in device.bridgedDevices {
-            detach(bridgedDevice as! DeviceFrontend);
+            detach(bridgedDevice as! DeviceFrontend)
         }
         
         for service in device.services {
             for resource in service.resources {
                 resource.removeObserver(self) { error in }
             }
-            service.removeObserver(self);
+            service.removeObserver(self)
         }
         
-        device.removeObserver(self);
-        registry.removeDevice(device);
+        device.removeObserver(self)
+        registry.removeDevice(device)
     }
     
     // MARK: - MIPV1Server1
@@ -90,82 +90,82 @@ class MIPV1Server: DeviceObserver, ServiceObserver, ResourceObserver {
     func deviceGetProfile(_ principal: Principal?, _ device: DeviceFrontend, completionHandler completion: @escaping (JSON?, Error?) -> Void)
     {
         if device.acl.authorized(principal: principal, operation: OperationTypeDeviceGetProfile) {
-            DispatchQueue.main.async() { completion(device.profile, nil); }
+            DispatchQueue.main.async { completion(device.profile, nil) }
         }
         else {
-            DispatchQueue.main.async() { completion(nil, MedKitError.NotAuthorized); }
+            DispatchQueue.main.async { completion(nil, MedKitError.notAuthorized) }
         }
     }
     
     func device(_ principal: Principal?, _ device: DeviceFrontend, updateName name: String, completionHandler completion: @escaping (Error?) -> Void)
     {
         if device.acl.authorized(principal: principal, operation: OperationTypeDeviceUpdateName) {
-            device.updateName(name, completionHandler: completion);
+            device.updateName(name, completionHandler: completion)
         }
         else {
-            DispatchQueue.main.async() { completion(MedKitError.NotAuthorized); }
+            DispatchQueue.main.async { completion(MedKitError.notAuthorized) }
         }
     }
     
     func service(_ principal: Principal?, _ service: Service, updateName name: String, completionHandler completion: @escaping (Error?) -> Void)
     {
-        let acl = (service.device as! DeviceFrontend).acl;
+        let acl = (service.device as! DeviceFrontend).acl
         
         if acl.authorized(principal: principal, operation: OperationTypeServiceUpdateName) {
-            service.updateName(name, completionHandler: completion);
+            service.updateName(name, completionHandler: completion)
         }
         else {
-            DispatchQueue.main.async() { completion(MedKitError.NotAuthorized); }
+            DispatchQueue.main.async { completion(MedKitError.notAuthorized) }
         }
     }
     
     func resourceEnableNotifcation(_ principal: Principal?, _ resource: Resource, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
     {
-        let acl = (resource.service!.device as! DeviceFrontend).acl;
+        let acl = (resource.service!.device as! DeviceFrontend).acl
         
         if acl.authorized(principal: principal, operation: OperationTypeResourceEnableNotification) {
             resource.addObserver(self) { error in
-                completion(resource.cache, error);
+                completion(resource.cache, error)
             }
         }
         else {
-            DispatchQueue.main.async() { completion(nil, MedKitError.NotAuthorized); }
+            DispatchQueue.main.async { completion(nil, MedKitError.notAuthorized) }
         }
     }
     
     func resourceDisableNotifcation(_ principal: Principal?, _ resource: Resource, completionHandler completion: @escaping (Error?) -> Void)
     {
-        let acl = (resource.service!.device as! DeviceFrontend).acl;
+        let acl = (resource.service!.device as! DeviceFrontend).acl
         
         if acl.authorized(principal: principal, operation: OperationTypeResourceEnableNotification) {
-            resource.removeObserver(self, completionHandler: completion);
+            resource.removeObserver(self, completionHandler: completion)
         }
         else {
-            DispatchQueue.main.async() { completion(MedKitError.NotAuthorized); }
+            DispatchQueue.main.async { completion(MedKitError.notAuthorized) }
         }
     }
     
     func resourceReadValue(_ principal: Principal?, _ resource: Resource, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
     {
-        let acl = (resource.service!.device as! DeviceFrontend).acl;
+        let acl = (resource.service!.device as! DeviceFrontend).acl
         
         if acl.authorized(principal: principal, operation: OperationTypeResourceReadValue) {
-            resource.readValue(completionHandler: completion);
+            resource.readValue(completionHandler: completion)
         }
         else {
-            DispatchQueue.main.async() { completion(nil, MedKitError.NotAuthorized); }
+            DispatchQueue.main.async { completion(nil, MedKitError.notAuthorized) }
         }
     }
     
     func resourceWriteValue(_ principal: Principal?, _ resource: Resource, _ value: JSON?, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
     {
-        let acl = (resource.service!.device as! DeviceFrontend).acl;
+        let acl = (resource.service!.device as! DeviceFrontend).acl
         
         if acl.authorized(principal: principal, operation: OperationTypeResourceWriteValue) {
-            resource.writeValue(value, completionHandler: completion);
+            resource.writeValue(value, completionHandler: completion)
         }
         else {
-            DispatchQueue.main.async() { completion(nil, MedKitError.NotAuthorized); }
+            DispatchQueue.main.async { completion(nil, MedKitError.notAuthorized) }
         }
     }
 
@@ -173,36 +173,36 @@ class MIPV1Server: DeviceObserver, ServiceObserver, ResourceObserver {
     
     func deviceDidUpdateName(_ device: Device)
     {
-        client.device(device, didUpdateName: device.name);
+        client.device(device, didUpdateName: device.name)
     }
     
     func device(_ device: Device, didAdd bridgedDevice: Device)
     {
-        attach(bridgedDevice as! DeviceFrontend);
+        attach(bridgedDevice as! DeviceFrontend)
     }
     
     func device(_ device: Device, didRemove bridgedDevice: Device)
     {
-        detach(bridgedDevice as! DeviceFrontend);
+        detach(bridgedDevice as! DeviceFrontend)
     }
     
     func device(_ device: Device, didAdd service: Service)
     {
-        service.addObserver(self);
-        client.device(device, didAddService: service.profile);
+        service.addObserver(self)
+        client.device(device, didAddService: service.profile)
     }
     
     func device(_ device: Device, didRemove service: Service)
     {
-        service.removeObserver(self);
-        client.device(device, didRemoveService: service.identifier);
+        service.removeObserver(self)
+        client.device(device, didRemoveService: service.identifier)
     }
     
     // MARK: - ServiceObserver
     
     func serviceDidUpdateName(_ service: Service)
     {
-        client.service(service, didUpdateName: service.name);
+        client.service(service, didUpdateName: service.name)
     }
     
     // MARK: - ResourceObserver

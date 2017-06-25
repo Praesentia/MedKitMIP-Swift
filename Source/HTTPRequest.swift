@@ -19,7 +19,7 @@
  */
 
 
-import Foundation;
+import Foundation
 
 
 /**
@@ -27,8 +27,8 @@ import Foundation;
  */
 class HTTPRequest: HTTPMessage {
     
-    var method: String? { return CFHTTPMessageCopyRequestMethod(message)?.takeRetainedValue() as String?; }
-    var url   : URL?    { return CFHTTPMessageCopyRequestURL(message)?.takeRetainedValue() as URL?; }
+    var method: String? { return CFHTTPMessageCopyRequestMethod(message)?.takeRetainedValue() as String? }
+    var url   : URL?    { return CFHTTPMessageCopyRequestURL(message)?.takeRetainedValue() as URL? }
     
     /**
      Initialize instance
@@ -39,8 +39,8 @@ class HTTPRequest: HTTPMessage {
      */
     init(method: HTTPMethod, url: String)
     {
-        let request = CFHTTPMessageCreateRequest(kCFAllocatorDefault, method.rawValue as CFString, URL(string: url)! as CFURL, kCFHTTPVersion1_1).takeRetainedValue();
-        super.init(message: request);
+        let request = CFHTTPMessageCreateRequest(kCFAllocatorDefault, method.rawValue as CFString, URL(string: url)! as CFURL, kCFHTTPVersion1_1).takeRetainedValue()
+        super.init(message: request)
     }
     
     /**
@@ -51,12 +51,12 @@ class HTTPRequest: HTTPMessage {
      */
     init(fromData data: Data)
     {
-        let bytes   = [UInt8](data);
-        let request = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, true).takeRetainedValue();
+        let bytes   = [UInt8](data)
+        let request = CFHTTPMessageCreateEmpty(kCFAllocatorDefault, true).takeRetainedValue()
         
-        CFHTTPMessageAppendBytes(request, bytes, bytes.count);
+        CFHTTPMessageAppendBytes(request, bytes, bytes.count)
         
-        super.init(message: request);
+        super.init(message: request)
     }
     
 }

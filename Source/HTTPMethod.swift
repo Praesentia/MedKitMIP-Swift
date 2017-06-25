@@ -19,7 +19,7 @@
  */
 
 
-import Foundation;
+import Foundation
 
 
 /**
@@ -27,9 +27,9 @@ import Foundation;
  */
 enum HTTPMethod: String {
     
-    case Delete = "DELETE";
-    case Get    = "GET";
-    case Put    = "PUT";
+    case Delete = "DELETE"
+    case Get    = "GET"
+    case Put    = "PUT"
     
 }
 

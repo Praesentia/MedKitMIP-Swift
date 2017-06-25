@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -28,8 +28,8 @@ import MedKitCore;
  */
 protocol RPCV1MessageHandler: class {
     
-    func rpc(_ rpc: RPCV1, didReceive message: JSON, completionHandler completion: @escaping (JSON?, Error?) -> Void);
-    func rpc(_ rpc: RPCV1, didReceive message: JSON);
+    func rpc(_ rpc: RPCV1, didReceive message: JSON, completionHandler completion: @escaping (JSON?, Error?) -> Void)
+    func rpc(_ rpc: RPCV1, didReceive message: JSON)
     
 }
 

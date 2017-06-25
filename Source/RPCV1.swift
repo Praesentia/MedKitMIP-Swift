@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -28,23 +28,23 @@ import MedKitCore;
  */
 class RPCV1: ProtocolStackBase {
 
-    weak var messageHandler: RPCV1MessageHandler?;
+    weak var messageHandler: RPCV1MessageHandler?
     
     // internal
     enum MessageType: Int {
-        case Sync  = 1;
-        case Reply = 2;
-        case Async = 3;
-    };
+        case Sync  = 1
+        case Reply = 2
+        case Async = 3
+    }
     
-    typealias MessageID         = Int;
-    typealias CompletionHandler = (JSON?, Error?) -> Void; //: Completion handler signature for synchronous messages.
+    typealias MessageID         = Int
+    typealias CompletionHandler = (JSON?, Error?) -> Void //: Completion handler signature for synchronous messages.
 
     // MARK: - Private
-    private var completionHandlers = [MessageID : CompletionHandler]();
-    private var nextID             : MessageID { return generateMessageID(); }
-    private let schema             = RPCV1Schema();
-    private var sequence           : MessageID = 0;
+    private var completionHandlers = [MessageID : CompletionHandler]()
+    private var nextID             : MessageID { return generateMessageID() }
+    private let schema             = RPCV1Schema()
+    private var sequence           : MessageID = 0
     
     /**
      Send synchronous message.
@@ -55,16 +55,16 @@ class RPCV1: ProtocolStackBase {
      */
     func sync(message: JSON, completionHandler completion: @escaping (JSON?, Error?) -> Void)
     {
-        let sync = JSON();
-        let id   = nextID;
+        let sync = JSON()
+        let id   = nextID
         
-        sync[KeyType]    = MessageType.Sync.rawValue;
-        sync[KeyId]      = id;
-        sync[KeyMessage] = message;
+        sync[KeyType]    = MessageType.Sync.rawValue
+        sync[KeyId]      = id
+        sync[KeyMessage] = message
         
-        completionHandlers[id] = completion;
+        completionHandlers[id] = completion
         
-        sendMessage(sync);
+        sendMessage(sync)
     }
     
     /**
@@ -75,12 +75,12 @@ class RPCV1: ProtocolStackBase {
      */
     func async(message: JSON)
     {
-        let async = JSON();
+        let async = JSON()
         
-        async[KeyType]    = MessageType.Async.rawValue;
-        async[KeyMessage] = message;
+        async[KeyType]    = MessageType.Async.rawValue
+        async[KeyMessage] = message
         
-        sendMessage(async);
+        sendMessage(async)
     }
     
     /**
@@ -95,14 +95,14 @@ class RPCV1: ProtocolStackBase {
      */
     private func pop(_ id: MessageID) -> CompletionHandler?
     {
-        var completionHandler: CompletionHandler?;
+        var completionHandler: CompletionHandler?
         
         if let completion = completionHandlers[id] {
-            completionHandlers.removeValue(forKey: id);
-            completionHandler = completion;
+            completionHandlers.removeValue(forKey: id)
+            completionHandler = completion
         }
         
-        return completionHandler;
+        return completionHandler
     }
     
     /**
@@ -113,10 +113,10 @@ class RPCV1: ProtocolStackBase {
      */
     private func generateMessageID() -> MessageID
     {
-        let id = sequence;
+        let id = sequence
         
-        sequence += 1;
-        return id;
+        sequence += 1
+        return id
     }
     
     /**
@@ -131,7 +131,7 @@ class RPCV1: ProtocolStackBase {
     private func sendMessage(_ message: JSON)
     {
         if let text = JSONWriter.write(json: message) {
-            port.send(text.data(using: .utf8)!);
+            port.send(text.data(using: .utf8)!)
         }
         else {
             // TODO
@@ -146,19 +146,19 @@ class RPCV1: ProtocolStackBase {
      */
     private func sendReply(id: Int, reply: JSON?, error: MedKitError?)
     {
-        let message = JSON();
+        let message = JSON()
         
-        message[KeyType] = MessageType.Reply.rawValue;
-        message[KeyId]   = id;
+        message[KeyType] = MessageType.Reply.rawValue
+        message[KeyId]   = id
         
         if error != nil {
-            message[KeyError] = error!.rawValue;
+            message[KeyError] = error!.rawValue
         }
         if reply != nil {
-            message[KeyReply] = reply!;
+            message[KeyReply] = reply!
         }
         
-        sendMessage(message);
+        sendMessage(message)
         
     }
     
@@ -178,19 +178,19 @@ class RPCV1: ProtocolStackBase {
     private func decode(data: Data) -> JSON?
     {
         do {
-            let message = try JSONParser.parse(data: data);
+            let message = try JSONParser.parse(data: data)
             
             if schema.verify(message: message) {
-                return message;
+                return message
             }
             
-            Logger.main.log(message: "Invalid RPC schema");
+            Logger.main.log(message: "Invalid RPC schema")
         }
         catch {
-            Logger.main.log(message: "Invalid JSON.");
+            Logger.main.log(message: "Invalid JSON.")
         }
         
-        return nil;
+        return nil
     }
 
     /**
@@ -207,13 +207,13 @@ class RPCV1: ProtocolStackBase {
         if let type = MessageType(rawValue: message[KeyType].int!) {
             switch type {
             case .Sync:
-                receivedSync(message);
+                receivedSync(message)
                 
             case .Reply:
-                receivedReply(message);
+                receivedReply(message)
                 
             case .Async:
-                receivedAsync(message);
+                receivedAsync(message)
             }
         }
     }
@@ -229,10 +229,10 @@ class RPCV1: ProtocolStackBase {
      */
     private func receivedSync(_ message: JSON)
     {
-        let id: MessageID = message[KeyId];
+        let id: MessageID = message[KeyId]
         
         messageHandler?.rpc(self, didReceive: message[KeyMessage]) { reply, error in
-            self.sendReply(id: id, reply: reply, error: error as? MedKitError); // TODO: error
+            self.sendReply(id: id, reply: reply, error: error as? MedKitError) // TODO: error
         }
     }
     
@@ -247,20 +247,20 @@ class RPCV1: ProtocolStackBase {
      */
     private func receivedReply(_ message: JSON)
     {
-        let id: MessageID = message[KeyId];
+        let id: MessageID = message[KeyId]
         
         if let completion = pop(id) {
-            var error: Error?;
-            var reply: JSON?;
+            var error: Error?
+            var reply: JSON?
             
             if message.contains(key: KeyError) {
-                error = MedKitError(rawValue: message[KeyError].int!);
+                error = MedKitError(rawValue: message[KeyError].int!)
             }
             if message.contains(key: KeyReply) {
-                reply = message[KeyReply];
+                reply = message[KeyReply]
             }
             
-            completion(reply, error);
+            completion(reply, error)
         }
         else {
             // TODO:
@@ -278,7 +278,7 @@ class RPCV1: ProtocolStackBase {
      */
     private func receivedAsync(_ message: JSON)
     {
-        messageHandler?.rpc(self, didReceive: message[KeyMessage]);
+        messageHandler?.rpc(self, didReceive: message[KeyMessage])
     }
     
     // MARK: - PortDelegate interface
@@ -296,7 +296,7 @@ class RPCV1: ProtocolStackBase {
     override func port(_ port: MedKitCore.Port, didReceive data: Data)
     {
         if let message = decode(data: data) {
-            received(message: message);
+            received(message: message)
         }
     }
     

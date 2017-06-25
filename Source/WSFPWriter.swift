@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -28,111 +28,111 @@ import MedKitCore;
  */
 class WSFPWriter: WSFPReaderWriter {
     
-    private var mode: Mode;
+    private var mode: Mode
     
     init(mode: Mode)
     {
-        self.mode = mode;
-        super.init();
+        self.mode = mode
+        super.init()
     }
     
     func makeFrame(opcode: WSFPReaderWriter.OpCode, payload: Data) -> Data
     {
-        var frame            : [UInt8];
-        var headerSize       = MinSize;
-        var maskingKeyOffset : Int = MinSize;
-        var payloadMode      : UInt8;
-        let payloadSize      = UInt64(payload.count);
+        var frame            : [UInt8]
+        var headerSize       = MinSize
+        var maskingKeyOffset : Int = MinSize
+        var payloadMode      : UInt8
+        let payloadSize      = UInt64(payload.count)
         
         // calculate header size
-        payloadMode = PayloadMode7Bit;
+        payloadMode = PayloadMode7Bit
         if payloadSize >= PayloadMin16Bit {
             if payloadSize >= PayloadMin64Bit {
-                payloadMode       = PayloadMode64Bit;
-                headerSize       += 8;
-                maskingKeyOffset += 8;
+                payloadMode       = PayloadMode64Bit
+                headerSize       += 8
+                maskingKeyOffset += 8
             }
             else
             {
-                payloadMode       = PayloadMode16Bit;
-                headerSize       += 2;
-                maskingKeyOffset += 2;
+                payloadMode       = PayloadMode16Bit
+                headerSize       += 2
+                maskingKeyOffset += 2
             }
         }
             
-        if mode == .Client
+        if mode == .client
         {
-            headerSize += MaskingKeySize;
+            headerSize += MaskingKeySize
         }
         
-        frame = [UInt8](repeating: 0, count: headerSize + payload.count);
+        frame = [UInt8](repeating: 0, count: headerSize + payload.count)
         
         // encode control bits
-        frame[0]  = FIN | opcode.rawValue;
-        frame[1]  = (mode == .Client) ? MASKING_KEY : UInt8(0);
-        frame[1] |= payloadMode;
+        frame[0]  = FIN | opcode.rawValue
+        frame[1]  = (mode == .client) ? MASKING_KEY : UInt8(0)
+        frame[1] |= payloadMode
             
         // encode payload size
         switch payloadMode {
         case PayloadMode16Bit :
-            encode16(&frame, PayloadSizeOffset, UInt16(payload.count));
+            encode16(&frame, PayloadSizeOffset, UInt16(payload.count))
             
         case PayloadMode64Bit :
-            encode64(&frame, PayloadSizeOffset, UInt64(payload.count));
+            encode64(&frame, PayloadSizeOffset, UInt64(payload.count))
             
         default : // 7 bit length
-            frame[1] |= UInt8(payload.count);
+            frame[1] |= UInt8(payload.count)
         }
 
         // encode masking key
         switch mode {
-        case .Client :
-            let maskingKey = SecurityManagerShared.main.randomBytes(count: MaskingKeySize);
+        case .client :
+            let maskingKey = SecurityManagerShared.main.randomBytes(count: MaskingKeySize)
 
             // copy key
             for i in 0..<maskingKey.count {
-                frame[maskingKeyOffset + i] = maskingKey[i];
+                frame[maskingKeyOffset + i] = maskingKey[i]
             }
             
             // mask payload
             for i in 0..<payload.count {
-                frame[headerSize + i] = payload[i] ^ maskingKey[i % MaskingKeySize];
+                frame[headerSize + i] = payload[i] ^ maskingKey[i % MaskingKeySize]
             }
 
-        case .Server :
+        case .server :
             for i in 0..<payload.count {
-                frame[headerSize + i] = payload[i];
+                frame[headerSize + i] = payload[i]
             }
         }
     
-        return Data(frame);
+        return Data(frame)
     }
     
     private func encode16(_ buffer: inout [UInt8], _ offset: Int, _ value: UInt16)
     {
         var data = Data()
-        var be   = value.bigEndian;
+        var be   = value.bigEndian
         
         withUnsafePointer(to: &be) {
-            data.append(UnsafeRawPointer($0).assumingMemoryBound(to: UInt8.self), count: 2);
+            data.append(UnsafeRawPointer($0).assumingMemoryBound(to: UInt8.self), count: 2)
         }
         
         for i in 0..<data.count {
-            buffer[offset + i] = data[i];
+            buffer[offset + i] = data[i]
         }
     }
     
     private func encode64(_ buffer: inout [UInt8], _ offset: Int, _ value: UInt64)
     {
         var data = Data()
-        var be   = value.bigEndian;
+        var be   = value.bigEndian
         
         withUnsafePointer(to: &be) {
-            data.append(UnsafeRawPointer($0).assumingMemoryBound(to: UInt8.self), count: 8);
+            data.append(UnsafeRawPointer($0).assumingMemoryBound(to: UInt8.self), count: 8)
         }
         
         for i in 0..<data.count {
-            buffer[offset + i] = data[i];
+            buffer[offset + i] = data[i]
         }
     }
 

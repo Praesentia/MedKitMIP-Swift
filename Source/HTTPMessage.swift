@@ -19,7 +19,7 @@
  */
 
 
-import Foundation;
+import Foundation
 
 
 /**
@@ -27,41 +27,41 @@ import Foundation;
  */
 class HTTPMessage {
     
-    var message : CFHTTPMessage;
+    var message : CFHTTPMessage
 
     init(message: CFHTTPMessage)
     {
-        self.message = message;
+        self.message = message
     }
     
     func getField(key: HTTPHeader) -> String?
     {
-        return (CFHTTPMessageCopyHeaderFieldValue(message, key.rawValue as CFString)?.takeRetainedValue()) as String?;
+        return (CFHTTPMessageCopyHeaderFieldValue(message, key.rawValue as CFString)?.takeRetainedValue()) as String?
     }
     
     func getField(key: String) -> String?
     {
-        return (CFHTTPMessageCopyHeaderFieldValue(message, key as CFString)?.takeRetainedValue()) as String?;
+        return (CFHTTPMessageCopyHeaderFieldValue(message, key as CFString)?.takeRetainedValue()) as String?
     }
     
     func setField(key: HTTPHeader, value: String)
     {
-        CFHTTPMessageSetHeaderFieldValue(message, key.rawValue as CFString, value as CFString);
+        CFHTTPMessageSetHeaderFieldValue(message, key.rawValue as CFString, value as CFString)
     }
 
     func setField(key: String, value: String)
     {
-        CFHTTPMessageSetHeaderFieldValue(message, key as CFString, value as CFString);
+        CFHTTPMessageSetHeaderFieldValue(message, key as CFString, value as CFString)
     }
     
     func toData() -> Data?
     {
-        var data : Data?;
+        var data : Data?
         
         if let dataRef = CFHTTPMessageCopySerializedMessage(message) {
-            data = dataRef.takeRetainedValue() as Data;
+            data = dataRef.takeRetainedValue() as Data
         }
-        return data;
+        return data
     }
     
 }

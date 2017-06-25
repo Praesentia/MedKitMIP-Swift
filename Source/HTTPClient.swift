@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -28,11 +28,11 @@ import MedKitCore;
  */
 class HTTPClient: ProtocolStackBase {
     
-    typealias CompletionHandler = ((HTTPResponse?, Error?) -> Void);
+    typealias CompletionHandler = ((HTTPResponse?, Error?) -> Void)
     
-    private var requestQueue = [CompletionHandler]();
-    private var input        = DataQueue();
-    private var reader       = HTTPReader();
+    private var requestQueue = [CompletionHandler]()
+    private var input        = DataQueue()
+    private var reader       = HTTPReader()
     
     /**
      Send request.
@@ -40,11 +40,11 @@ class HTTPClient: ProtocolStackBase {
     func send(_ request: HTTPRequest, completionHandler completion: @escaping (HTTPResponse?, Error?)->Void)
     {
         if let data = request.toData() {
-            requestQueue.append(completion);
-            port.send(data);
+            requestQueue.append(completion)
+            port.send(data)
         }
         else {
-            DispatchQueue.main.async() { completion(nil, MedKitError.Failed); }
+            DispatchQueue.main.async { completion(nil, MedKitError.failed) }
         }
     }
     
@@ -53,14 +53,14 @@ class HTTPClient: ProtocolStackBase {
      */
     private func pop() -> CompletionHandler?
     {
-        var completion: CompletionHandler?;
+        var completion: CompletionHandler?
         
         if !requestQueue.isEmpty {
-            completion = requestQueue[0];
-            requestQueue.removeFirst(1);
+            completion = requestQueue[0]
+            requestQueue.removeFirst(1)
         }
         
-        return completion;
+        return completion
     }
     
     // MARK: - PortDelegate
@@ -70,11 +70,11 @@ class HTTPClient: ProtocolStackBase {
      */
     override func port(_ port: MedKitCore.Port, didReceive data: Data)
     {
-        input.append(data);
+        input.append(data)
         
         while let response = reader.getResponse(from: input) {
             if let completion = pop() {
-                completion(response, nil);
+                completion(response, nil)
             }
         }
     }

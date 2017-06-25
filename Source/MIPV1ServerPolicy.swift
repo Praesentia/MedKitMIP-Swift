@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -38,12 +38,12 @@ class MIPV1ServerPolicy: PortSecurePolicy {
     
     func portShouldAuthenticatePeer(_ port: PortSecure) -> Bool
     {
-        return false;
+        return false
     }
     
     func port(_ port: PortSecure, shouldAccept peer: Principal) -> Bool
     {
-        return true;
+        return true
     }
     
 }

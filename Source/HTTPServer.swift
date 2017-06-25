@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -38,11 +38,11 @@ protocol HTTPServerRouter: class {
 class HTTPServer: ProtocolStackBase {
     
     // MARK: - Properties
-    weak var messageHandler: HTTPServerRouter?;
+    weak var messageHandler: HTTPServerRouter?
 
     // MARK: - Private
-    private var input  = DataQueue();
-    private var reader = HTTPReader();
+    private var input  = DataQueue()
+    private var reader = HTTPReader()
     
     /**
      Receive request.
@@ -51,7 +51,7 @@ class HTTPServer: ProtocolStackBase {
     {
         messageHandler?.server(self, didReceive: request) { response, error in
             if let data = response?.toData() {
-                self.port.send(data);
+                self.port.send(data)
             }
         }
     }
@@ -63,10 +63,10 @@ class HTTPServer: ProtocolStackBase {
      */
     override func port(_ port: MedKitCore.Port, didReceive data: Data)
     {
-        input.append(data);
+        input.append(data)
         
         while let request = reader.getRequest(from: input) {
-            receive(request);
+            receive(request)
         }
     }
     

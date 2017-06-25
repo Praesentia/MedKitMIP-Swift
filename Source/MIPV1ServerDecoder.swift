@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -28,15 +28,15 @@ import MedKitCore;
  */
 class MIPV1ServerDecoder: RPCV1MessageHandler {
     
-    weak var server: MIPV1Server?;
+    weak var server: MIPV1Server?
     
     // MARK: - Private
-    private let AuthIdentifier = UUID.null;
-    private let authenticator  : Authenticator;
-    private let schema         = MIPV1MessageSchema();
-    private let schemaDevice   = MIPV1DeviceSchema();
-    private let schemaService  = MIPV1ServiceSchema();
-    private let schemaResource = MIPV1ResourceSchema();
+    private let AuthIdentifier = UUID.null
+    private let authenticator  : Authenticator
+    private let schema         = MIPV1MessageSchema()
+    private let schemaDevice   = MIPV1DeviceSchema()
+    private let schemaService  = MIPV1ServiceSchema()
+    private let schemaResource = MIPV1ResourceSchema()
     
     /**
      Initialize instance.
@@ -46,30 +46,30 @@ class MIPV1ServerDecoder: RPCV1MessageHandler {
      */
     init(authenticator: Authenticator)
     {
-        self.authenticator = authenticator;
+        self.authenticator = authenticator
     }
     
     /**
      */
     private func findAuthenticator(path: [UUID]) -> Authenticator?
     {
-        return path[0] == AuthIdentifier ? authenticator : nil;
+        return path[0] == AuthIdentifier ? authenticator : nil
     }
 
     
     private func decodeDevice(_ device: DeviceFrontend, method: Int, args: JSON, completionHandler completion: @escaping (JSON?, Error?) -> Void)
     {
-        let principal = authenticator.principal;
+        let principal = authenticator.principal
         
         if let method = MIPV1DeviceMethod(rawValue: method) {
             if schemaDevice.verifySync(method: method, args: args) {
                 switch method {
                 case .GetProfile :
-                    server?.deviceGetProfile(principal, device, completionHandler: completion);
+                    server?.deviceGetProfile(principal, device, completionHandler: completion)
 
                 case .UpdateName :
                     server?.device(principal, device, updateName: args[KeyName].string!) { error in
-                        completion(nil, error);
+                        completion(nil, error)
                     }
                 }
             }
@@ -82,14 +82,14 @@ class MIPV1ServerDecoder: RPCV1MessageHandler {
     
     private func decodeService(_ service: Service, method: Int, args: JSON, completionHandler completion: @escaping (JSON?, Error?) -> Void)
     {
-        let principal = authenticator.principal;
+        let principal = authenticator.principal
         
         if let method = MIPV1ServiceMethod(rawValue: method) {
             if schemaService.verifySync(method: method, args: args) {
                 switch method {
                 case .UpdateName :
                     server?.service(principal, service, updateName: args[KeyName]) { error in
-                        completion(nil, error);
+                        completion(nil, error)
                     }
                 }
             }
@@ -102,29 +102,29 @@ class MIPV1ServerDecoder: RPCV1MessageHandler {
     
     private func decodeResource(_ resource: Resource, method: Int, args: JSON, completionHandler completion: @escaping (JSON?, Error?) -> Void)
     {
-        let principal = authenticator.principal;
+        let principal = authenticator.principal
         
         if let method = MIPV1ResourceMethod(rawValue: method) {
             if schemaResource.verifySync(method: method, args: args) {
                 switch method {
                 case .DisableNotification :
                     server?.resourceDisableNotifcation(principal, resource) { error in
-                        completion(nil, error);
+                        completion(nil, error)
                     }
                 
                 case .EnableNotification :
                     server?.resourceEnableNotifcation(principal, resource) { reply, error in
-                        completion(reply?.json, error);
+                        completion(reply?.json, error)
                     }
                     
                 case .ReadValue :
                     server?.resourceReadValue(principal, resource) { reply, error in
-                        completion(reply?.json, error);
+                        completion(reply?.json, error)
                     }
                     
                 case .WriteValue :
                     server?.resourceWriteValue(principal, resource, args[KeyValue]) { reply, error in
-                        completion(reply?.json, error);
+                        completion(reply?.json, error)
                     }
                 }
             }
@@ -150,42 +150,42 @@ class MIPV1ServerDecoder: RPCV1MessageHandler {
     {
         if schema.verify(message: message) {
             
-            let path   : [UUID] = message[KeyPath].array!.map() { $0.uuid!; }
-            let method : Int    = message[KeyMethod].int!;
-            let args   : JSON   = message[KeyArgs];
+            let path   : [UUID] = message[KeyPath].array!.map() { $0.uuid! }
+            let method : Int    = message[KeyMethod].int!
+            let args   : JSON   = message[KeyArgs]
             
             switch path.count {
             case 1 :
                 if let authenticate = findAuthenticator(path: path) {
-                    authenticate.decode(method: method, args: args, completionHandler: completion);
+                    authenticate.decode(method: method, args: args, completionHandler: completion)
                 }
                 else {
                     if let device = server?.registry.findDevice(path: path) {
-                        decodeDevice(device, method: method, args: args, completionHandler: completion);
+                        decodeDevice(device, method: method, args: args, completionHandler: completion)
                     }
                     else {
-                        DispatchQueue.main.async() { completion(nil, MedKitError.NotFound); }
+                        DispatchQueue.main.async { completion(nil, MedKitError.notFound) }
                     }
                 }
                 
             case 2 :
                 if let service = server?.registry.findService(path: path) {
-                    decodeService(service, method: method, args: args, completionHandler: completion);
+                    decodeService(service, method: method, args: args, completionHandler: completion)
                 }
                 else {
-                    DispatchQueue.main.async() { completion(nil, MedKitError.NotFound); }
+                    DispatchQueue.main.async { completion(nil, MedKitError.notFound) }
                 }
                 
             case 3 :
                 if let resource = server?.registry.findResource(path: path) {
-                    decodeResource(resource, method: method, args: args, completionHandler: completion);
+                    decodeResource(resource, method: method, args: args, completionHandler: completion)
                 }
                 else {
-                    DispatchQueue.main.async() { completion(nil, MedKitError.NotFound); }
+                    DispatchQueue.main.async { completion(nil, MedKitError.notFound) }
                 }
                 
             default :
-                DispatchQueue.main.async() { completion(nil, MedKitError.NotFound); }
+                DispatchQueue.main.async { completion(nil, MedKitError.notFound) }
             }
         }
     }
@@ -202,31 +202,31 @@ class MIPV1ServerDecoder: RPCV1MessageHandler {
     {
         if schema.verify(message: message) {
             
-            let path   : [UUID] = message[KeyPath].array!.map() { $0.uuid!; }
-            let method : Int    = message[KeyMethod].int!;
-            let args   : JSON   = message[KeyArgs];
+            let path   : [UUID] = message[KeyPath].array!.map() { $0.uuid! }
+            let method : Int    = message[KeyMethod].int!
+            let args   : JSON   = message[KeyArgs]
             
             switch path.count {
             case 1 :
                 if let authenticate = findAuthenticator(path: path) {
-                    authenticate.decode(method: method, args: args);
+                    authenticate.decode(method: method, args: args)
                 }
                 if let device = server?.registry.findDevice(path: path) {
-                    decodeDevice(device, method: method, args: args);
+                    decodeDevice(device, method: method, args: args)
                 }
                 
             case 2 :
                 if let service = server?.registry.findService(path: path) {
-                    decodeService(service, method: method, args: args);
+                    decodeService(service, method: method, args: args)
                 }
                 
             case 3 :
                 if let resource = server?.registry.findResource(path: path) {
-                    decodeResource(resource, method: method, args: args);
+                    decodeResource(resource, method: method, args: args)
                 }
                 
             default :
-                break;
+                break
             }
         }
     }

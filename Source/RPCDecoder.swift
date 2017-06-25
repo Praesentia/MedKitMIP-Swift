@@ -19,44 +19,44 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 public class RPCDecoder: Decoder {
     
-    public static let factory : DecoderFactory = RPCDecoderFactory();
+    public static let factory : DecoderFactory = RPCDecoderFactory()
     
     // MARK: - Private
-    private let Sync   = "RPC.Sync";
-    private let Reply  = "RPC.Reply";
-    private let Async  = "RPC.Async";
+    private let Sync   = "RPC.Sync"
+    private let Reply  = "RPC.Reply"
+    private let Async  = "RPC.Async"
     
     public func type(data: Data) -> String?
     {
-        let message: JSON? = try? JSONParser.parse(data: data);
+        let message: JSON? = try? JSONParser.parse(data: data)
         
         if let message = message {
             if let messageType = RPCV1.MessageType(rawValue: message[KeyType]) {
                 switch messageType {
                 case .Sync :
-                    return Sync;
+                    return Sync
          
                 case .Reply :
-                    return Reply;
+                    return Reply
          
                 case .Async :
-                    return Async;
+                    return Async
                 }
             }
         }
         
-        return "Bad";
+        return "Bad"
     }
     
     public func string(data: Data) -> String?
     {
-        return String(data: data, encoding: .utf8);
+        return String(data: data, encoding: .utf8)
     }
     
 }
@@ -65,7 +65,7 @@ class RPCDecoderFactory: DecoderFactory {
     
     func instantiateDecoder() -> Decoder
     {
-        return RPCDecoder();
+        return RPCDecoder()
     }
 }
 

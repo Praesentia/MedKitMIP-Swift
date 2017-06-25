@@ -19,11 +19,11 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
-public let deviceProtocols: [DeviceProtocol] = [ MIPV1.main ];
+public let deviceProtocols: [DeviceProtocol] = [ MIPV1.main ]
 
 
 // End of File

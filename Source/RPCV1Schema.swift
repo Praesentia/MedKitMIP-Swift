@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -43,18 +43,18 @@ class RPCV1Schema {
             if let messageType = RPCV1.MessageType(rawValue: message[KeyType].int!) {
                 switch messageType {
                 case .Sync :
-                    return verifySync(message: message);
+                    return verifySync(message: message)
                     
                 case .Reply :
-                    return verifyReply(message: message);
+                    return verifyReply(message: message)
                 
                 case .Async :
-                    return verifyAsync(message: message);
+                    return verifyAsync(message: message)
                 }
             }
         }
         
-        return false;
+        return false
     }
     
     /**
@@ -68,13 +68,13 @@ class RPCV1Schema {
      */
     private func verifySync(message: JSON) -> Bool
     {
-        let check = Check();
+        let check = Check()
         
-        check += (message[KeyId].type      == .Number);
-        check += (message[KeyMessage].type == .Object);
+        check += (message[KeyId].type      == .Number)
+        check += (message[KeyMessage].type == .Object)
         
-        check += message.object!.count == 3;
-        return check.value;
+        check += message.object!.count == 3
+        return check.value
     }
     
     /**
@@ -88,21 +88,21 @@ class RPCV1Schema {
      */
     private func verifyReply(message: JSON) -> Bool
     {
-        var count = Int(2);
-        let check = Check();
+        var count = Int(2)
+        let check = Check()
         
-        check += (message[KeyId].type == .Number);
+        check += (message[KeyId].type == .Number)
         if message.contains(key: KeyError) {
-            count += 1;
-            check += (message[KeyError].type == .Number);
-            check += MedKitError(rawValue: message[KeyError]) != nil;
+            count += 1
+            check += (message[KeyError].type == .Number)
+            check += MedKitError(rawValue: message[KeyError]) != nil
         }
         if message.contains(key: KeyReply) {
-            count += 1;
+            count += 1
         }
         
-        check += message.object!.count == count;
-        return check.value;
+        check += message.object!.count == count
+        return check.value
     }
     
     /**
@@ -115,12 +115,12 @@ class RPCV1Schema {
      */
     private func verifyAsync(message: JSON) -> Bool
     {
-        let check = Check();
+        let check = Check()
         
-        check += (message[KeyMessage].type == .Object);
+        check += (message[KeyMessage].type == .Object)
         
-        check += message.object!.count == 2;
-        return check.value;
+        check += message.object!.count == 2
+        return check.value
     }
     
 }

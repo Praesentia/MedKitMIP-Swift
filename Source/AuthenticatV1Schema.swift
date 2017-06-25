@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -32,114 +32,114 @@ class AuthenticatorV1Schema {
     {
         switch method {
         case 1 :
-            return verifyPhase1(args: args);
+            return verifyPhase1(args: args)
             
         case 2 :
-            return verifyPhase2(args: args);
+            return verifyPhase2(args: args)
             
         case 3 :
-            return verifyPhase3(args: args);
+            return verifyPhase3(args: args)
             
         case 4 :
-            return true;
+            return true
             
         case 5 :
-            return true;
+            return true
             
         default :
-            return false;
+            return false
         }
     }
     
     private func verifyPhase1(args: JSON) -> Bool
     {
-        let check = Check();
+        let check = Check()
         
-        check += args.type == .Object;
-        check += args.contains(key: KeyNonce);
+        check += args.type == .Object
+        check += args.contains(key: KeyNonce)
         
         if check.value {
-            check += args[KeyNonce].type == .String;
+            check += args[KeyNonce].type == .String
         }
         
-        return check.value;
+        return check.value
     }
     
     private func verifyPhase2(args: JSON) -> Bool
     {
-        let check = Check();
+        let check = Check()
         
-        check += args.type == .Object;
-        check += args.contains(key: KeyNonce);
+        check += args.type == .Object
+        check += args.contains(key: KeyNonce)
         
         if check.value {
-            check += args[KeyNonce].type == .String;
+            check += args[KeyNonce].type == .String
         }
         
-        return check.value;
+        return check.value
     }
     
     private func verifyPhase3(args: JSON) -> Bool
     {
-        let check = Check();
+        let check = Check()
         
-        check += args.type == .Object;
-        check += args.contains(key: KeyPrincipal);
-        check += args.contains(key: KeyKey);
+        check += args.type == .Object
+        check += args.contains(key: KeyPrincipal)
+        check += args.contains(key: KeyKey)
         
         if check.value {
-            check += verifyPrincipal(args: args[KeyPrincipal]);
-            check += args[KeyKey].type == .String;
+            check += verifyPrincipal(args: args[KeyPrincipal])
+            check += args[KeyKey].type == .String
         }
         
-        return check.value;
+        return check.value
     }
     
     private func verifyPrincipal(args: JSON) -> Bool
     {
-        let check = Check();
+        let check = Check()
         
-        check += args.type == .Object;
-        check += args.contains(key: KeyAuthorization);
-        check += args.contains(key: KeyCredentials);
-        check += args.contains(key: KeyIdentity);
+        check += args.type == .Object
+        check += args.contains(key: KeyAuthorization)
+        check += args.contains(key: KeyCredentials)
+        check += args.contains(key: KeyIdentity)
         
         if check.value {
-            check += verifyIdentity(profile: args[KeyIdentity]);
-            check += verifyCredentials(profile: args[KeyCredentials]);
+            check += verifyTrust(profile: args[KeyIdentity])
+            check += verifyCredentials(profile: args[KeyCredentials])
         }
         
-        return check.value;
+        return check.value
     }
     
-    private func verifyIdentity(profile: JSON) -> Bool
+    private func verifyTrust(profile: JSON) -> Bool
     {
-        let check = Check();
+        let check = Check()
         
-        check += profile.type == .Object;
-        check += profile.contains(key: KeyName);
-        check += profile.contains(key: KeyType);
+        check += profile.type == .Object
+        check += profile.contains(key: KeyName)
+        check += profile.contains(key: KeyType)
         
         if check.value {
-            check += profile[KeyName].type == .String;
-            check += profile[KeyType].type == .String; // TODO
+            check += profile[KeyName].type == .String
+            check += profile[KeyType].type == .String // TODO
         }
         
-        return check.value;
+        return check.value
     }
     
     private func verifyCredentials(profile: JSON) -> Bool
     {
-        let check = Check();
+        let check = Check()
         
-        check += profile.type == .Object;
-        check += profile.contains(key: KeyType);
+        check += profile.type == .Object
+        check += profile.contains(key: KeyType)
         
         if check.value {
-            check += profile[KeyType].type == .String;
+            check += profile[KeyType].type == .String
         }
         
-        return check.value;
+        return check.value
     }
     
 }

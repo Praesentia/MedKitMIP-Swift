@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -28,24 +28,24 @@ import MedKitCore;
  */
 class WSFP: MedKitCore.Port, MedKitCore.PortDelegate {
     
-    weak var delegate : MedKitCore.PortDelegate?; //: Delegate
+    weak var delegate : MedKitCore.PortDelegate? //: Delegate
     
-    private let Heartbeat : TimeInterval = 10;
-    private var port      : MedKitCore.Port?;
-    private let queue     = DataQueue();
-    private let reader    = WSFPReader();
-    private let writer    = WSFPWriter(mode: .Client);
-    private var heartbeat : Timer?;
-    private var pingCount : Int = 0;
-    private var pongCount : Int = 0;
+    private let Heartbeat : TimeInterval = 10
+    private var port      : MedKitCore.Port?
+    private let queue     = DataQueue()
+    private let reader    = WSFPReader()
+    private let writer    = WSFPWriter(mode: .client)
+    private var heartbeat : Timer?
+    private var pingCount : Int = 0
+    private var pongCount : Int = 0
     
     /**
      Initialize instance.
      */
     init(_ port: MedKitCore.Port?)
     {
-        self.port      = port;
-        port?.delegate = self;
+        self.port      = port
+        port?.delegate = self
     }
     
     /**
@@ -53,22 +53,22 @@ class WSFP: MedKitCore.Port, MedKitCore.PortDelegate {
      */
     func enable(port: MedKitCore.Port)
     {
-        self.port = port;
-        port.delegate = self;
+        self.port = port
+        port.delegate = self
         
-        startHeartbeat();
+        startHeartbeat()
         
-        delegate?.portDidInitialize(self, with: nil);
+        delegate?.portDidInitialize(self, with: nil)
     }
     
     func send(_ data: Data)
     {
-        port?.send(writer.makeFrame(opcode: .BinaryFrame, payload: data));
+        port?.send(writer.makeFrame(opcode: .BinaryFrame, payload: data))
     }
     
     func shutdown(for reason: Error?)
     {
-        port?.shutdown(for: reason);
+        port?.shutdown(for: reason)
     }
     
     func start()
@@ -77,51 +77,51 @@ class WSFP: MedKitCore.Port, MedKitCore.PortDelegate {
     
     func close()
     {
-        sendClose();
-        port?.shutdown(for: nil);
+        sendClose()
+        port?.shutdown(for: nil)
     }
     
     private func sendClose()
     {
-        port?.send(writer.makeFrame(opcode: .Close, payload: Data()));
+        port?.send(writer.makeFrame(opcode: .Close, payload: Data()))
     }
     
     private func sendPing(payload: Data)
     {
-        port?.send(writer.makeFrame(opcode: .Ping, payload: payload));
+        port?.send(writer.makeFrame(opcode: .Ping, payload: payload))
     }
     
     private func sendPong(payload: Data)
     {
-        port?.send(writer.makeFrame(opcode: .Pong, payload: payload));
+        port?.send(writer.makeFrame(opcode: .Pong, payload: payload))
     }
     
     private func recvPong()
     {
-        pongCount += 1;
+        pongCount += 1
     }
     
     private func terminate()
     {
-        heartbeat?.invalidate();
-        port?.shutdown(for: nil);
+        heartbeat?.invalidate()
+        port?.shutdown(for: nil)
     }
     
     private func startHeartbeat()
     {
         heartbeat = Timer.scheduledTimer(withTimeInterval: Heartbeat, repeats: true) { timer in
-            self.heartbeatTimeout();
+            self.heartbeatTimeout()
         }
     }
     
     private func heartbeatTimeout()
     {
         if pingCount > pongCount {
-            terminate();
+            terminate()
         }
         else {
-            pingCount += 1;
-            sendPing(payload: Data());
+            pingCount += 1
+            sendPing(payload: Data())
         }
     }
     
@@ -130,7 +130,7 @@ class WSFP: MedKitCore.Port, MedKitCore.PortDelegate {
     func portDidInitialize(_ port: MedKitCore.Port, with error: Error?)
     {
         if error == nil {
-            startHeartbeat();
+            startHeartbeat()
         }
         else {
             // TODO
@@ -139,31 +139,31 @@ class WSFP: MedKitCore.Port, MedKitCore.PortDelegate {
     
     func portDidClose(_ port: MedKitCore.Port, for reason: Error?)
     {
-        delegate?.portDidClose(self, for: reason);
+        delegate?.portDidClose(self, for: reason)
     }
     
     func port(_ port: MedKitCore.Port, didReceive data: Data)
     {
-        queue.append(data);
+        queue.append(data)
         
         while reader.getMessage(from: queue) {
             switch reader.code! {
             case .ContinuationFrame, .TextFrame, .BinaryFrame :
-                delegate?.port(self, didReceive: Data(reader.payload));
+                delegate?.port(self, didReceive: Data(reader.payload))
                 
             case .Close :
-                close();
+                close()
                 
             case .Ping :
-                sendPong(payload: reader.payload);
-                break;
+                sendPong(payload: reader.payload)
+                break
                 
             case .Pong :
-                recvPong();
-                break;
+                recvPong()
+                break
             }
             
-            reader.reset();
+            reader.reset()
         }
         
     }

@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -33,7 +33,7 @@ extension Device {
      */
     var path: JSON
     {
-        return JSON([ JSON(identifier) ]);
+        return JSON([ JSON(identifier) ])
     }
     
 }
@@ -48,7 +48,7 @@ extension DeviceBackend {
      */
     var path: JSON
     {
-        return JSON([ JSON(identifier) ]);
+        return JSON([ JSON(identifier) ])
     }
     
 }

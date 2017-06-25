@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -29,25 +29,25 @@ import MedKitCore;
 class MIPV1ClientPolicy: PortSecurePolicy {
     
     // MARK: - Private Properties
-    private var peerIdentity: Identity;
+    private var peerIdentity: Identity
     
     // MARK: - Initializers
     
     init(for peerIdentity: Identity)
     {
-        self.peerIdentity = peerIdentity;
+        self.peerIdentity = peerIdentity
     }
     
     // MARK: -
     
     func portShouldAuthenticatePeer(_ port: PortSecure) -> Bool
     {
-        return true;
+        return true
     }
     
     func port(_ port: PortSecure, shouldAccept peer: Principal) -> Bool
     {
-        return peer.identity == peerIdentity;
+        return peer.identity == peerIdentity
     }
     
 }

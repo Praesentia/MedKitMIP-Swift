@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -29,29 +29,29 @@ import MedKitCore;
 class MIPV1ClientConnection: ClientConnectionBase {
     
     // MARK: - Class Properties
-    static let factory = ClientConnectionFactoryTemplate<MIPV1ClientConnection>(priority: MIPV1Priority);
+    static let factory = ClientConnectionFactoryTemplate<MIPV1ClientConnection>(priority: MIPV1Priority)
     
     // MARK: - Properties
     override var dataTap : DataTap? {
-        get        { return wsfpTap.dataTap;  }
-        set(value) { wsfpTap.dataTap = value; httpTap.dataTap = value; }
+        get        { return wsfpTap.dataTap  }
+        set(value) { wsfpTap.dataTap = value; httpTap.dataTap = value }
     }
     
     // MARK: - Private Properties
-    private let tls       : PortSecure;
-    private let tlsPolicy : MIPV1ClientPolicy;
+    private let tls       : PortSecure
+    private let tlsPolicy : MIPV1ClientPolicy
     
-    private let authenticator: AuthenticatorV1;
-    private let wsfp         : WSFP;
-    private let wsfpTap      : PortTap;
-    private let rpc          : RPCV1;
-    private let decoder      : MIPV1ClientDecoder;
-    private let encoder      : MIPV1ClientEncoder;
-    private let mip          : MIPV1Client;
+    private let authenticator: AuthenticatorV1
+    private let wsfp         : WSFP
+    private let wsfpTap      : PortTap
+    private let rpc          : RPCV1
+    private let decoder      : MIPV1ClientDecoder
+    private let encoder      : MIPV1ClientEncoder
+    private let mip          : MIPV1Client
     
-    private let httpTap : PortTap;
-    private let http    : HTTPClient;
-    private let webc    : WebSocketClient;
+    private let httpTap : PortTap
+    private let http    : HTTPClient
+    private let webc    : WebSocketClient
     
     // MARK: - Initializers
     
@@ -65,31 +65,31 @@ class MIPV1ClientConnection: ClientConnectionBase {
     required init(to port: MedKitCore.Port, for device: DeviceBackend, as principal: Principal?)
     {
         // tls
-        tlsPolicy     = MIPV1ClientPolicy(for: Identity(named: device.identifier.uuidstring, type: .Device));
-        tls           = PortSecure(port);
-        tls.policy    = tlsPolicy;
+        tlsPolicy     = MIPV1ClientPolicy(for: Identity(named: device.identifier.uuidstring, type: .device))
+        tls           = PortSecure(port)
+        tls.policy    = tlsPolicy
         
         // websocket
-        wsfp          = WSFP(nil);
-        wsfpTap       = PortTap(wsfp, decoderFactory: RPCDecoder.factory);
-        rpc           = RPCV1(wsfpTap);
-        authenticator = AuthenticatorV1(rpc: rpc, myself: principal);
-        encoder       = MIPV1ClientEncoder(rpc: rpc);
-        mip           = MIPV1Client(encoder: encoder, authenticator: authenticator);
-        decoder       = MIPV1ClientDecoder(authenticator: authenticator);
+        wsfp          = WSFP(nil)
+        wsfpTap       = PortTap(wsfp, decoderFactory: RPCDecoder.factory)
+        rpc           = RPCV1(wsfpTap)
+        authenticator = AuthenticatorV1(rpc: rpc, myself: principal)
+        encoder       = MIPV1ClientEncoder(rpc: rpc)
+        mip           = MIPV1Client(encoder: encoder, authenticator: authenticator)
+        decoder       = MIPV1ClientDecoder(authenticator: authenticator)
         
-        rpc.messageHandler = decoder;
-        decoder.client     = mip;
+        rpc.messageHandler = decoder
+        decoder.client     = mip
         
         // http
-        httpTap = PortTap(tls, decoderFactory: HTTPDecoder.factory);
-        http    = HTTPClient(httpTap);
-        webc    = WebSocketClient(http: http);
+        httpTap = PortTap(tls, decoderFactory: HTTPDecoder.factory)
+        http    = HTTPClient(httpTap)
+        webc    = WebSocketClient(http: http)
         
-        super.init(to: port, for: device, as: principal);
+        super.init(to: port, for: device, as: principal)
         
-        http.delegate = self;
-        rpc.delegate  = self;
+        http.delegate = self
+        rpc.delegate  = self
     }
     
     // MARK: - ProtocolStackDelegate
@@ -103,10 +103,10 @@ class MIPV1ClientConnection: ClientConnectionBase {
      */
     override func protocolStackDidClose(_ stack: ProtocolStack, for reason: Error?)
     {
-        _backend = nil; // retract the backend
-        authenticator.didClose();
+        _backend = nil // retract the backend
+        authenticator.didClose()
         
-        super.protocolStackDidClose(stack, for: reason);
+        super.protocolStackDidClose(stack, for: reason)
     }
     
     /**
@@ -115,7 +115,7 @@ class MIPV1ClientConnection: ClientConnectionBase {
      A delegate call used to signal that the ProtocolStack instance has
      finished initializing.
      
-     In this context, there are two seperate ProtocolStack instances; an HTTP
+     In this context, there are two seperate ProtocolStack instances an HTTP
      instance and a WebSocket instance.   The HTTP instance initializes first,
      which triggers the initiation of an upgrade request to the WebSocket
      protocol.
@@ -125,30 +125,30 @@ class MIPV1ClientConnection: ClientConnectionBase {
      */
     override func protocolStackDidInitialize(_ stack: ProtocolStack, with error: Error?)
     {
-        let sync = Sync(error);
+        let sync = Sync(error)
         
         if error == nil && stack === http {
             
-            sync.incr();
+            sync.incr()
             webc.upgrade("", MIPV1WSPath, ProtocolNameMIPV1) { error in
                 
                 if error == nil {
-                    sync.incr();
+                    sync.incr()
                     self.rpc.start() { error in
-                        sync.decr(error);
+                        sync.decr(error)
                     }
-                    self.wsfp.enable(port: self.tls);
+                    self.wsfp.enable(port: self.tls)
                 }
                 
-                sync.decr(error);
+                sync.decr(error)
             }
         }
         
         sync.close() { error in
             if error == nil {
-                self._backend = self.mip; // publish the backend
+                self._backend = self.mip // publish the backend
             }
-            self.complete(error);
+            self.complete(error)
         }
     }
     

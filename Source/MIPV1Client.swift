@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -28,12 +28,12 @@ import MedKitCore;
  */
 class MIPV1Client: Backend {
     
-    let registry = MIPClientRegistry();
+    let registry = MIPClientRegistry()
     
-    let isOpen = true;
+    let isOpen = true
     
-    private var server        : MIPV1ClientEncoder;
-    private let authenticator : Authenticator;
+    private var server        : MIPV1ClientEncoder
+    private let authenticator : Authenticator
     
     /**
      Initialize instance.
@@ -44,24 +44,24 @@ class MIPV1Client: Backend {
      */
     init(encoder: MIPV1ClientEncoder, authenticator: Authenticator)
     {
-        self.server        = encoder;
-        self.authenticator = authenticator;
+        self.server        = encoder
+        self.authenticator = authenticator
     }
     
     private func attach(_ device: DeviceBackend)
     {
-        registry.addDevice(device);
+        registry.addDevice(device)
         
-        device.backend = self;
+        device.backend = self
         
         for bridgedDevice in device.bridgedDeviceBackends {
-            attach(bridgedDevice);
+            attach(bridgedDevice)
         }
         
         for service in device.serviceBackends {
-            service.backend = self;
+            service.backend = self
             for resource in service.resourceBackends {
-                resource.backend = self;
+                resource.backend = self
             }
         }
     }
@@ -69,116 +69,116 @@ class MIPV1Client: Backend {
     private func detach(_ device: DeviceBackend)
     {
         for bridgedDevice in device.bridgedDeviceBackends {
-            detach(bridgedDevice);
+            detach(bridgedDevice)
         }
         
         for service in device.serviceBackends {
             for resource in service.resourceBackends {
-                resource.backend = resource.defaultBackend;
+                resource.backend = resource.defaultBackend
             }
-            service.backend = service.defaultBackend;
+            service.backend = service.defaultBackend
         }
         
-        device.backend = device.defaultBackend;
-        registry.removeDevice(device);
+        device.backend = device.defaultBackend
+        registry.removeDevice(device)
     }
     
     // MARK: - MIPV1Client1
     
     func device(_ device: DeviceBackend, didUpdateName name: String)
     {
-        device.updateName(name, notify: true);
+        device.updateName(name, notify: true)
     }
     
     func device(_ device: DeviceBackend, didAddBridgedDevice profile: JSON)
     {
-        let identifier = profile[KeyIdentifier].uuid!;
+        let identifier = profile[KeyIdentifier].uuid!
         
         if device.getBridgedDevice(withIdentifier: identifier) == nil {
-            let bridgedDevice = device.addBridgedDevice(from: profile, notify: true);
-            attach(bridgedDevice);
+            let bridgedDevice = device.addBridgedDevice(from: profile, notify: true)
+            attach(bridgedDevice)
         }
     }
     
     func device(_ device: DeviceBackend, didRemoveBridgedDevice identifier: UUID)
     {
         if let bridgedDevice = device.getBridgedDevice(withIdentifier: identifier) {
-            device.removeBridgedDevice(bridgedDevice, notify: true);
+            device.removeBridgedDevice(bridgedDevice, notify: true)
         }
     }
     
     func device(_ device: DeviceBackend, didAddService profile: JSON)
     {
-        let service = device.addService(from: profile, notify: true);
-        service.backend = self;
+        let service = device.addService(from: profile, notify: true)
+        service.backend = self
     }
     
     func device(_ device: DeviceBackend, didRemoveService identifier: UUID)
     {
-        device.removeService(withIdentifier: identifier, notify: true);
+        device.removeService(withIdentifier: identifier, notify: true)
     }
     
     func service(_ service: ServiceBackend, didUpdateName name: String)
     {
-        service.updateName(name, notify: true);
+        service.updateName(name, notify: true)
     }
     
     func service(_ service: ServiceBackend, didAddResource profile: JSON)
     {
-        let resource = ResourceBase(service as! ServiceBase, from: profile);
+        let resource = ResourceBase(service as! ServiceBase, from: profile)
         
-        resource.backend = self;
-        service.addResource(resource, notify: true);
+        resource.backend = self
+        service.addResource(resource, notify: true)
     }
     
     func service(_ service: ServiceBackend, didRemoveResource identifier: UUID)
     {
-        service.removeResource(withIdentifier: identifier, notify: true);
+        service.removeResource(withIdentifier: identifier, notify: true)
     }
     
     func resource(_ resource: ResourceBackend, didUpdate changes: JSON, at time: TimeInterval)
     {
-        resource.update(changes: changes, at: time);
+        resource.update(changes: changes, at: time)
     }
     
     // MARK: - DeviceBackendDelegate
     
     func deviceOpen(_ device: DeviceBackend, completionHandler completion: @escaping (Error?) -> Void)
     {
-        let sync = Sync();
+        let sync = Sync()
         
-        sync.incr();
+        sync.incr()
         authenticator.authenticate() { error in
             
             if error == nil {
-                sync.incr();
+                sync.incr()
                 self.getProfile(for: device) { error in
                     if error == nil {
-                        self.attach(device);
+                        self.attach(device)
                     }
-                    sync.decr(error);
+                    sync.decr(error)
                 }
             }
 
-            sync.decr(error);
+            sync.decr(error)
         }
         
-        sync.close(completionHandler: completion);
+        sync.close(completionHandler: completion)
     }
     
     func deviceClose(_ device: DeviceBackend, for reason: Error?, completionHandler completion: @escaping (Error?) -> Void)
     {
-        detach(device);
-        DispatchQueue.main.async() { completion(nil); }
+        detach(device)
+        DispatchQueue.main.async { completion(nil) }
     }
     
     private func getProfile(for device: DeviceBackend, completionHandler completion: @escaping (Error?) -> Void)
     {
         server.deviceGetProfile(device) { profile, error in
             if error == nil, let profile = profile {
-                device.update(from: profile);
+                device.update(from: profile)
             }
-            completion(error);
+            completion(error)
         }
     }
     
@@ -186,9 +186,9 @@ class MIPV1Client: Backend {
     {
         server.deviceUpdateName(device, name: name) { error in
             if error == nil {
-                device.updateName(name, notify: false);
+                device.updateName(name, notify: false)
             }
-            completion(error);
+            completion(error)
         }
     }
     
@@ -198,9 +198,9 @@ class MIPV1Client: Backend {
     {
         server.serviceUpdateName(service, name: name) { error in
             if error == nil {
-                service.updateName(name, notify: false);
+                service.updateName(name, notify: false)
             }
-            completion(error);
+            completion(error)
         }
     }
     
@@ -208,22 +208,22 @@ class MIPV1Client: Backend {
     
     func resourceEnableNotification(_ resource: ResourceBackend, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
     {
-        server.resourceEnableNotification(resource, completionHandler: completion);
+        server.resourceEnableNotification(resource, completionHandler: completion)
     }
     
     func resourceDisableNotification(_ resource: ResourceBackend, completionHandler completion: @escaping (Error?) -> Void)
     {
-        server.resourceDisableNotification(resource, completionHandler: completion);
+        server.resourceDisableNotification(resource, completionHandler: completion)
     }
     
     func resourceReadValue(_ resource: ResourceBackend, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
     {
-        server.resourceReadValue(resource, completionHandler: completion);
+        server.resourceReadValue(resource, completionHandler: completion)
     }
     
     func resourceWriteValue(_ resource: ResourceBackend, _ value: JSON?, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
     {
-        server.resourceWriteValue(resource, value, completionHandler: completion);
+        server.resourceWriteValue(resource, value, completionHandler: completion)
     }
     
 }

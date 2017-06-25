@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -28,8 +28,8 @@ import MedKitCore;
  */
 protocol AuthenticatorDelegate: class {
     
-    func authenticate(_ authenticate: Authenticator, didAccept principal: Principal);
-    func authenticate(_ authenticate: Authenticator, shouldAccept principal: Principal) -> Bool;
+    func authenticate(_ authenticate: Authenticator, didAccept principal: Principal)
+    func authenticate(_ authenticate: Authenticator, shouldAccept principal: Principal) -> Bool
     
 }
 
@@ -41,24 +41,24 @@ protocol AuthenticatorDelegate: class {
 class Authenticator {
     
     // MARK: - Properties
-    weak var delegate  : AuthenticatorDelegate?;
-    var      principal : Principal?;
+    weak var delegate  : AuthenticatorDelegate?
+    var      principal : Principal?
     
     // protected
-    let rpc    : RPCV1;
-    let myself : Principal!;
-    var peer   : Principal?;
+    let rpc    : RPCV1
+    let myself : Principal!
+    var peer   : Principal?
     
     // MARK: - Private
-    private var completion : ((Error?) -> Void)?;
+    private var completion : ((Error?) -> Void)?
     
     /**
      Initialize instance.
      */
     init(rpc: RPCV1, myself: Principal?)
     {
-        self.rpc    = rpc;
-        self.myself = myself;
+        self.rpc    = rpc
+        self.myself = myself
     }
     
     /**
@@ -66,7 +66,7 @@ class Authenticator {
      */
     func authenticate(completionHandler completion: @escaping (Error?) -> Void)
     {
-        self.completion = completion;
+        self.completion = completion
     }
     
     func didClose()
@@ -75,7 +75,7 @@ class Authenticator {
     
     func decode(method: Int, args: JSON, completionHandler completion: @escaping (JSON?, Error?) -> Void)
     {
-        DispatchQueue.main.async() { completion(nil, MedKitError.NotSupported); }
+        DispatchQueue.main.async { completion(nil, MedKitError.notSupported) }
     }
     
     func decode(method: Int, args: JSON)
@@ -87,7 +87,7 @@ class Authenticator {
      */
     func shouldAccept(principal: Principal) -> Bool
     {
-        return delegate?.authenticate(self, shouldAccept: principal) ?? true;
+        return delegate?.authenticate(self, shouldAccept: principal) ?? true
     }
     
     /**
@@ -95,15 +95,15 @@ class Authenticator {
      */
     func accepted(principal: Principal)
     {
-        self.principal = principal;
+        self.principal = principal
         
-        delegate?.authenticate(self, didAccept: principal);
+        delegate?.authenticate(self, didAccept: principal)
         
         if let completion = self.completion {
-            DispatchQueue.main.async() { completion(nil); }
+            DispatchQueue.main.async { completion(nil) }
         }
         
-        reset();
+        reset()
     }
     
     /**
@@ -118,19 +118,19 @@ class Authenticator {
      */
     func rejected(for reason: MedKitError, fatal: Bool)
     {
-        print("rejected \(reason.localizedDescription)");
+        print("rejected \(reason.localizedDescription)")
         
         if let completion = self.completion {
-            DispatchQueue.main.async() {
-                completion(reason);
+            DispatchQueue.main.async {
+                completion(reason)
             }
         }
         
-        reset();
+        reset()
         
         if fatal {
-            DispatchQueue.main.async() {
-                self.rpc.shutdown(for: reason);
+            DispatchQueue.main.async {
+                self.rpc.shutdown(for: reason)
             }
         }
     }
@@ -140,7 +140,7 @@ class Authenticator {
      */
     func reset()
     {
-        completion = nil;
+        completion = nil
     }
     
 }

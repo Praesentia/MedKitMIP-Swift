@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -28,9 +28,9 @@ import MedKitCore;
  */
 class WebSocketServer: WebSocket, HTTPServerRouter {
     
-    private var http: HTTPServer;
-    private var port: MedKitCore.Port;
-    private var wsfp: WSFP;
+    private var http: HTTPServer
+    private var port: MedKitCore.Port
+    private var wsfp: WSFP
     
     /**
      Constructor
@@ -40,61 +40,61 @@ class WebSocketServer: WebSocket, HTTPServerRouter {
      */
     init(http: HTTPServer, port: MedKitCore.Port, wsfp: WSFP)
     {
-        self.http = http;
-        self.port = port;
-        self.wsfp = wsfp;
+        self.http = http
+        self.port = port
+        self.wsfp = wsfp
         
-        super.init();
+        super.init()
         
-        http.messageHandler = self;
+        http.messageHandler = self
     }
     
     private func verify(request: HTTPRequest) -> HTTPResponse
     {
-        let check = Check();
+        let check = Check()
         
-        check += (request.getField(key: HTTPHeader.Connection)           == Upgrade);
-        check += (request.getField(key: HTTPHeader.Upgrade)              == WebSocket);
-        check += (request.getField(key: HTTPHeader.SecWebSocketKey)      != nil);
-        check += (request.getField(key: HTTPHeader.SecWebSocketProtocol) == ProtocolNameMIPV1);
-        check += (request.getField(key: HTTPHeader.SecWebSocketVersion)  == Version);
+        check += (request.getField(key: HTTPHeader.Connection)           == Upgrade)
+        check += (request.getField(key: HTTPHeader.Upgrade)              == WebSocket)
+        check += (request.getField(key: HTTPHeader.SecWebSocketKey)      != nil)
+        check += (request.getField(key: HTTPHeader.SecWebSocketProtocol) == ProtocolNameMIPV1)
+        check += (request.getField(key: HTTPHeader.SecWebSocketVersion)  == Version)
         
         if (check.value)
         {
-            let response = HTTPResponse(status: .SwitchingProtocols);
-            let digest   = SecurityManagerShared.main.digest(using: .SHA1);
+            let response = HTTPResponse(status: .SwitchingProtocols)
+            let digest   = SecurityManagerShared.main.digest(using: .sha1)
             
             // generate acceptance signature
-            digest.update(string: request.getField(key: HTTPHeader.SecWebSocketKey));
-            digest.update(string: Key);
+            digest.update(string: request.getField(key: HTTPHeader.SecWebSocketKey))
+            digest.update(string: Key)
             
             // populate response
-            response.setField(key: HTTPHeader.Connection,           value: Upgrade);
-            response.setField(key: HTTPHeader.Upgrade,              value: WebSocket);
-            response.setField(key: HTTPHeader.SecWebSocketAccept,   value: digest.final().base64EncodedString);
-            response.setField(key: HTTPHeader.SecWebSocketProtocol, value: ProtocolNameMIPV1); // TODO
-            response.setField(key: HTTPHeader.SecWebSocketVersion,  value: Version);
+            response.setField(key: HTTPHeader.Connection,           value: Upgrade)
+            response.setField(key: HTTPHeader.Upgrade,              value: WebSocket)
+            response.setField(key: HTTPHeader.SecWebSocketAccept,   value: digest.final().base64EncodedString)
+            response.setField(key: HTTPHeader.SecWebSocketProtocol, value: ProtocolNameMIPV1) // TODO
+            response.setField(key: HTTPHeader.SecWebSocketVersion,  value: Version)
             
-            wsfp.enable(port: port);
-            return response;
+            wsfp.enable(port: port)
+            return response
         }
         
-        return HTTPResponse(status: .Forbidden);
+        return HTTPResponse(status: .Forbidden)
     }
 
     
     func server(_ server: HTTPServer, didReceive request: HTTPRequest, completionHandler completion: (HTTPResponse?, Error?) -> Void)
     {
-        var response: HTTPResponse;
+        var response: HTTPResponse
 
         if (request.method == HTTPMethod.Get.rawValue && request.url?.path == MIPV1WSPath) {
-            response = verify(request: request);
+            response = verify(request: request)
         }
         else {
-            response = HTTPResponse(status: .NotFound);
+            response = HTTPResponse(status: .NotFound)
         }
         
-        completion(response, nil);
+        completion(response, nil)
     }
     
 }

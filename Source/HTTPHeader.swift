@@ -19,7 +19,7 @@
  */
 
 
-import Foundation;
+import Foundation
 
 
 /**
@@ -27,14 +27,14 @@ import Foundation;
  */
 enum HTTPHeader: String {
     
-    case Connection           = "Connection";
-    case Host                 = "Host";
-    case Origin               = "Origin";
-    case SecWebSocketAccept   = "Sec-WebSocket-Accept";
-    case SecWebSocketKey      = "Sec-WebSocket-Key";
-    case SecWebSocketProtocol = "Sec-WebSocket-Protocol";
-    case SecWebSocketVersion  = "Sec-WebSocket-Version";
-    case Upgrade              = "Upgrade";
+    case Connection           = "Connection"
+    case Host                 = "Host"
+    case Origin               = "Origin"
+    case SecWebSocketAccept   = "Sec-WebSocket-Accept"
+    case SecWebSocketKey      = "Sec-WebSocket-Key"
+    case SecWebSocketProtocol = "Sec-WebSocket-Protocol"
+    case SecWebSocketVersion  = "Sec-WebSocket-Version"
+    case Upgrade              = "Upgrade"
     
 }
 

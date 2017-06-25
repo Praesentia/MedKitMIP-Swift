@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -28,7 +28,7 @@ import MedKitCore;
  */
 class WebSocketClient: WebSocket {
     
-    private var http: HTTPClient;
+    private var http: HTTPClient
 
     /**
      Constructor
@@ -38,7 +38,7 @@ class WebSocketClient: WebSocket {
      */
     init(http: HTTPClient)
     {
-        self.http = http;
+        self.http = http
     }
     
     /**
@@ -47,19 +47,19 @@ class WebSocketClient: WebSocket {
      */
     func upgrade(_ host: String, _ target: String, _ proto: String, completionHandler completion: @escaping (Error?)->Void)
     {
-        let key     = generateKey(count: 16);
-        let request = upgrade(host, target, proto, key);
+        let key     = generateKey(count: 16)
+        let request = upgrade(host, target, proto, key)
         
         http.send(request) { response, httpError in
-            var error: Error? = httpError;
+            var error: Error? = httpError
             
             if error == nil {
                 if !self.verify(response!, proto, key) {
-                    error = MedKitError.Failed;
+                    error = MedKitError.failed
                 }
             }
 
-            completion(error);
+            completion(error)
         }
     }
     
@@ -75,7 +75,7 @@ class WebSocketClient: WebSocket {
      */
     private func generateKey(count: Int) -> String
     {
-        return SecurityManagerShared.main.randomBytes(count: count).base64EncodedString;
+        return SecurityManagerShared.main.randomBytes(count: count).base64EncodedString
     }
     
     /**
@@ -83,16 +83,16 @@ class WebSocketClient: WebSocket {
      */
     private func upgrade(_ host: String, _ target: String, _ proto: String, _ key: String) -> HTTPRequest
     {
-        let request = HTTPRequest(method: HTTPMethod.Get, url: target);
+        let request = HTTPRequest(method: HTTPMethod.Get, url: target)
         
-        request.setField(key: HTTPHeader.Connection,           value: Upgrade);
-        request.setField(key: HTTPHeader.Upgrade,              value: WebSocket);
-        request.setField(key: HTTPHeader.Host,                 value: host);
-        request.setField(key: HTTPHeader.SecWebSocketKey,      value: key);
-        request.setField(key: HTTPHeader.SecWebSocketProtocol, value: proto);
-        request.setField(key: HTTPHeader.SecWebSocketVersion,  value: Version);
+        request.setField(key: HTTPHeader.Connection,           value: Upgrade)
+        request.setField(key: HTTPHeader.Upgrade,              value: WebSocket)
+        request.setField(key: HTTPHeader.Host,                 value: host)
+        request.setField(key: HTTPHeader.SecWebSocketKey,      value: key)
+        request.setField(key: HTTPHeader.SecWebSocketProtocol, value: proto)
+        request.setField(key: HTTPHeader.SecWebSocketVersion,  value: Version)
         
-        return request;
+        return request
     }
  
     /**
@@ -100,23 +100,23 @@ class WebSocketClient: WebSocket {
      */
     private func verify(_ response: HTTPResponse, _ proto: String, _ key: String) -> Bool
     {
-        let check  = Check();
-        let digest = SecurityManagerShared.main.digest(using: .SHA1);
-        var accept : String;
+        let check  = Check()
+        let digest = SecurityManagerShared.main.digest(using: .sha1)
+        var accept : String
         
         // generate expected accept response
-        digest.update(string: key);
-        digest.update(string: Key);
-        accept = digest.final().base64EncodedString;
+        digest.update(string: key)
+        digest.update(string: Key)
+        accept = digest.final().base64EncodedString
         
-        check += (response.status == .SwitchingProtocols);
-        check += (response.getField(key: HTTPHeader.Connection)           == Upgrade);
-        check += (response.getField(key: HTTPHeader.Upgrade)              == WebSocket);
-        check += (response.getField(key: HTTPHeader.SecWebSocketAccept)   == accept);
-        check += (response.getField(key: HTTPHeader.SecWebSocketProtocol) == proto);
-        check += (response.getField(key: HTTPHeader.SecWebSocketVersion)  == Version);
+        check += (response.status == .SwitchingProtocols)
+        check += (response.getField(key: HTTPHeader.Connection)           == Upgrade)
+        check += (response.getField(key: HTTPHeader.Upgrade)              == WebSocket)
+        check += (response.getField(key: HTTPHeader.SecWebSocketAccept)   == accept)
+        check += (response.getField(key: HTTPHeader.SecWebSocketProtocol) == proto)
+        check += (response.getField(key: HTTPHeader.SecWebSocketVersion)  == Version)
  
-        return check.value;
+        return check.value
     }
  
 }

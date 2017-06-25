@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -28,7 +28,7 @@ import MedKitCore;
  */
 class MIPServerRegistry {
     
-    private var registry = [UUID : DeviceFrontend]();
+    private var registry = [UUID : DeviceFrontend]()
     
     /**
      Initialize instance.
@@ -39,12 +39,12 @@ class MIPServerRegistry {
     
     func addDevice(_ device: DeviceFrontend)
     {
-        registry[device.identifier] = device;
+        registry[device.identifier] = device
     }
     
     func removeDevice(_ device: DeviceFrontend)
     {
-        registry[device.identifier] = nil;
+        registry[device.identifier] = nil
     }
     
     /**
@@ -55,7 +55,7 @@ class MIPServerRegistry {
      */
     func findDevice(path: [UUID]) -> DeviceFrontend?
     {
-        return registry[path[0]];
+        return registry[path[0]]
     }
     
     /**
@@ -66,7 +66,7 @@ class MIPServerRegistry {
      */
     func findService(path: [UUID]) -> Service?
     {
-        return findDevice(path: path)?.services.find(where: { $0.identifier == path[1]; });
+        return findDevice(path: path)?.services.find(where: { $0.identifier == path[1] })
     }
     
     /**
@@ -77,7 +77,7 @@ class MIPServerRegistry {
      */
     func findResource(path: [UUID]) -> Resource?
     {
-        return findService(path: path)?.resources.find(where: { $0.identifier == path[2] });
+        return findService(path: path)?.resources.find(where: { $0.identifier == path[2] })
     }
     
 }

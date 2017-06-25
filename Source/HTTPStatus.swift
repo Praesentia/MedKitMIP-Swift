@@ -19,22 +19,22 @@
  */
 
 
-import Foundation;
+import Foundation
 
 
 /**
  HTTP Status
  */
 enum HTTPStatus: Int {
-    case Continue           = 100;
-    case SwitchingProtocols = 101;
-    case Processing         = 102;
-    case OK                 = 200;
-    case BadRequest         = 400;
-    case Unauthorized       = 401;
-    case PaymentRequired    = 402;
-    case Forbidden          = 403;
-    case NotFound           = 404;
+    case Continue           = 100
+    case SwitchingProtocols = 101
+    case Processing         = 102
+    case OK                 = 200
+    case BadRequest         = 400
+    case Unauthorized       = 401
+    case PaymentRequired    = 402
+    case Forbidden          = 403
+    case NotFound           = 404
 }
 
 

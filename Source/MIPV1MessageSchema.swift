@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -30,38 +30,38 @@ class MIPV1MessageSchema {
     
     func verify(message: JSON) -> Bool
     {
-        let check = Check();
-        var count : Int = 2;
+        let check = Check()
+        var count : Int = 2
         
-        check += message.type == .Object;
+        check += message.type == .Object
         
-        check += message.contains(key: KeyPath);
-        check += message.contains(key: KeyMethod);
+        check += message.contains(key: KeyPath)
+        check += message.contains(key: KeyMethod)
         if message.contains(key: KeyArgs) {
-            count += 1;
+            count += 1
         }
         
-        check += message[KeyPath].type   == .Array;
-        check += message[KeyMethod].type == .Number;
+        check += message[KeyPath].type   == .Array
+        check += message[KeyMethod].type == .Number
 
         if check.value {
-            check += verifyPath(message[KeyPath].array!);
+            check += verifyPath(message[KeyPath].array!)
         }
         
-        check += message.object!.count == count;
-        return check.value;
+        check += message.object!.count == count
+        return check.value
     }
     
     private func verifyPath(_ path: [JSON]) -> Bool
     {
-        let check = Check();
+        let check = Check()
         
         for component in path {
-            check += component.type == .String;
+            check += component.type == .String
         }
         
-        check += path.count >= 1;
-        return check.value;
+        check += path.count >= 1
+        return check.value
     }
     
 }

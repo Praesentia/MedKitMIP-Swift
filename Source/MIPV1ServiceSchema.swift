@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -30,17 +30,17 @@ class MIPV1ServiceSchema {
     
     func verifySync(method: MIPV1ServiceMethod, args: JSON) -> Bool
     {
-        return true; // TODO
+        return true // TODO
     }
     
     func verifyReply(method: MIPV1ServiceMethod, reply: JSON?) -> Bool
     {
-        return true; // TODO
+        return true // TODO
     }
     
     func verifyAsync(method: MIPV1ServiceNotification, args: JSON) -> Bool
     {
-        return true;
+        return true
     }
     
 }

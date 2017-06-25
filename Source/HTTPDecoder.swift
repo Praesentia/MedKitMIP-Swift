@@ -19,22 +19,22 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 public class HTTPDecoder: Decoder {
     
-    public static let factory : DecoderFactory = HTTPDecoderFactory();
+    public static let factory : DecoderFactory = HTTPDecoderFactory()
     
     public func type(data: Data) -> String?
     {
-        return "HTTP";
+        return "HTTP"
     }
     
     public func string(data: Data) -> String?
     {
-        return String(data: data, encoding: .utf8);
+        return String(data: data, encoding: .utf8)
     }
     
 }
@@ -43,7 +43,7 @@ class HTTPDecoderFactory: DecoderFactory {
     
     func instantiateDecoder() -> Decoder
     {
-        return HTTPDecoder();
+        return HTTPDecoder()
     }
 }
 

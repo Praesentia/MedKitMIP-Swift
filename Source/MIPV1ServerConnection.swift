@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -29,29 +29,29 @@ import MedKitCore;
 class MIPV1ServerConnection: ServerConnectionBase {
     
     // MARK: - Class Properties
-    static let factory = ServerConnectionFactoryTemplate<MIPV1ServerConnection>(protocolType: "mip-v1");
+    static let factory = ServerConnectionFactoryTemplate<MIPV1ServerConnection>(protocolType: "mip-v1")
     
     // MARK: - Properties
     override var dataTap: DataTap? {
-        get        { return wsfpTap.dataTap;  }
+        get        { return wsfpTap.dataTap  }
         set(value) { wsfpTap.dataTap = value; httpTap.dataTap = value }
     }
     
     // MARK: - Private Properties
-    private let tls       : PortSecure;
-    private let tlsPolicy : MIPV1ServerPolicy;
+    private let tls       : PortSecure
+    private let tlsPolicy : MIPV1ServerPolicy
     
-    private let wsfp         : WSFP;
-    private let wsfpTap      : PortTap;
-    private let rpc          : RPCV1;
-    private let authenticator: AuthenticatorV1;
-    private let decoder      : MIPV1ServerDecoder;
-    private let encoder      : MIPV1ServerEncoder;
-    private let mip          : MIPV1Server;
+    private let wsfp         : WSFP
+    private let wsfpTap      : PortTap
+    private let rpc          : RPCV1
+    private let authenticator: AuthenticatorV1
+    private let decoder      : MIPV1ServerDecoder
+    private let encoder      : MIPV1ServerEncoder
+    private let mip          : MIPV1Server
     
-    private let httpTap : PortTap;
-    private let http    : HTTPServer;
-    private let webc    : WebSocketServer;
+    private let httpTap : PortTap
+    private let http    : HTTPServer
+    private let webc    : WebSocketServer
     
     // MARK: - Initializers
     
@@ -61,31 +61,31 @@ class MIPV1ServerConnection: ServerConnectionBase {
     required init(from port: MedKitCore.Port, to device: DeviceFrontend, as principal: Principal)
     {
         // tls
-        tlsPolicy     = MIPV1ServerPolicy();
-        tls           = PortSecure(port);
-        tls.policy    = tlsPolicy;
+        tlsPolicy     = MIPV1ServerPolicy()
+        tls           = PortSecure(port)
+        tls.policy    = tlsPolicy
         
         // websocket
-        wsfp          = WSFP(nil);
-        wsfpTap       = PortTap(wsfp, decoderFactory: RPCDecoder.factory);
-        rpc           = RPCV1(wsfpTap);
-        authenticator = AuthenticatorV1(rpc: rpc, myself: principal);
-        encoder       = MIPV1ServerEncoder(rpc: rpc);
-        mip           = MIPV1Server(device: device, encoder: encoder);
-        decoder       = MIPV1ServerDecoder(authenticator: authenticator);
+        wsfp          = WSFP(nil)
+        wsfpTap       = PortTap(wsfp, decoderFactory: RPCDecoder.factory)
+        rpc           = RPCV1(wsfpTap)
+        authenticator = AuthenticatorV1(rpc: rpc, myself: principal)
+        encoder       = MIPV1ServerEncoder(rpc: rpc)
+        mip           = MIPV1Server(device: device, encoder: encoder)
+        decoder       = MIPV1ServerDecoder(authenticator: authenticator)
         
-        rpc.messageHandler = decoder;
-        decoder.server     = mip;
+        rpc.messageHandler = decoder
+        decoder.server     = mip
 
         // http
-        httpTap = PortTap(tls, decoderFactory: HTTPDecoder.factory);
-        http    = HTTPServer(httpTap);
-        webc    = WebSocketServer(http: http, port: tls, wsfp: wsfp);
+        httpTap = PortTap(tls, decoderFactory: HTTPDecoder.factory)
+        http    = HTTPServer(httpTap)
+        webc    = WebSocketServer(http: http, port: tls, wsfp: wsfp)
         
-        super.init(from: port, to: device, as: principal);
+        super.init(from: port, to: device, as: principal)
         
-        http.delegate = self;
-        rpc.delegate  = self;
+        http.delegate = self
+        rpc.delegate  = self
     }
     
     // MARK: - ProtocolStackDelegate
@@ -99,10 +99,10 @@ class MIPV1ServerConnection: ServerConnectionBase {
      */
     override func protocolStackDidClose(_ stack: ProtocolStack, for reason: Error?)
     {
-        authenticator.didClose();
-        mip.close();
+        authenticator.didClose()
+        mip.close()
         
-        super.protocolStackDidClose(stack, for: reason);
+        super.protocolStackDidClose(stack, for: reason)
     }
     
 }

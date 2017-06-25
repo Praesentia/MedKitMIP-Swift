@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -30,17 +30,17 @@ class MIPV1ResourceSchema {
     
     func verifySync(method: MIPV1ResourceMethod, args: JSON) -> Bool
     {
-        return true; // TODO
+        return true // TODO
     }
     
     func verifyReply(method: MIPV1ResourceMethod, reply: JSON?) -> Bool
     {
-        return true; // TODO
+        return true // TODO
     }
     
     func verifyAsync(method: MIPV1ResourceNotification, args: JSON) -> Bool
     {
-        return true;
+        return true
     }
     
 }

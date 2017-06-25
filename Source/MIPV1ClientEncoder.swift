@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -28,174 +28,174 @@ import MedKitCore;
  */
 class MIPV1ClientEncoder {
     
-    var rpc: RPCV1;
+    var rpc: RPCV1
     
-    private let schemaDevice   = MIPV1DeviceSchema();
-    private let schemaService  = MIPV1ServiceSchema();
-    private let schemaResource = MIPV1ResourceSchema();
+    private let schemaDevice   = MIPV1DeviceSchema()
+    private let schemaService  = MIPV1ServiceSchema()
+    private let schemaResource = MIPV1ResourceSchema()
     
     /**
      Initialize instance.
      */
     init(rpc: RPCV1)
     {
-        self.rpc = rpc;
+        self.rpc = rpc
     }
  
     // MARK: - Server
     
     func deviceGetProfile(_ device: DeviceBackend, completionHandler completion: @escaping (JSON?, Error?) -> Void)
     {
-        let message = JSON();
+        let message = JSON()
         
-        message[KeyPath]   = device.path;
-        message[KeyMethod] = MIPV1DeviceMethod.GetProfile.rawValue;
+        message[KeyPath]   = device.path
+        message[KeyMethod] = MIPV1DeviceMethod.GetProfile.rawValue
         
         rpc.sync(message: message) { reply, error in
-            var error = error;
+            var error = error
             
             if error == nil {
                 if !self.schemaDevice.verifyReply(method: .GetProfile, reply: reply) {
-                    error = MedKitError.BadReply;
+                    error = MedKitError.badReply
                 }
             }
             
-            completion(reply, error);
+            completion(reply, error)
         }
     }
     
     func deviceUpdateName(_ device: DeviceBackend, name: String, completionHandler completion: @escaping (Error?) -> Void)
     {
-        let message = JSON();
+        let message = JSON()
         
-        message[KeyPath]          = device.path;
-        message[KeyMethod]        = MIPV1DeviceMethod.UpdateName.rawValue;
-        message[KeyArgs][KeyName] = name;
+        message[KeyPath]          = device.path
+        message[KeyMethod]        = MIPV1DeviceMethod.UpdateName.rawValue
+        message[KeyArgs][KeyName] = name
         
         rpc.sync(message: message) { reply, error in
-            var error = error;
+            var error = error
             
             if error == nil {
                 if !self.schemaDevice.verifyReply(method: .UpdateName, reply: reply) {
-                    error = MedKitError.BadReply;
+                    error = MedKitError.badReply
                 }
             }
             
-            completion(error);
+            completion(error)
         }
     }
     
     func serviceUpdateName(_ service: ServiceBackend, name: String, completionHandler completion: @escaping (Error?) -> Void)
     {
-        let message = JSON();
+        let message = JSON()
         
-        message[KeyPath]          = service.path;
-        message[KeyMethod]        = MIPV1ServiceMethod.UpdateName.rawValue;
-        message[KeyArgs][KeyName] = name;
+        message[KeyPath]          = service.path
+        message[KeyMethod]        = MIPV1ServiceMethod.UpdateName.rawValue
+        message[KeyArgs][KeyName] = name
         
         rpc.sync(message: message) { reply, error in
-            var error = error;
+            var error = error
             
             if error == nil {
                 if !self.schemaService.verifyReply(method: .UpdateName, reply: reply) {
-                    error = MedKitError.BadReply;
+                    error = MedKitError.badReply
                 }
             }
             
-            completion(error);
+            completion(error)
         }
     }
     
     func resourceEnableNotification(_ resource: ResourceBackend, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
     {
-        let message = JSON();
+        let message = JSON()
         
-        message[KeyPath]   = resource.path;
-        message[KeyMethod] = MIPV1ResourceMethod.EnableNotification.rawValue;
+        message[KeyPath]   = resource.path
+        message[KeyMethod] = MIPV1ResourceMethod.EnableNotification.rawValue
         
         rpc.sync(message: message) { reply, error in
-            var error = error;
-            var cache : ResourceCache?;
+            var error = error
+            var cache : ResourceCache?
             
             if error == nil {
                 if self.schemaResource.verifyReply(method: .EnableNotification, reply: reply) {
-                    cache = ResourceCacheBase(from: reply!);
+                    cache = ResourceCacheBase(from: reply!)
                 }
                 else {
-                    error = MedKitError.BadReply;
+                    error = MedKitError.badReply
                 }
             }
             
-            completion(cache, error);
+            completion(cache, error)
         }
     }
     
     func resourceDisableNotification(_ resource: ResourceBackend, completionHandler completion: @escaping (Error?) -> Void)
     {
-        let message = JSON();
+        let message = JSON()
         
-        message[KeyPath]   = resource.path;
-        message[KeyMethod] = MIPV1ResourceMethod.DisableNotification.rawValue;
+        message[KeyPath]   = resource.path
+        message[KeyMethod] = MIPV1ResourceMethod.DisableNotification.rawValue
         
         rpc.sync(message: message) { reply, error in
-            var error = error;
+            var error = error
             
             if error == nil {
                 if !self.schemaResource.verifyReply(method: .DisableNotification, reply: reply) {
-                    error = MedKitError.BadReply;
+                    error = MedKitError.badReply
                 }
             }
             
-            completion(error);
+            completion(error)
         }
     }
     
     func resourceReadValue(_ resource: ResourceBackend, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
     {
-        let message = JSON();
+        let message = JSON()
         
-        message[KeyPath]   = resource.path;
-        message[KeyMethod] = MIPV1ResourceMethod.ReadValue.rawValue;
+        message[KeyPath]   = resource.path
+        message[KeyMethod] = MIPV1ResourceMethod.ReadValue.rawValue
         
         rpc.sync(message: message) { reply, error in
-            var error = error;
-            var cache : ResourceCache?;
+            var error = error
+            var cache : ResourceCache?
             
             if error == nil {
                 if self.schemaResource.verifyReply(method: .ReadValue, reply: reply) {
-                    cache = ResourceCacheBase(from: reply!);
+                    cache = ResourceCacheBase(from: reply!)
                 }
                 else {
-                    error = MedKitError.BadReply;
+                    error = MedKitError.badReply
                 }
             }
             
-            completion(cache, error);
+            completion(cache, error)
         }
     }
     
     func resourceWriteValue(_ resource: ResourceBackend, _ value: JSON?, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
     {
-        let message = JSON();
+        let message = JSON()
         
-        message[KeyPath]           = resource.path;
-        message[KeyMethod]         = MIPV1ResourceMethod.WriteValue.rawValue;
-        message[KeyArgs][KeyValue] = value!; // TODO
+        message[KeyPath]           = resource.path
+        message[KeyMethod]         = MIPV1ResourceMethod.WriteValue.rawValue
+        message[KeyArgs][KeyValue] = value! // TODO
         
         rpc.sync(message: message) { reply, error in
-            var error = error;
-            var cache : ResourceCache?;
+            var error = error
+            var cache : ResourceCache?
             
             if error == nil {
                 if self.schemaResource.verifyReply(method: .WriteValue, reply: reply) {
-                    cache = ResourceCacheBase(from: reply!);
+                    cache = ResourceCacheBase(from: reply!)
                 }
                 else {
-                    error = MedKitError.BadReply;
+                    error = MedKitError.badReply
                 }
             }
             
-            completion(cache, error);
+            completion(cache, error)
         }
     }
     

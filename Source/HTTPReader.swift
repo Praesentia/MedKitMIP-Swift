@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -28,7 +28,7 @@ import MedKitCore;
  */
 class HTTPReader {
     
-    private let EOH: [UInt8] = [ 0x0d, 0x0a, 0x0d, 0x0a ]; //: End of header byte sequence.
+    private let EOH: [UInt8] = [ 0x0d, 0x0a, 0x0d, 0x0a ] //: End of header byte sequence.
     
     /**
      Get request from queue
@@ -36,10 +36,10 @@ class HTTPReader {
     func getRequest(from queue: DataQueue) -> HTTPRequest?
     {
         if let bytes = getHeader(from: queue) {
-            return HTTPRequest(fromData: Data(bytes));
+            return HTTPRequest(fromData: Data(bytes))
         }
         
-        return nil;
+        return nil
     }
     
     /**
@@ -48,10 +48,10 @@ class HTTPReader {
     func getResponse(from queue: DataQueue) -> HTTPResponse?
     {
         if let bytes = getHeader(from: queue) {
-            return HTTPResponse(fromData: Data(bytes));
+            return HTTPResponse(fromData: Data(bytes))
         }
         
-        return nil;
+        return nil
     }
     
     /**
@@ -60,9 +60,9 @@ class HTTPReader {
     private func getHeader(from queue: DataQueue) -> [UInt8]?
     {
         if let count = queue.scan(for: EOH) {
-            return queue.read(count: count);
+            return queue.read(count: count)
         }
-        return nil;
+        return nil
     }
     
 }

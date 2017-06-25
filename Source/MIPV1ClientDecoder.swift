@@ -19,8 +19,8 @@
  */
 
 
-import Foundation;
-import MedKitCore;
+import Foundation
+import MedKitCore
 
 
 /**
@@ -28,15 +28,15 @@ import MedKitCore;
  */
 class MIPV1ClientDecoder: RPCV1MessageHandler {
    
-    weak var client: MIPV1Client?;
+    weak var client: MIPV1Client?
     
     // MARK: - Private
-    private let AuthIdentifier = UUID.null;
-    private let authenticator  : Authenticator;
-    private let schema         = MIPV1MessageSchema();
-    private let schemaDevice   = MIPV1DeviceSchema();
-    private let schemaService  = MIPV1ServiceSchema();
-    private let schemaResource = MIPV1ResourceSchema();
+    private let AuthIdentifier = UUID.null
+    private let authenticator  : Authenticator
+    private let schema         = MIPV1MessageSchema()
+    private let schemaDevice   = MIPV1DeviceSchema()
+    private let schemaService  = MIPV1ServiceSchema()
+    private let schemaResource = MIPV1ResourceSchema()
     
     /**
      Initialize instance.
@@ -46,19 +46,19 @@ class MIPV1ClientDecoder: RPCV1MessageHandler {
      */
     init(authenticator: Authenticator)
     {
-        self.authenticator = authenticator;
+        self.authenticator = authenticator
     }
     
     /**
      */
     private func findAuthenticator(path: [UUID]) -> Authenticator?
     {
-        return path[0] == AuthIdentifier ? authenticator : nil;
+        return path[0] == AuthIdentifier ? authenticator : nil
     }
     
     private func decodeDevice(_ device: DeviceBackend, method: Int, args: JSON, completionHandler completion: @escaping (JSON?, Error?) -> Void)
     {
-        DispatchQueue.main.async() { completion(nil, MedKitError.NotSupported); }
+        DispatchQueue.main.async { completion(nil, MedKitError.notSupported) }
     }
     
     private func decodeDevice(_ device: DeviceBackend, method: Int, args: JSON)
@@ -67,19 +67,19 @@ class MIPV1ClientDecoder: RPCV1MessageHandler {
             if schemaDevice.verifyAsync(method: method, args: args) {
                 switch method {
                 case .DidUpdateName :
-                    client?.device(device, didUpdateName: args[KeyName]);
+                    client?.device(device, didUpdateName: args[KeyName])
                     
                 case .DidAddBridgedDevice :
-                    client?.device(device, didAddBridgedDevice: args[KeyBridgedDevice]);
+                    client?.device(device, didAddBridgedDevice: args[KeyBridgedDevice])
                     
                 case .DidRemoveBridgedDevice :
-                    client?.device(device, didRemoveBridgedDevice: args[KeyBridgedDevice].uuid!);
+                    client?.device(device, didRemoveBridgedDevice: args[KeyBridgedDevice].uuid!)
                     
                 case .DidAddService :
-                    client?.device(device, didAddService: args[KeyService]);
+                    client?.device(device, didAddService: args[KeyService])
                     
                 case .DidRemoveService :
-                    client?.device(device, didRemoveService: args[KeyService].uuid!);
+                    client?.device(device, didRemoveService: args[KeyService].uuid!)
                 }
             }
         }
@@ -87,7 +87,7 @@ class MIPV1ClientDecoder: RPCV1MessageHandler {
     
     private func decodeService(_ service: ServiceBackend, method: Int, args: JSON, completionHandler completion: @escaping (JSON?, Error?) -> Void)
     {
-        DispatchQueue.main.async() { completion(nil, MedKitError.NotSupported); }
+        DispatchQueue.main.async { completion(nil, MedKitError.notSupported) }
     }
     
     private func decodeService(_ service: ServiceBackend, method: Int, args: JSON)
@@ -96,13 +96,13 @@ class MIPV1ClientDecoder: RPCV1MessageHandler {
             if schemaService.verifyAsync(method: method, args: args) {
                 switch method {
                 case .DidUpdateName :
-                    client?.service(service, didUpdateName: args[KeyName]);
+                    client?.service(service, didUpdateName: args[KeyName])
                     
                 case .DidAddResource :
-                    client?.service(service, didAddResource: args[KeyResource]);
+                    client?.service(service, didAddResource: args[KeyResource])
                     
                 case .DidRemoveResource :
-                    client?.service(service, didRemoveResource: args[KeyResource].uuid!);
+                    client?.service(service, didRemoveResource: args[KeyResource].uuid!)
                 }
             }
         }
@@ -110,7 +110,7 @@ class MIPV1ClientDecoder: RPCV1MessageHandler {
     
     private func decodeResource(_ resource: ResourceBackend, method: Int, args: JSON, completionHandler completion: @escaping (JSON?, Error?) -> Void)
     {
-        DispatchQueue.main.async() { completion(nil, MedKitError.NotSupported); }
+        DispatchQueue.main.async { completion(nil, MedKitError.notSupported) }
     }
     
     private func decodeResource(_ resource: ResourceBackend, method: Int, args: JSON)
@@ -119,7 +119,7 @@ class MIPV1ClientDecoder: RPCV1MessageHandler {
             if schemaResource.verifyAsync(method: method, args: args) {
                 switch method {
                 case .DidUpdate :
-                    client?.resource(resource, didUpdate: args[KeyChanges], at: Clock.convert(time: args[KeyTimeModified].time!));
+                    client?.resource(resource, didUpdate: args[KeyChanges], at: Clock.convert(time: args[KeyTimeModified].time!))
                 }
             }
         }
@@ -141,37 +141,37 @@ class MIPV1ClientDecoder: RPCV1MessageHandler {
     {
         if schema.verify(message: message) {
             
-            let path   : [UUID] = message[KeyPath].array!.map() { $0.uuid!; }
-            let method : Int    = message[KeyMethod].int!;
-            let args   : JSON   = message[KeyArgs];
+            let path   : [UUID] = message[KeyPath].array!.map() { $0.uuid! }
+            let method : Int    = message[KeyMethod].int!
+            let args   : JSON   = message[KeyArgs]
             
             switch path.count {
             case 1 :
                 if let authenticate = findAuthenticator(path: path) {
-                    authenticate.decode(method: method, args: args, completionHandler: completion);
+                    authenticate.decode(method: method, args: args, completionHandler: completion)
                 }
                 if let device = client?.registry.findDevice(path: path) {
-                    decodeDevice(device, method: method, args: args, completionHandler: completion);
+                    decodeDevice(device, method: method, args: args, completionHandler: completion)
                 }
                 
             case 2 :
                 if let service = client?.registry.findService(path: path) {
-                    decodeService(service, method: method, args: args, completionHandler: completion);
+                    decodeService(service, method: method, args: args, completionHandler: completion)
                 }
                 else {
-                    DispatchQueue.main.async() { completion(nil, MedKitError.NotFound); }
+                    DispatchQueue.main.async { completion(nil, MedKitError.notFound) }
                 }
                 
             case 3 :
                 if let resource = client?.registry.findResource(path: path) {
-                    decodeResource(resource, method: method, args: args, completionHandler: completion);
+                    decodeResource(resource, method: method, args: args, completionHandler: completion)
                 }
                 else {
-                    DispatchQueue.main.async() { completion(nil, MedKitError.NotFound); }
+                    DispatchQueue.main.async { completion(nil, MedKitError.notFound) }
                 }
                 
             default :
-                DispatchQueue.main.async() { completion(nil, MedKitError.NotFound); }
+                DispatchQueue.main.async { completion(nil, MedKitError.notFound) }
             }
         }
     }
@@ -189,31 +189,31 @@ class MIPV1ClientDecoder: RPCV1MessageHandler {
     {
         if schema.verify(message: message) {
             
-            let path   : [UUID] = message[KeyPath].array!.map() { $0.uuid!; }
-            let method : Int    = message[KeyMethod].int!;
-            let args   : JSON   = message[KeyArgs];
+            let path   : [UUID] = message[KeyPath].array!.map() { $0.uuid! }
+            let method : Int    = message[KeyMethod].int!
+            let args   : JSON   = message[KeyArgs]
             
             switch path.count {
             case 1 :
                 if let authenticate = findAuthenticator(path: path) {
-                    authenticate.decode(method: method, args: args);
+                    authenticate.decode(method: method, args: args)
                 }
                 if let device = client?.registry.findDevice(path: path) {
-                    decodeDevice(device, method: method, args: args);
+                    decodeDevice(device, method: method, args: args)
                 }
                 
             case 2 :
                 if let service = client?.registry.findService(path: path) {
-                    decodeService(service, method: method, args: args);
+                    decodeService(service, method: method, args: args)
                 }
                 
             case 3 :
                 if let resource = client?.registry.findResource(path: path) {
-                    decodeResource(resource, method: method, args: args);
+                    decodeResource(resource, method: method, args: args)
                 }
                 
             default :
-                break;
+                break
             }
         }
     }

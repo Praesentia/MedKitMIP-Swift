@@ -19,7 +19,7 @@
  */
 
 
-import Foundation;
+import Foundation
 
 
 /**
@@ -28,32 +28,32 @@ import Foundation;
 class WSFPReaderWriter {
     
     enum OpCode: UInt8 {
-        case ContinuationFrame = 0x00;
-        case TextFrame         = 0x01;
-        case BinaryFrame       = 0x02;
-        case Close             = 0x08;
-        case Ping              = 0x09;
-        case Pong              = 0x0a;
+        case ContinuationFrame = 0x00
+        case TextFrame         = 0x01
+        case BinaryFrame       = 0x02
+        case Close             = 0x08
+        case Ping              = 0x09
+        case Pong              = 0x0a
     }
     
     // constants
-    let MinSize           : Int    = 2;
-    let PayloadMode7Bit   : UInt8  = 0;
-    let PayloadMode16Bit  : UInt8  = 126;
-    let PayloadMode64Bit  : UInt8  = 127;
-    let PayloadMin16Bit   : UInt64 = 126;
-    let PayloadMin64Bit   : UInt64 = 65536;
-    let PayloadSizeOffset : Int    = 2;
-    let MaskingKeySize    : Int    = 4;
+    let MinSize           : Int    = 2
+    let PayloadMode7Bit   : UInt8  = 0
+    let PayloadMode16Bit  : UInt8  = 126
+    let PayloadMode64Bit  : UInt8  = 127
+    let PayloadMin16Bit   : UInt64 = 126
+    let PayloadMin64Bit   : UInt64 = 65536
+    let PayloadSizeOffset : Int    = 2
+    let MaskingKeySize    : Int    = 4
     
     // bit masks
-    let PayloadSizeMask  : UInt8  = 0x7f;
-    let MASKING_KEY      : UInt8  = 0x80;
-    let FIN              : UInt8  = 0x80;
-    let RSV1             : UInt8  = 0x40;
-    let RSV2             : UInt8  = 0x20;
-    let RSV3             : UInt8  = 0x10;
-    let OPCODE           : UInt8  = 0x0f;
+    let PayloadSizeMask  : UInt8  = 0x7f
+    let MASKING_KEY      : UInt8  = 0x80
+    let FIN              : UInt8  = 0x80
+    let RSV1             : UInt8  = 0x40
+    let RSV2             : UInt8  = 0x20
+    let RSV3             : UInt8  = 0x10
+    let OPCODE           : UInt8  = 0x0f
 }
 
 
