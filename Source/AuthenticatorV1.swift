@@ -21,6 +21,7 @@
 
 import Foundation
 import MedKitCore
+import SecurityKit
 
 
 /**
@@ -147,7 +148,7 @@ class AuthenticatorV1: Authenticator {
     private func phase2(_ args: JSON)
     {
         guard(state == .waitingForServerResponse) else { rejected(for: .protocolError, fatal: true); return }
-        let sync = SyncT<MedKitError>(.badCredentials)
+        let sync = MedKitCore.SyncT<MedKitError>(.badCredentials)
         
         state       = .processingServerResponse
         nonceServer = decodeBase64(args[KeyNonce].string!)
@@ -190,7 +191,7 @@ class AuthenticatorV1: Authenticator {
     private func phase3(_ args: JSON)
     {
         guard(state == .waitingForClientResponse) else { rejected(for: .protocolError, fatal: true); return }
-        let sync = SyncT<MedKitError>(.badCredentials)
+        let sync = SecurityKit.SyncT<MedKitError>(.badCredentials)
         
         state = .processingClientResponse
         
@@ -274,7 +275,7 @@ class AuthenticatorV1: Authenticator {
         sha256.update(bytes: nonceClient)
         sha256.update(bytes: nonceServer)
         
-        return client.credentials.sign(bytes: sha256.final())
+        return client.credentials.sign(bytes: sha256.final(), padding: .sha256)
     }
     
     /**
@@ -287,7 +288,7 @@ class AuthenticatorV1: Authenticator {
         digest.update(bytes: nonceClient)
         digest.update(bytes: nonceServer)
         
-        return client.credentials.verify(signature: key, for: digest.final())
+        return client.credentials.verify(signature: key, padding: .sha256, for: digest.final())
     }
     
     /**
@@ -300,7 +301,7 @@ class AuthenticatorV1: Authenticator {
         digest.update(bytes: nonceServer)
         digest.update(bytes: nonceClient)
         
-        return server.credentials.sign(bytes: digest.final())
+        return server.credentials.sign(bytes: digest.final(), padding: .sha256)
     }
     
     /**
@@ -339,7 +340,7 @@ class AuthenticatorV1: Authenticator {
         digest.update(bytes: nonceServer)
         digest.update(bytes: nonceClient)
         
-        return server.credentials.verify(signature: key, for: digest.final())
+        return server.credentials.verify(signature: key, padding: .sha256, for: digest.final())
     }
     
     // MARK: - Message Handling

@@ -1,16 +1,31 @@
 
+# MedKit Medical Interoperability Protocol
+
 ## Synopsis
 
 MedKit is an open source framework facilitating secure, bi-directional
 communication with medical devices.
 
 MedKitMIP is one of a number of MedKit modules which include: MedKit,
-MedKitCore, MedKitDomain and MedKitSecurity.  MedKitMIP implements an
+MedKitCore, MedKitDomain, MedKitSecurity and SecurityKit.  MedKitMIP implements an
 experimental device oriented network protocol.
+
+## Prerequisites
+
+### iOS
+
+* iOS 10.3 or higher
+* Xcode 9.0 beta 2 (9M137d) or higher
+
+### macOS
+
+* macOS 10.12 or higher
+* Xcode 9.0 beta 2 (9M137d) or higher
 
 ## Dependencies
 
 * MedKitCore
+* SecurityKit
 
 ## Installation
 

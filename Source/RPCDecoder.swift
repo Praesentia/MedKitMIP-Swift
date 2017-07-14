@@ -23,9 +23,9 @@ import Foundation
 import MedKitCore
 
 
-public class RPCDecoder: Decoder {
+public class RPCDecoder: DataDecoder {
     
-    public static let factory : DecoderFactory = RPCDecoderFactory()
+    public static let factory : DataDecoderFactory = RPCDecoderFactory()
     
     // MARK: - Private
     private let Sync   = "RPC.Sync"
@@ -61,9 +61,9 @@ public class RPCDecoder: Decoder {
     
 }
 
-class RPCDecoderFactory: DecoderFactory {
+class RPCDecoderFactory: DataDecoderFactory {
     
-    func instantiateDecoder() -> Decoder
+    func instantiateDecoder() -> DataDecoder
     {
         return RPCDecoder()
     }

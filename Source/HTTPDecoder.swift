@@ -23,9 +23,9 @@ import Foundation
 import MedKitCore
 
 
-public class HTTPDecoder: Decoder {
+public class HTTPDecoder: DataDecoder {
     
-    public static let factory : DecoderFactory = HTTPDecoderFactory()
+    public static let factory : DataDecoderFactory = HTTPDecoderFactory()
     
     public func type(data: Data) -> String?
     {
@@ -39,9 +39,9 @@ public class HTTPDecoder: Decoder {
     
 }
 
-class HTTPDecoderFactory: DecoderFactory {
+class HTTPDecoderFactory: DataDecoderFactory {
     
-    func instantiateDecoder() -> Decoder
+    func instantiateDecoder() -> DataDecoder
     {
         return HTTPDecoder()
     }

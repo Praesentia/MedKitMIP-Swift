@@ -21,6 +21,7 @@
 
 import Foundation
 import MedKitCore
+import SecurityKit
 
 
 /**
@@ -117,12 +118,12 @@ class AuthenticatorV1Schema {
         let check = Check()
         
         check += profile.type == .Object
-        check += profile.contains(key: KeyName)
-        check += profile.contains(key: KeyType)
+        check += profile.contains(key: SecurityKit.KeyName)
+        check += profile.contains(key: SecurityKit.KeyType)
         
         if check.value {
-            check += profile[KeyName].type == .String
-            check += profile[KeyType].type == .String // TODO
+            check += profile[SecurityKit.KeyName].type == .String
+            check += profile[SecurityKit.KeyType].type == .String // TODO
         }
         
         return check.value
@@ -133,10 +134,10 @@ class AuthenticatorV1Schema {
         let check = Check()
         
         check += profile.type == .Object
-        check += profile.contains(key: KeyType)
+        check += profile.contains(key: SecurityKit.KeyType)
         
         if check.value {
-            check += profile[KeyType].type == .String
+            check += profile[SecurityKit.KeyType].type == .String
         }
         
         return check.value
