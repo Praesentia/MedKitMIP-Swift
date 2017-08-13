@@ -46,9 +46,10 @@ class Authenticator {
     var      principal : Principal?
     
     // protected
-    let rpc    : RPCV1
-    let myself : Principal!
-    var peer   : Principal?
+    let rpc              : RPCV1
+    let principalManager : PrincipalManager
+    var myself           : Principal?
+    var peer             : Principal?
     
     // MARK: - Private
     private var completion : ((Error?) -> Void)?
@@ -56,10 +57,10 @@ class Authenticator {
     /**
      Initialize instance.
      */
-    init(rpc: RPCV1, myself: Principal?)
+    init(rpc: RPCV1, using principalManager: PrincipalManager)
     {
-        self.rpc    = rpc
-        self.myself = myself
+        self.rpc              = rpc
+        self.principalManager = principalManager
     }
     
     /**
@@ -119,8 +120,6 @@ class Authenticator {
      */
     func rejected(for reason: MedKitError, fatal: Bool)
     {
-        print("rejected \(reason.localizedDescription)")
-        
         if let completion = self.completion {
             DispatchQueue.main.async {
                 completion(reason)
@@ -141,6 +140,7 @@ class Authenticator {
      */
     func reset()
     {
+        myself     = nil
         completion = nil
     }
     

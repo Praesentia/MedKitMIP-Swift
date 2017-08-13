@@ -65,6 +65,8 @@ class AuthenticatorV1: Authenticator {
     {
         super.authenticate(completionHandler: completion)
         
+        myself = principalManager.primary
+        
         if myself != nil {
             phase0()
         }
@@ -126,11 +128,12 @@ class AuthenticatorV1: Authenticator {
         
         nonceClient = decodeBase64(args[KeyNonce].string!)
         nonceServer = SecurityManagerShared.main.randomBytes(count: NonceSize)
+        myself      = principalManager.primary
         
-        if let serverKey = calculateServerKey(server: myself) {
+        if let principal = myself, let serverKey = calculateServerKey(server: principal) {
             let reply = JSON()
             
-            reply[KeyPrincipal] = myself.profile
+            reply[KeyPrincipal] = principal.profile
             reply[KeyNonce]     = nonceServer.base64EncodedString
             reply[KeyKey]       = serverKey.base64EncodedString
             
@@ -160,11 +163,11 @@ class AuthenticatorV1: Authenticator {
                 if server.credentials.valid(for: Date()) {
                     let key = decodeBase64(args[KeyKey].string!)!
                     
-                    if self.verifyServer(server: server, key: key) {
-                        if let clientKey = self.calculateClientKey(client: self.myself) {
+                    if let principal = self.myself, self.verifyServer(server: server, key: key) {
+                        if let clientKey = self.calculateClientKey(client: principal) {
                             let reply = JSON()
                             
-                            reply[KeyPrincipal] = self.myself.profile
+                            reply[KeyPrincipal] = principal.profile
                             reply[KeyKey]       = clientKey.base64EncodedString
                         
                             self.state = .waitingForServer
@@ -270,12 +273,9 @@ class AuthenticatorV1: Authenticator {
      */
     private func calculateClientKey(client: Principal) -> [UInt8]?
     {
-        let sha256 = SecurityManagerShared.main.digest(using: .sha256)
-        
-        sha256.update(bytes: nonceClient)
-        sha256.update(bytes: nonceServer)
-        
-        return client.credentials.sign(bytes: sha256.final(), padding: .sha256)
+        let bytes = nonceClient + nonceServer
+
+        return client.credentials.sign(bytes: bytes, using: .sha256)
     }
     
     /**
@@ -283,12 +283,9 @@ class AuthenticatorV1: Authenticator {
      */
     private func verifyClientKey(client: Principal, key: [UInt8]) -> Bool
     {
-        let digest = SecurityManagerShared.main.digest(using: .sha256)
+        let bytes = nonceClient + nonceServer
         
-        digest.update(bytes: nonceClient)
-        digest.update(bytes: nonceServer)
-        
-        return client.credentials.verify(signature: key, padding: .sha256, for: digest.final())
+        return client.credentials.verify(signature: key, for: bytes, using: .sha256)
     }
     
     /**
@@ -296,12 +293,9 @@ class AuthenticatorV1: Authenticator {
      */
     private func calculateServerKey(server: Principal) -> [UInt8]?
     {
-        let digest = SecurityManagerShared.main.digest(using: .sha256)
+        let bytes = nonceServer + nonceClient
         
-        digest.update(bytes: nonceServer)
-        digest.update(bytes: nonceClient)
-        
-        return server.credentials.sign(bytes: digest.final(), padding: .sha256)
+        return server.credentials.sign(bytes: bytes, using: .sha256)
     }
     
     /**
@@ -335,12 +329,9 @@ class AuthenticatorV1: Authenticator {
      */
     private func verifyServerKey(server: Principal, key: [UInt8]) -> Bool
     {
-        let digest = SecurityManagerShared.main.digest(using: .sha256)
+        let bytes = nonceServer + nonceClient
         
-        digest.update(bytes: nonceServer)
-        digest.update(bytes: nonceClient)
-        
-        return server.credentials.verify(signature: key, padding: .sha256, for: digest.final())
+        return server.credentials.verify(signature: key, for: bytes, using: .sha256)
     }
     
     // MARK: - Message Handling

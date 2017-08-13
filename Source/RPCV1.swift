@@ -196,7 +196,7 @@ class RPCV1: ProtocolStackBase {
     /**
      Received message.
      
-     - precondition:
+     - Precondition:
         schema.verify(message: message)
      
      - Parameters:
@@ -221,7 +221,7 @@ class RPCV1: ProtocolStackBase {
     /**
      Received synchronous message.
      
-     - precondition:
+     - Precondition:
         schema.verifySync(message: message)
      
      - Parameters:
@@ -239,7 +239,7 @@ class RPCV1: ProtocolStackBase {
     /**
      Received reply.
      
-     - precondition:
+     - Precondition:
         schema.verifyReply(message: message)
      
      - Parameters:
@@ -270,7 +270,7 @@ class RPCV1: ProtocolStackBase {
     /**
      Received asynchronous message.
      
-     - precondition:
+     - Precondition:
         schema.verifyAsync(message: message)
      
      - Parameters:

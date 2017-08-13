@@ -102,7 +102,7 @@ class WebSocketClient: WebSocket {
     private func verify(_ response: HTTPResponse, _ proto: String, _ key: String) -> Bool
     {
         let check  = Check()
-        let digest = SecurityManagerShared.main.digest(using: .sha1)
+        let digest = SecurityManagerShared.main.digest(ofType: .sha1)
         var accept : String
         
         // generate expected accept response

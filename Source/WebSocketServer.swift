@@ -63,7 +63,7 @@ class WebSocketServer: WebSocket, HTTPServerRouter {
         if (check.value)
         {
             let response = HTTPResponse(status: .SwitchingProtocols)
-            let digest   = SecurityManagerShared.main.digest(using: .sha1)
+            let digest   = SecurityManagerShared.main.digest(ofType: .sha1)
             
             // generate acceptance signature
             digest.update(string: request.getField(key: HTTPHeader.SecWebSocketKey))

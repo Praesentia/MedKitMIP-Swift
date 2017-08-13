@@ -59,7 +59,7 @@ class MIPV1ServerConnection: ServerConnectionBase {
     /**
      Initialize protocol stack.
      */
-    required init(from port: MedKitCore.Port, to device: DeviceFrontend, as principal: Principal)
+    required init(from port: MedKitCore.Port, to device: DeviceFrontend, using principalManager: PrincipalManager)
     {
         // tls
         tlsPolicy     = MIPV1ServerPolicy()
@@ -70,7 +70,7 @@ class MIPV1ServerConnection: ServerConnectionBase {
         wsfp          = WSFP(nil)
         wsfpTap       = PortTap(wsfp, decoderFactory: RPCDecoder.factory)
         rpc           = RPCV1(wsfpTap)
-        authenticator = AuthenticatorV1(rpc: rpc, myself: principal)
+        authenticator = AuthenticatorV1(rpc: rpc, using: principalManager)
         encoder       = MIPV1ServerEncoder(rpc: rpc)
         mip           = MIPV1Server(device: device, encoder: encoder)
         decoder       = MIPV1ServerDecoder(authenticator: authenticator)
@@ -83,7 +83,7 @@ class MIPV1ServerConnection: ServerConnectionBase {
         http    = HTTPServer(httpTap)
         webc    = WebSocketServer(http: http, port: tls, wsfp: wsfp)
         
-        super.init(from: port, to: device, as: principal)
+        super.init(from: port, to: device, using: principalManager)
         
         http.delegate = self
         rpc.delegate  = self
