@@ -38,10 +38,11 @@ class MIPV1ClientConnection: ClientConnectionBase {
         set(value) { wsfpTap.dataTap = value; httpTap.dataTap = value }
     }
     
-    // MARK: - Private Properties
+    // MARK: - Common Stack
     private let tls       : PortSecure
     private let tlsPolicy : MIPV1ClientPolicy
-    
+
+    // MARK: - WebSocket Stack
     private let authenticator: AuthenticatorV1
     private let wsfp         : WSFP
     private let wsfpTap      : PortTap
@@ -49,7 +50,8 @@ class MIPV1ClientConnection: ClientConnectionBase {
     private let decoder      : MIPV1ClientDecoder
     private let encoder      : MIPV1ClientEncoder
     private let mip          : MIPV1Client
-    
+
+    // MARK: - HTTP Stack
     private let httpTap : PortTap
     private let http    : HTTPClient
     private let webc    : WebSocketClient
@@ -67,7 +69,7 @@ class MIPV1ClientConnection: ClientConnectionBase {
     {
         // tls
         tlsPolicy     = MIPV1ClientPolicy(for: Identity(named: device.identifier.uuidstring, type: .device))
-        tls           = PortSecure(port)
+        tls           = PortSecureShared.main.instantiate(port: port, mode: .client)
         tls.policy    = tlsPolicy
         
         // websocket

@@ -38,10 +38,11 @@ class MIPV1ServerConnection: ServerConnectionBase {
         set(value) { wsfpTap.dataTap = value; httpTap.dataTap = value }
     }
     
-    // MARK: - Private Properties
+    // MARK: - Common Stack
     private let tls       : PortSecure
     private let tlsPolicy : MIPV1ServerPolicy
-    
+
+    // MARK: - WebSocket Stack
     private let wsfp         : WSFP
     private let wsfpTap      : PortTap
     private let rpc          : RPCV1
@@ -49,7 +50,8 @@ class MIPV1ServerConnection: ServerConnectionBase {
     private let decoder      : MIPV1ServerDecoder
     private let encoder      : MIPV1ServerEncoder
     private let mip          : MIPV1Server
-    
+
+    // MARK: - HTTP Stack
     private let httpTap : PortTap
     private let http    : HTTPServer
     private let webc    : WebSocketServer
@@ -62,8 +64,8 @@ class MIPV1ServerConnection: ServerConnectionBase {
     required init(from port: MedKitCore.Port, to device: DeviceFrontend, using principalManager: PrincipalManager)
     {
         // tls
-        tlsPolicy     = MIPV1ServerPolicy()
-        tls           = PortSecure(port)
+        tlsPolicy     = MIPV1ServerPolicy(principalManager: principalManager)
+        tls           = PortSecureShared.main.instantiate(port: port, mode: .server)
         tls.policy    = tlsPolicy
         
         // websocket
