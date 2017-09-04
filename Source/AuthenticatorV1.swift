@@ -68,7 +68,7 @@ class AuthenticatorV1: Authenticator {
         myself = principalManager.primary
         
         if myself != nil {
-            phase0()
+            initiateAuthentication()
         }
         else {
             rejected(for: MedKitError.badCredentials, fatal: true)
@@ -100,12 +100,12 @@ class AuthenticatorV1: Authenticator {
     // MARK: - Phases
     
     /**
-     Phase 0 (Client-Side).
+     Initiate authentication exchange.
      
      Initiates an authentication exchange with the server, sending a message
      containing the client's nonce.
      */
-    private func phase0()
+    private func initiateAuthentication()
     {
         guard(state == .idle) else { rejected(for: MedKitError.protocolError, fatal: true); return }
         

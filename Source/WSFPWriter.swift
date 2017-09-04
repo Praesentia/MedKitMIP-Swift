@@ -29,9 +29,9 @@ import SecurityKit
  */
 class WSFPWriter: WSFPReaderWriter {
     
-    private var mode: Mode
+    private var mode: ProtocolMode
     
-    init(mode: Mode)
+    init(mode: ProtocolMode)
     {
         self.mode = mode
         super.init()

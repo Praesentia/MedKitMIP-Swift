@@ -41,6 +41,16 @@ class MIPV1ClientPolicy: PortSecurePolicy {
     
     // MARK: -
     
+    func portCredentials(_ port: PortSecure) -> Credentials?
+    {
+        return nil
+    }
+    
+    func portPeerName(_ port: PortSecure) -> String?
+    {
+        return peerIdentity.string
+    }
+    
     func portShouldAuthenticatePeer(_ port: PortSecure) -> Bool
     {
         return true

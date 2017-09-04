@@ -29,13 +29,27 @@ import SecurityKit
  */
 class MIPV1ServerPolicy: PortSecurePolicy {
     
+    // MARK: Private Properties
+    private let principalManager: PrincipalManager
+    
     // MARK: - Initializers
     
-    init()
+    init(principalManager: PrincipalManager)
     {
+        self.principalManager = principalManager
     }
     
     // MARK: -
+    
+    func portCredentials(_ port: PortSecure) -> Credentials?
+    {
+        return principalManager.primary?.credentials
+    }
+    
+    func portPeerName(_ port: PortSecure) -> String?
+    {
+        return nil
+    }
     
     func portShouldAuthenticatePeer(_ port: PortSecure) -> Bool
     {
