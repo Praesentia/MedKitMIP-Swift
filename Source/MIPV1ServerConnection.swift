@@ -64,9 +64,9 @@ class MIPV1ServerConnection: ServerConnectionBase {
     required init(from port: MedKitCore.Port, to device: DeviceFrontend, using principalManager: PrincipalManager)
     {
         // tls
-        tlsPolicy     = MIPV1ServerPolicy(principalManager: principalManager)
-        tls           = PortSecureShared.main.instantiate(port: port, mode: .server)
-        tls.policy    = tlsPolicy
+        tlsPolicy        = MIPV1ServerPolicy(principalManager: principalManager)
+        tls              = PortSecure(port: port, mode: .server)
+        tls.tls.delegate = tlsPolicy
         
         // websocket
         wsfp          = WSFP(nil)

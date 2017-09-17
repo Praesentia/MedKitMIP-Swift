@@ -27,7 +27,8 @@ import SecurityKit
 /**
  MIP Version 1, server connection policy.
  */
-class MIPV1ServerPolicy: PortSecurePolicy {
+class MIPV1ServerPolicy: TLSDelegate {
+
     
     // MARK: Private Properties
     private let principalManager: PrincipalManager
@@ -41,23 +42,62 @@ class MIPV1ServerPolicy: PortSecurePolicy {
     
     // MARK: -
     
-    func portCredentials(_ port: PortSecure) -> Credentials?
+    func tlsCredentials(_ tls: TLS) -> PublicKeyCredentials?
     {
-        return principalManager.primary?.credentials
+        return principalManager.primary?.credentials as? PublicKeyCredentials
     }
     
-    func portPeerName(_ port: PortSecure) -> String?
+    func tlsPeerName(_ tls: TLS) -> String?
     {
         return nil
     }
-    
-    func portShouldAuthenticatePeer(_ port: PortSecure) -> Bool
+
+    func tlsPeerAuthenticationComplete(_ tls: TLS) -> Error?
+    {
+        var error: Error?
+
+        if !verifyCredentials() {
+            error = SecurityKitError.badCredentials
+        }
+        return error
+    }
+
+    func tlsShouldAuthenticatePeer(_ tls: TLS) -> Bool
     {
         return false
     }
     
-    func port(_ port: PortSecure, shouldAccept peer: Principal) -> Bool
+    func tls(_ tls: TLS, shouldAccept peer: Principal) -> Bool
     {
+        return true
+    }
+
+    /**
+     */
+    private func verifyCredentials() -> Bool
+    {
+        /*
+        if let trust = tls.peerTrust {
+
+            var status: OSStatus
+            var result: SecTrustResultType = .invalid
+
+            // set anchor certificates
+            let (anchorCertificates, error) = Keychain.main.findRootCertificates()
+            guard error == nil else { return false }
+
+            status = trust.setAnchorCertificates(anchorCertificates!)
+            guard status == errSecSuccess else { return false }
+
+            // evaluate trust
+            status = trust.evaluate(&result)
+            guard status == errSecSuccess else { return false }
+
+            return result == .unspecified
+        }
+
+        return false
+        */
         return true
     }
     

@@ -27,7 +27,8 @@ import SecurityKit
 /**
  MIP Version 1, client connection policy.
  */
-class MIPV1ClientPolicy: PortSecurePolicy {
+class MIPV1ClientPolicy: TLSDelegate {
+
     
     // MARK: - Private Properties
     private var peerIdentity: Identity
@@ -41,24 +42,63 @@ class MIPV1ClientPolicy: PortSecurePolicy {
     
     // MARK: -
     
-    func portCredentials(_ port: PortSecure) -> Credentials?
+    func tlsCredentials(_ tls: TLS) -> PublicKeyCredentials?
     {
         return nil
     }
     
-    func portPeerName(_ port: PortSecure) -> String?
+    func tlsPeerName(_ tls: TLS) -> String?
     {
         return peerIdentity.string
     }
+
+    func tlsPeerAuthenticationComplete(_ tls: TLS) -> Error?
+    {
+        var error: Error?
+
+        if !verifyCredentials() {
+            error = SecurityKitError.badCredentials
+        }
+        return error
+    }
     
-    func portShouldAuthenticatePeer(_ port: PortSecure) -> Bool
+    func tlsShouldAuthenticatePeer(_ tls: TLS) -> Bool
     {
         return true
     }
     
-    func port(_ port: PortSecure, shouldAccept peer: Principal) -> Bool
+    func tls(_ tls: TLS, shouldAccept peer: Principal) -> Bool
     {
         return peer.identity == peerIdentity
+    }
+
+    /**
+     */
+    private func verifyCredentials() -> Bool
+    {
+        /*
+        if let trust = tls.peerTrust {
+
+            var status: OSStatus
+            var result: SecTrustResultType = .invalid
+
+            // set anchor certificates
+            let (anchorCertificates, error) = Keychain.main.findRootCertificates()
+            guard error == nil else { return false }
+
+            status = trust.setAnchorCertificates(anchorCertificates!)
+            guard status == errSecSuccess else { return false }
+
+            // evaluate trust
+            status = trust.evaluate(&result)
+            guard status == errSecSuccess else { return false }
+
+            return result == .unspecified
+        }
+
+        return false
+        */
+        return true
     }
     
 }

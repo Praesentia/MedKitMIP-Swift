@@ -7,7 +7,7 @@ MedKit is an open source framework facilitating secure, bi-directional
 communication with medical devices.
 
 MedKitMIP is one of a number of MedKit modules which include: MedKit,
-MedKitCore, MedKitDomain, MedKitSecurity and SecurityKit.  MedKitMIP implements an
+MedKitCore, MedKitDomain, SecurityKitAOS and SecurityKit.  MedKitMIP implements an
 experimental device oriented network protocol.
 
 ## Prerequisites

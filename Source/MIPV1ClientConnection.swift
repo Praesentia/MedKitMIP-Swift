@@ -68,9 +68,9 @@ class MIPV1ClientConnection: ClientConnectionBase {
     required init(to port: MedKitCore.Port, for device: DeviceBackend, using principalManager: PrincipalManager)
     {
         // tls
-        tlsPolicy     = MIPV1ClientPolicy(for: Identity(named: device.identifier.uuidstring, type: .device))
-        tls           = PortSecureShared.main.instantiate(port: port, mode: .client)
-        tls.policy    = tlsPolicy
+        tlsPolicy        = MIPV1ClientPolicy(for: Identity(named: device.identifier.uuidstring, type: .device))
+        tls              = PortSecure(port: port, mode: .client)
+        tls.tls.delegate = tlsPolicy
         
         // websocket
         wsfp          = WSFP(nil)
