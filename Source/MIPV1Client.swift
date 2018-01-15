@@ -2,7 +2,7 @@
  -----------------------------------------------------------------------------
  This source file is part of MedKitMIP.
  
- Copyright 2016-2017 Jon Griffeth
+ Copyright 2016-2018 Jon Griffeth
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -90,11 +90,9 @@ class MIPV1Client: Backend {
         device.updateName(name, notify: true)
     }
     
-    func device(_ device: DeviceBackend, didAddBridgedDevice profile: JSON)
+    func device(_ device: DeviceBackend, didAddBridgedDevice profile: DeviceProfile)
     {
-        let identifier = profile[KeyIdentifier].uuid!
-        
-        if device.getBridgedDevice(withIdentifier: identifier) == nil {
+        if device.getBridgedDevice(withIdentifier: profile.identifier) == nil {
             let bridgedDevice = device.addBridgedDevice(from: profile, notify: true)
             attach(bridgedDevice)
         }
@@ -107,7 +105,7 @@ class MIPV1Client: Backend {
         }
     }
     
-    func device(_ device: DeviceBackend, didAddService profile: JSON)
+    func device(_ device: DeviceBackend, didAddService profile: ServiceProfile)
     {
         let service = device.addService(from: profile, notify: true)
         service.backend = self
@@ -123,7 +121,7 @@ class MIPV1Client: Backend {
         service.updateName(name, notify: true)
     }
     
-    func service(_ service: ServiceBackend, didAddResource profile: JSON)
+    func service(_ service: ServiceBackend, didAddResource profile: ResourceProfile)
     {
         let resource = ResourceBase(service as! ServiceBase, from: profile)
         
@@ -135,10 +133,10 @@ class MIPV1Client: Backend {
     {
         service.removeResource(withIdentifier: identifier, notify: true)
     }
-    
-    func resource(_ resource: ResourceBackend, didUpdate changes: JSON, at time: TimeInterval)
+
+    func resource(_ resource: ResourceBackend, didNotifyWith notification: AnyCodable)
     {
-        resource.update(changes: changes, at: time)
+        try? resource.notify(notification)
     }
     
     // MARK: - DeviceBackendDelegate
@@ -205,25 +203,15 @@ class MIPV1Client: Backend {
     }
     
     // MARK: - ResourceBackendDelegate
-    
-    func resourceEnableNotification(_ resource: ResourceBackend, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
+
+    func resourceEnableNotification(_ resource: ResourceBackend, enable: Bool, completionHandler completion: @escaping (Error?) -> Void)
     {
-        server.resourceEnableNotification(resource, completionHandler: completion)
+        server.resourceEnableNotification(resource, enable: enable, completionHandler: completion)
     }
     
-    func resourceDisableNotification(_ resource: ResourceBackend, completionHandler completion: @escaping (Error?) -> Void)
+    func resource(_ resource: ResourceBackend, didCallWith message: AnyCodable, completionHandler completion: @escaping (AnyCodable?, Error?) -> Void)
     {
-        server.resourceDisableNotification(resource, completionHandler: completion)
-    }
-    
-    func resourceReadValue(_ resource: ResourceBackend, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
-    {
-        server.resourceReadValue(resource, completionHandler: completion)
-    }
-    
-    func resourceWriteValue(_ resource: ResourceBackend, _ value: JSON?, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
-    {
-        server.resourceWriteValue(resource, value, completionHandler: completion)
+        server.resource(resource, didCallWith: message, completionHandler: completion)
     }
     
 }

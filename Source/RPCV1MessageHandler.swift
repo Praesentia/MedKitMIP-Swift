@@ -2,7 +2,7 @@
  -----------------------------------------------------------------------------
  This source file is part of MedKitMIP.
  
- Copyright 2016-2017 Jon Griffeth
+ Copyright 2016-2018 Jon Griffeth
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,8 +28,8 @@ import MedKitCore
  */
 protocol RPCV1MessageHandler: class {
     
-    func rpc(_ rpc: RPCV1, didReceive message: JSON, completionHandler completion: @escaping (JSON?, Error?) -> Void)
-    func rpc(_ rpc: RPCV1, didReceive message: JSON)
+    func rpc(_ rpc: RPCV1, didReceive message: AnyCodable, completionHandler completion: @escaping (AnyCodable?, Error?) -> Void) throws
+    func rpc(_ rpc: RPCV1, didReceive message: AnyCodable) throws
     
 }
 

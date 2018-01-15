@@ -2,7 +2,7 @@
  -----------------------------------------------------------------------------
  This source file is part of MedKitMIP.
  
- Copyright 2017 Jon Griffeth
+ Copyright 2017-2018 Jon Griffeth
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import Foundation
 import MedKitCore
 
 
-public let deviceProtocols: [DeviceProtocol] = [ MIPV1.main ]
+public let deviceProtocols: [ProtocolPlugin] = [ MIPV1.main ]
 
 
 // End of File

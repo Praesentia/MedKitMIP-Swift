@@ -11,12 +11,44 @@
 		220CDF351EE9A629006ECEBA /* MIPV1ServerPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220CDF341EE9A629006ECEBA /* MIPV1ServerPolicy.swift */; };
 		220CDF361EE9A640006ECEBA /* MIPV1ServerPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220CDF341EE9A629006ECEBA /* MIPV1ServerPolicy.swift */; };
 		220CDF371EE9A644006ECEBA /* MIPV1ClientPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220CDF301EE9A5EE006ECEBA /* MIPV1ClientPolicy.swift */; };
+		222BEC701FB322E40059CCCE /* AuthenticateV1Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BEC6F1FB322E40059CCCE /* AuthenticateV1Message.swift */; };
+		222BEC711FB322E40059CCCE /* AuthenticateV1Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BEC6F1FB322E40059CCCE /* AuthenticateV1Message.swift */; };
+		222BEC731FB323450059CCCE /* AuthenticateV1MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BEC721FB323450059CCCE /* AuthenticateV1MessageType.swift */; };
+		222BEC741FB323450059CCCE /* AuthenticateV1MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BEC721FB323450059CCCE /* AuthenticateV1MessageType.swift */; };
+		222BEC761FB324B00059CCCE /* AuthenticateV1Phase1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BEC751FB324B00059CCCE /* AuthenticateV1Phase1.swift */; };
+		222BEC771FB324B00059CCCE /* AuthenticateV1Phase1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BEC751FB324B00059CCCE /* AuthenticateV1Phase1.swift */; };
+		222BEC791FB328240059CCCE /* AuthenticateV1Phase2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BEC781FB328240059CCCE /* AuthenticateV1Phase2.swift */; };
+		222BEC7A1FB328240059CCCE /* AuthenticateV1Phase2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BEC781FB328240059CCCE /* AuthenticateV1Phase2.swift */; };
+		222BEC7C1FB32B560059CCCE /* AuthenticateV1Phase3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BEC7B1FB32B560059CCCE /* AuthenticateV1Phase3.swift */; };
+		222BEC7D1FB32B560059CCCE /* AuthenticateV1Phase3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BEC7B1FB32B560059CCCE /* AuthenticateV1Phase3.swift */; };
+		222BEC7F1FB32D0A0059CCCE /* AuthenticateV1Accept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BEC7E1FB32D0A0059CCCE /* AuthenticateV1Accept.swift */; };
+		222BEC801FB32D0A0059CCCE /* AuthenticateV1Accept.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BEC7E1FB32D0A0059CCCE /* AuthenticateV1Accept.swift */; };
+		222BEC821FB32D910059CCCE /* AuthenticateV1Reject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BEC811FB32D910059CCCE /* AuthenticateV1Reject.swift */; };
+		222BEC831FB32D910059CCCE /* AuthenticateV1Reject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222BEC811FB32D910059CCCE /* AuthenticateV1Reject.swift */; };
+		22343A4F1FFBB35D0075B62A /* MIPV1ResourceNotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22343A4E1FFBB35D0075B62A /* MIPV1ResourceNotify.swift */; };
+		22343A501FFBB35D0075B62A /* MIPV1ResourceNotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22343A4E1FFBB35D0075B62A /* MIPV1ResourceNotify.swift */; };
+		22343A521FFCF74F0075B62A /* MIPV1ResourceCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22343A511FFCF74F0075B62A /* MIPV1ResourceCall.swift */; };
+		22343A531FFCF74F0075B62A /* MIPV1ResourceCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22343A511FFCF74F0075B62A /* MIPV1ResourceCall.swift */; };
+		22343A5C1FFCF9D20075B62A /* MIPV1ResourceEnableNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22343A5B1FFCF9D20075B62A /* MIPV1ResourceEnableNotification.swift */; };
+		22343A5D1FFCF9D20075B62A /* MIPV1ResourceEnableNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22343A5B1FFCF9D20075B62A /* MIPV1ResourceEnableNotification.swift */; };
+		2244CC971FB8BAD100216EB6 /* MIPV1DeviceDidUpdateName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2244CC961FB8BAD100216EB6 /* MIPV1DeviceDidUpdateName.swift */; };
+		2244CC9F1FB8BC3700216EB6 /* MIPV1DeviceDidUpdateName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2244CC961FB8BAD100216EB6 /* MIPV1DeviceDidUpdateName.swift */; };
+		2244CCA11FB8BC8600216EB6 /* MIPV1DeviceDidAddBridgedDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2244CCA01FB8BC8600216EB6 /* MIPV1DeviceDidAddBridgedDevice.swift */; };
+		2244CCA21FB8BC8600216EB6 /* MIPV1DeviceDidAddBridgedDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2244CCA01FB8BC8600216EB6 /* MIPV1DeviceDidAddBridgedDevice.swift */; };
+		2244CD2F1FBB0BBA00216EB6 /* MIPV1ServiceDidUpdateName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2244CD2E1FBB0BBA00216EB6 /* MIPV1ServiceDidUpdateName.swift */; };
+		2244CD301FBB0BBA00216EB6 /* MIPV1ServiceDidUpdateName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2244CD2E1FBB0BBA00216EB6 /* MIPV1ServiceDidUpdateName.swift */; };
+		2244CD381FBB0C5D00216EB6 /* MIPV1ServiceDidAddResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2244CD371FBB0C5D00216EB6 /* MIPV1ServiceDidAddResource.swift */; };
+		2244CD391FBB0C5D00216EB6 /* MIPV1ServiceDidAddResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2244CD371FBB0C5D00216EB6 /* MIPV1ServiceDidAddResource.swift */; };
+		2244CD3B1FBB0D1100216EB6 /* MIPV1ServiceDidRemoveResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2244CD3A1FBB0D1100216EB6 /* MIPV1ServiceDidRemoveResource.swift */; };
+		2244CD3C1FBB0D1100216EB6 /* MIPV1ServiceDidRemoveResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2244CD3A1FBB0D1100216EB6 /* MIPV1ServiceDidRemoveResource.swift */; };
+		2244CD3E1FBB0E1B00216EB6 /* MIPV1DeviceDidRemoveBridgedDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2244CD3D1FBB0E1B00216EB6 /* MIPV1DeviceDidRemoveBridgedDevice.swift */; };
+		2244CD3F1FBB0E1B00216EB6 /* MIPV1DeviceDidRemoveBridgedDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2244CD3D1FBB0E1B00216EB6 /* MIPV1DeviceDidRemoveBridgedDevice.swift */; };
+		2244CD411FBB0EA700216EB6 /* MIPV1DeviceDidAddService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2244CD401FBB0EA700216EB6 /* MIPV1DeviceDidAddService.swift */; };
+		2244CD421FBB0EA700216EB6 /* MIPV1DeviceDidAddService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2244CD401FBB0EA700216EB6 /* MIPV1DeviceDidAddService.swift */; };
+		2244CD441FBB0EF500216EB6 /* MIPV1DeviceDidRemoveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2244CD431FBB0EF500216EB6 /* MIPV1DeviceDidRemoveService.swift */; };
+		2244CD451FBB0EF500216EB6 /* MIPV1DeviceDidRemoveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2244CD431FBB0EF500216EB6 /* MIPV1DeviceDidRemoveService.swift */; };
 		224DD80F1E88444900727706 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20341E8842A00091CB87 /* Authenticator.swift */; };
 		224DD8101E88444900727706 /* AuthenticatorV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20351E8842A00091CB87 /* AuthenticatorV1.swift */; };
-		224DD8111E88444900727706 /* AuthenticateV1Accept.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA20361E8842A00091CB87 /* AuthenticateV1Accept.json */; };
-		224DD8121E88444900727706 /* AuthenticateV1Phase1.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA20371E8842A00091CB87 /* AuthenticateV1Phase1.json */; };
-		224DD8131E88444900727706 /* AuthenticateV1Reject.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA20381E8842A00091CB87 /* AuthenticateV1Reject.json */; };
-		224DD8141E88444900727706 /* AuthenticatV1Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20391E8842A00091CB87 /* AuthenticatV1Schema.swift */; };
 		224DD8171E88444E00727706 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FE31E883D580091CB87 /* HTTPClient.swift */; };
 		224DD8181E88444E00727706 /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FE51E883D580091CB87 /* HTTPHeader.swift */; };
 		224DD8191E88444E00727706 /* HTTPMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FE61E883D580091CB87 /* HTTPMessage.swift */; };
@@ -31,20 +63,12 @@
 		224DD8221E88445400727706 /* MIPV1ClientConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF11E883D580091CB87 /* MIPV1ClientConnection.swift */; };
 		224DD8231E88445400727706 /* MIPV1ClientDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF21E883D580091CB87 /* MIPV1ClientDecoder.swift */; };
 		224DD8241E88445400727706 /* MIPV1ServerDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF31E883D580091CB87 /* MIPV1ServerDecoder.swift */; };
-		224DD8251E88445400727706 /* MIPV1DeviceProfile.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA1FF41E883D580091CB87 /* MIPV1DeviceProfile.json */; };
-		224DD8261E88445400727706 /* MIPV1DeviceSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF51E883D580091CB87 /* MIPV1DeviceSchema.swift */; };
 		224DD8271E88445400727706 /* MIPV1ServerEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF61E883D580091CB87 /* MIPV1ServerEncoder.swift */; };
-		224DD8281E88445400727706 /* MIPV1MessageSchema.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA1FF71E883D580091CB87 /* MIPV1MessageSchema.json */; };
-		224DD8291E88445400727706 /* MIPV1MessageSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF81E883D580091CB87 /* MIPV1MessageSchema.swift */; };
-		224DD82A1E88445400727706 /* MIPV1ResourceSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF91E883D580091CB87 /* MIPV1ResourceSchema.swift */; };
 		224DD82B1E88445400727706 /* MIPV1Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFA1E883D580091CB87 /* MIPV1Server.swift */; };
 		224DD82C1E88445400727706 /* MIPV1ServerConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFB1E883D580091CB87 /* MIPV1ServerConnection.swift */; };
-		224DD82D1E88445400727706 /* MIPV1ServiceSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFC1E883D580091CB87 /* MIPV1ServiceSchema.swift */; };
 		224DD82E1E88445900727706 /* MIPClientRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FED1E883D580091CB87 /* MIPClientRegistry.swift */; };
 		224DD82F1E88445900727706 /* MIPServerRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FEE1E883D580091CB87 /* MIPServerRegistry.swift */; };
-		224DD8301E88445D00727706 /* RPCV1.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA202C1E883E500091CB87 /* RPCV1.json */; };
 		224DD8311E88445D00727706 /* RPCV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA202D1E883E500091CB87 /* RPCV1.swift */; };
-		224DD8321E88445D00727706 /* RPCV1Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA202E1E883E500091CB87 /* RPCV1Schema.swift */; };
 		224DD8331E88446300727706 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFD1E883D580091CB87 /* WebSocket.swift */; };
 		224DD8341E88446300727706 /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFE1E883D580091CB87 /* WebSocketClient.swift */; };
 		224DD8351E88446300727706 /* WebSocketServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFF1E883D580091CB87 /* WebSocketServer.swift */; };
@@ -52,6 +76,8 @@
 		224DD8371E88446300727706 /* WSFPReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20011E883D580091CB87 /* WSFPReader.swift */; };
 		224DD8381E88446300727706 /* WSFPReaderWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20021E883D580091CB87 /* WSFPReaderWriter.swift */; };
 		224DD8391E88446300727706 /* WSFPWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20031E883D580091CB87 /* WSFPWriter.swift */; };
+		2254FCD01FA890A200ADC90B /* RPCV1MessageDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254FCCF1FA890A200ADC90B /* RPCV1MessageDecodable.swift */; };
+		2254FCD11FA890A200ADC90B /* RPCV1MessageDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2254FCCF1FA890A200ADC90B /* RPCV1MessageDecodable.swift */; };
 		225A46631EB36847004EE389 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225A46621EB36847004EE389 /* Device.swift */; };
 		225A46641EB36849004EE389 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225A46621EB36847004EE389 /* Device.swift */; };
 		225A46661EB36894004EE389 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225A46651EB36894004EE389 /* Service.swift */; };
@@ -60,8 +86,57 @@
 		225A466A1EB3699E004EE389 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225A46671EB368BB004EE389 /* Resource.swift */; };
 		225A466C1EB36C28004EE389 /* MIPV1ClientEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225A466B1EB36C28004EE389 /* MIPV1ClientEncoder.swift */; };
 		225A466D1EB36CDD004EE389 /* MIPV1ClientEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225A466B1EB36C28004EE389 /* MIPV1ClientEncoder.swift */; };
+		226B89E41FF55F490023C54E /* RPCV1MessageEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B89E31FF55F490023C54E /* RPCV1MessageEncodable.swift */; };
+		226B89E51FF55F490023C54E /* RPCV1MessageEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B89E31FF55F490023C54E /* RPCV1MessageEncodable.swift */; };
+		226B8A1E1FF680E50023C54E /* RPCV1Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A1D1FF680E50023C54E /* RPCV1Message.swift */; };
+		226B8A1F1FF680E50023C54E /* RPCV1Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A1D1FF680E50023C54E /* RPCV1Message.swift */; };
+		226B8A241FF7D3200023C54E /* MIPV1DeviceMethodDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A231FF7D3200023C54E /* MIPV1DeviceMethodDecoder.swift */; };
+		226B8A251FF7D3200023C54E /* MIPV1DeviceMethodDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A231FF7D3200023C54E /* MIPV1DeviceMethodDecoder.swift */; };
+		226B8A271FF7D3700023C54E /* MIPV1DeviceMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A261FF7D3700023C54E /* MIPV1DeviceMethod.swift */; };
+		226B8A281FF7D3700023C54E /* MIPV1DeviceMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A261FF7D3700023C54E /* MIPV1DeviceMethod.swift */; };
+		226B8A2A1FF7D64B0023C54E /* MIPV1ServiceMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A291FF7D64B0023C54E /* MIPV1ServiceMethod.swift */; };
+		226B8A2B1FF7D64B0023C54E /* MIPV1ServiceMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A291FF7D64B0023C54E /* MIPV1ServiceMethod.swift */; };
+		226B8A2D1FF7D7030023C54E /* MIPV1SeviceMethodDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A2C1FF7D7030023C54E /* MIPV1SeviceMethodDecoder.swift */; };
+		226B8A2E1FF7D7030023C54E /* MIPV1SeviceMethodDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A2C1FF7D7030023C54E /* MIPV1SeviceMethodDecoder.swift */; };
+		226B8A301FF7D7560023C54E /* MIPV1ResourceMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A2F1FF7D7560023C54E /* MIPV1ResourceMethod.swift */; };
+		226B8A311FF7D7560023C54E /* MIPV1ResourceMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A2F1FF7D7560023C54E /* MIPV1ResourceMethod.swift */; };
+		226B8A331FF7D9C60023C54E /* MIPV1ResourceMethodDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A321FF7D9C60023C54E /* MIPV1ResourceMethodDecoder.swift */; };
+		226B8A341FF7D9C60023C54E /* MIPV1ResourceMethodDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A321FF7D9C60023C54E /* MIPV1ResourceMethodDecoder.swift */; };
+		226B8A361FF7DBEF0023C54E /* MIPV1DeviceNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A351FF7DBEF0023C54E /* MIPV1DeviceNotification.swift */; };
+		226B8A371FF7DBEF0023C54E /* MIPV1DeviceNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A351FF7DBEF0023C54E /* MIPV1DeviceNotification.swift */; };
+		226B8A391FF7DCD80023C54E /* MIPV1DeviceNotificationDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A381FF7DCD80023C54E /* MIPV1DeviceNotificationDecoder.swift */; };
+		226B8A3A1FF7DCD80023C54E /* MIPV1DeviceNotificationDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A381FF7DCD80023C54E /* MIPV1DeviceNotificationDecoder.swift */; };
+		226B8A3C1FF7DD530023C54E /* MIPV1ServiceNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A3B1FF7DD530023C54E /* MIPV1ServiceNotification.swift */; };
+		226B8A3D1FF7DD530023C54E /* MIPV1ServiceNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A3B1FF7DD530023C54E /* MIPV1ServiceNotification.swift */; };
+		226B8A3F1FF7DDD70023C54E /* MIPV1ServiceNotificationDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A3E1FF7DDD70023C54E /* MIPV1ServiceNotificationDecoder.swift */; };
+		226B8A401FF7DDD70023C54E /* MIPV1ServiceNotificationDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A3E1FF7DDD70023C54E /* MIPV1ServiceNotificationDecoder.swift */; };
+		226B8A421FF7DE310023C54E /* MIPV1ResourceNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A411FF7DE310023C54E /* MIPV1ResourceNotification.swift */; };
+		226B8A431FF7DE310023C54E /* MIPV1ResourceNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A411FF7DE310023C54E /* MIPV1ResourceNotification.swift */; };
+		226B8A451FF7DEB10023C54E /* MIPV1ResourceNotificationDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A441FF7DEB10023C54E /* MIPV1ResourceNotificationDecoder.swift */; };
+		226B8A461FF7DEB10023C54E /* MIPV1ResourceNotificationDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226B8A441FF7DEB10023C54E /* MIPV1ResourceNotificationDecoder.swift */; };
+		229A325D1FB08DB3001F9094 /* RPCV1Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229A325C1FB08DB3001F9094 /* RPCV1Sync.swift */; };
+		229A325E1FB08DB3001F9094 /* RPCV1Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229A325C1FB08DB3001F9094 /* RPCV1Sync.swift */; };
+		229A32661FB08DED001F9094 /* RPCV1Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229A32651FB08DED001F9094 /* RPCV1Async.swift */; };
+		229A32671FB08DED001F9094 /* RPCV1Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229A32651FB08DED001F9094 /* RPCV1Async.swift */; };
+		229A32691FB08E0E001F9094 /* RPCV1Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229A32681FB08E0E001F9094 /* RPCV1Reply.swift */; };
+		229A326A1FB08E0E001F9094 /* RPCV1Reply.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229A32681FB08E0E001F9094 /* RPCV1Reply.swift */; };
+		229A328A1FB1D956001F9094 /* RPCV1MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229A32891FB1D956001F9094 /* RPCV1MessageType.swift */; };
+		229A328B1FB1D956001F9094 /* RPCV1MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229A32891FB1D956001F9094 /* RPCV1MessageType.swift */; };
+		22A1523F1FB72D27006802D0 /* RPCV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA202D1E883E500091CB87 /* RPCV1.swift */; };
+		22A152411FB72E02006802D0 /* MIPV1MethodCodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A152401FB72E02006802D0 /* MIPV1MethodCodingKeys.swift */; };
+		22A152421FB72E02006802D0 /* MIPV1MethodCodingKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A152401FB72E02006802D0 /* MIPV1MethodCodingKeys.swift */; };
+		22A152441FB73777006802D0 /* MIPV1Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A152431FB73777006802D0 /* MIPV1Route.swift */; };
+		22A152451FB73777006802D0 /* MIPV1Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A152431FB73777006802D0 /* MIPV1Route.swift */; };
+		22A152511FB872BD006802D0 /* MIPV1DeviceUpdateName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A152501FB872BD006802D0 /* MIPV1DeviceUpdateName.swift */; };
+		22A152521FB872BD006802D0 /* MIPV1DeviceUpdateName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A152501FB872BD006802D0 /* MIPV1DeviceUpdateName.swift */; };
+		22A152541FB8747E006802D0 /* MIPV1ServiceUpdateName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A152531FB8747E006802D0 /* MIPV1ServiceUpdateName.swift */; };
+		22A152551FB8747E006802D0 /* MIPV1ServiceUpdateName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A152531FB8747E006802D0 /* MIPV1ServiceUpdateName.swift */; };
 		22B143961E8936A5005A35B9 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B143951E8936A5005A35B9 /* Main.swift */; };
 		22B144511E893E55005A35B9 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B143951E8936A5005A35B9 /* Main.swift */; };
+		22C542091FB8835900340082 /* MIPV1DeviceGetProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C542081FB8835900340082 /* MIPV1DeviceGetProfile.swift */; };
+		22C5420A1FB8835900340082 /* MIPV1DeviceGetProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C542081FB8835900340082 /* MIPV1DeviceGetProfile.swift */; };
+		22C5420C1FB8858B00340082 /* AuthenticateV1MessageCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5420B1FB8858B00340082 /* AuthenticateV1MessageCoder.swift */; };
+		22C5420D1FB8858B00340082 /* AuthenticateV1MessageCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5420B1FB8858B00340082 /* AuthenticateV1MessageCoder.swift */; };
 		22CA1FA31E883B490091CB87 /* MedKitMIP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22CA1F9A1E883B490091CB87 /* MedKitMIP.framework */; };
 		22CA1FA81E883B490091CB87 /* MedKitMIP_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FA71E883B490091CB87 /* MedKitMIP_iOSTests.swift */; };
 		22CA1FAA1E883B490091CB87 /* MedKitMIP.h in Headers */ = {isa = PBXBuildFile; fileRef = 22CA1F9C1E883B490091CB87 /* MedKitMIP.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -86,15 +161,9 @@
 		22CA20121E883D580091CB87 /* MIPV1ClientConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF11E883D580091CB87 /* MIPV1ClientConnection.swift */; };
 		22CA20131E883D580091CB87 /* MIPV1ClientDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF21E883D580091CB87 /* MIPV1ClientDecoder.swift */; };
 		22CA20141E883D580091CB87 /* MIPV1ServerDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF31E883D580091CB87 /* MIPV1ServerDecoder.swift */; };
-		22CA20151E883D580091CB87 /* MIPV1DeviceProfile.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA1FF41E883D580091CB87 /* MIPV1DeviceProfile.json */; };
-		22CA20161E883D580091CB87 /* MIPV1DeviceSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF51E883D580091CB87 /* MIPV1DeviceSchema.swift */; };
 		22CA20171E883D580091CB87 /* MIPV1ServerEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF61E883D580091CB87 /* MIPV1ServerEncoder.swift */; };
-		22CA20181E883D580091CB87 /* MIPV1MessageSchema.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA1FF71E883D580091CB87 /* MIPV1MessageSchema.json */; };
-		22CA20191E883D580091CB87 /* MIPV1MessageSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF81E883D580091CB87 /* MIPV1MessageSchema.swift */; };
-		22CA201A1E883D580091CB87 /* MIPV1ResourceSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FF91E883D580091CB87 /* MIPV1ResourceSchema.swift */; };
 		22CA201B1E883D580091CB87 /* MIPV1Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFA1E883D580091CB87 /* MIPV1Server.swift */; };
 		22CA201C1E883D580091CB87 /* MIPV1ServerConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFB1E883D580091CB87 /* MIPV1ServerConnection.swift */; };
-		22CA201D1E883D580091CB87 /* MIPV1ServiceSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFC1E883D580091CB87 /* MIPV1ServiceSchema.swift */; };
 		22CA201E1E883D580091CB87 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFD1E883D580091CB87 /* WebSocket.swift */; };
 		22CA201F1E883D580091CB87 /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFE1E883D580091CB87 /* WebSocketClient.swift */; };
 		22CA20201E883D580091CB87 /* WebSocketServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA1FFF1E883D580091CB87 /* WebSocketServer.swift */; };
@@ -102,15 +171,9 @@
 		22CA20221E883D580091CB87 /* WSFPReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20011E883D580091CB87 /* WSFPReader.swift */; };
 		22CA20231E883D580091CB87 /* WSFPReaderWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20021E883D580091CB87 /* WSFPReaderWriter.swift */; };
 		22CA20241E883D580091CB87 /* WSFPWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20031E883D580091CB87 /* WSFPWriter.swift */; };
-		22CA20301E883E500091CB87 /* RPCV1.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA202C1E883E500091CB87 /* RPCV1.json */; };
 		22CA20311E883E500091CB87 /* RPCV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA202D1E883E500091CB87 /* RPCV1.swift */; };
-		22CA20321E883E500091CB87 /* RPCV1Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA202E1E883E500091CB87 /* RPCV1Schema.swift */; };
 		22CA203A1E8842A00091CB87 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20341E8842A00091CB87 /* Authenticator.swift */; };
 		22CA203B1E8842A00091CB87 /* AuthenticatorV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20351E8842A00091CB87 /* AuthenticatorV1.swift */; };
-		22CA203C1E8842A00091CB87 /* AuthenticateV1Accept.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA20361E8842A00091CB87 /* AuthenticateV1Accept.json */; };
-		22CA203D1E8842A00091CB87 /* AuthenticateV1Phase1.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA20371E8842A00091CB87 /* AuthenticateV1Phase1.json */; };
-		22CA203E1E8842A00091CB87 /* AuthenticateV1Reject.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CA20381E8842A00091CB87 /* AuthenticateV1Reject.json */; };
-		22CA203F1E8842A00091CB87 /* AuthenticatV1Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CA20391E8842A00091CB87 /* AuthenticatV1Schema.swift */; };
 		22CB98141EB0CDE700F4A3D0 /* RPCV1MessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CB98131EB0CDE700F4A3D0 /* RPCV1MessageHandler.swift */; };
 		22CB98171EB0CDEB00F4A3D0 /* RPCV1MessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CB98131EB0CDE700F4A3D0 /* RPCV1MessageHandler.swift */; };
 		22DD6E531E8E97DE00F1B6D2 /* HTTPDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DD6E521E8E97DE00F1B6D2 /* HTTPDecoder.swift */; };
@@ -149,6 +212,34 @@
 			proxyType = 2;
 			remoteGlobalIDString = 224641BD1F12B67800379124;
 			remoteInfo = "SecurityKit macOSTests";
+		};
+		2254FCBF1FA745E400ADC90B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2254FCBA1FA745E400ADC90B /* MedKitAssignedNumbers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 223FB62D1FA614900008C944;
+			remoteInfo = "MedKitAssignedNumbers iOS";
+		};
+		2254FCC11FA745E400ADC90B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2254FCBA1FA745E400ADC90B /* MedKitAssignedNumbers.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2248B4FA1FA615B300F064A7;
+			remoteInfo = "MedKitAssignedNumbers macOS";
+		};
+		2254FCCB1FA7461000ADC90B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2254FCBA1FA745E400ADC90B /* MedKitAssignedNumbers.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 223FB62C1FA614900008C944;
+			remoteInfo = "MedKitAssignedNumbers iOS";
+		};
+		2254FCCD1FA7461400ADC90B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2254FCBA1FA745E400ADC90B /* MedKitAssignedNumbers.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2248B4F91FA615B300F064A7;
+			remoteInfo = "MedKitAssignedNumbers macOS";
 		};
 		22CA1FA41E883B490091CB87 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -209,17 +300,61 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		220A34281EBE17460024DF9E /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		220A34401EBF414A0024DF9E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		220CDF301EE9A5EE006ECEBA /* MIPV1ClientPolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ClientPolicy.swift; path = Source/MIPV1ClientPolicy.swift; sourceTree = "<group>"; };
-		220CDF341EE9A629006ECEBA /* MIPV1ServerPolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ServerPolicy.swift; path = Source/MIPV1ServerPolicy.swift; sourceTree = "<group>"; };
+		220A34281EBE17460024DF9E /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = SOURCE_ROOT; };
+		220A34401EBF414A0024DF9E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		220CDF301EE9A5EE006ECEBA /* MIPV1ClientPolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ClientPolicy.swift; path = Source/MIPV1ClientPolicy.swift; sourceTree = SOURCE_ROOT; };
+		220CDF341EE9A629006ECEBA /* MIPV1ServerPolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ServerPolicy.swift; path = Source/MIPV1ServerPolicy.swift; sourceTree = SOURCE_ROOT; };
 		222320221F14501000E5CDC7 /* SecurityKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SecurityKit.xcodeproj; path = ../SecurityKit/SecurityKit.xcodeproj; sourceTree = "<group>"; };
-		225A46621EB36847004EE389 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Device.swift; path = Source/Device.swift; sourceTree = "<group>"; };
-		225A46651EB36894004EE389 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Service.swift; path = Source/Service.swift; sourceTree = "<group>"; };
-		225A46671EB368BB004EE389 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Resource.swift; path = Source/Resource.swift; sourceTree = "<group>"; };
-		225A466B1EB36C28004EE389 /* MIPV1ClientEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ClientEncoder.swift; path = Source/MIPV1ClientEncoder.swift; sourceTree = "<group>"; };
-		225A467D1EB37E39004EE389 /* Release Notes.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = "Release Notes.rtf"; path = "Documentation/Release Notes.rtf"; sourceTree = "<group>"; };
-		22B143951E8936A5005A35B9 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Main.swift; path = Source/Main.swift; sourceTree = "<group>"; };
+		222BEC6F1FB322E40059CCCE /* AuthenticateV1Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateV1Message.swift; sourceTree = "<group>"; };
+		222BEC721FB323450059CCCE /* AuthenticateV1MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateV1MessageType.swift; sourceTree = "<group>"; };
+		222BEC751FB324B00059CCCE /* AuthenticateV1Phase1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateV1Phase1.swift; sourceTree = "<group>"; };
+		222BEC781FB328240059CCCE /* AuthenticateV1Phase2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateV1Phase2.swift; sourceTree = "<group>"; };
+		222BEC7B1FB32B560059CCCE /* AuthenticateV1Phase3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateV1Phase3.swift; sourceTree = "<group>"; };
+		222BEC7E1FB32D0A0059CCCE /* AuthenticateV1Accept.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateV1Accept.swift; sourceTree = "<group>"; };
+		222BEC811FB32D910059CCCE /* AuthenticateV1Reject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateV1Reject.swift; sourceTree = "<group>"; };
+		22343A4E1FFBB35D0075B62A /* MIPV1ResourceNotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1ResourceNotify.swift; sourceTree = "<group>"; };
+		22343A511FFCF74F0075B62A /* MIPV1ResourceCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1ResourceCall.swift; sourceTree = "<group>"; };
+		22343A5B1FFCF9D20075B62A /* MIPV1ResourceEnableNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1ResourceEnableNotification.swift; sourceTree = "<group>"; };
+		2244CC961FB8BAD100216EB6 /* MIPV1DeviceDidUpdateName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1DeviceDidUpdateName.swift; sourceTree = "<group>"; };
+		2244CCA01FB8BC8600216EB6 /* MIPV1DeviceDidAddBridgedDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1DeviceDidAddBridgedDevice.swift; sourceTree = "<group>"; };
+		2244CD2E1FBB0BBA00216EB6 /* MIPV1ServiceDidUpdateName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1ServiceDidUpdateName.swift; sourceTree = "<group>"; };
+		2244CD371FBB0C5D00216EB6 /* MIPV1ServiceDidAddResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1ServiceDidAddResource.swift; sourceTree = "<group>"; };
+		2244CD3A1FBB0D1100216EB6 /* MIPV1ServiceDidRemoveResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1ServiceDidRemoveResource.swift; sourceTree = "<group>"; };
+		2244CD3D1FBB0E1B00216EB6 /* MIPV1DeviceDidRemoveBridgedDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1DeviceDidRemoveBridgedDevice.swift; sourceTree = "<group>"; };
+		2244CD401FBB0EA700216EB6 /* MIPV1DeviceDidAddService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1DeviceDidAddService.swift; sourceTree = "<group>"; };
+		2244CD431FBB0EF500216EB6 /* MIPV1DeviceDidRemoveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1DeviceDidRemoveService.swift; sourceTree = "<group>"; };
+		2254FCBA1FA745E400ADC90B /* MedKitAssignedNumbers.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MedKitAssignedNumbers.xcodeproj; path = ../MedKitAssignedNumbers/MedKitAssignedNumbers.xcodeproj; sourceTree = "<group>"; };
+		2254FCCF1FA890A200ADC90B /* RPCV1MessageDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCV1MessageDecodable.swift; sourceTree = "<group>"; };
+		225A46621EB36847004EE389 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Device.swift; path = Source/Device.swift; sourceTree = SOURCE_ROOT; };
+		225A46651EB36894004EE389 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Service.swift; path = Source/Service.swift; sourceTree = SOURCE_ROOT; };
+		225A46671EB368BB004EE389 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Resource.swift; path = Source/Resource.swift; sourceTree = SOURCE_ROOT; };
+		225A466B1EB36C28004EE389 /* MIPV1ClientEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ClientEncoder.swift; path = Source/MIPV1ClientEncoder.swift; sourceTree = SOURCE_ROOT; };
+		225A467D1EB37E39004EE389 /* Release Notes.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; name = "Release Notes.rtf"; path = "Documentation/Release Notes.rtf"; sourceTree = SOURCE_ROOT; };
+		226B89E31FF55F490023C54E /* RPCV1MessageEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCV1MessageEncodable.swift; sourceTree = "<group>"; };
+		226B8A1D1FF680E50023C54E /* RPCV1Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCV1Message.swift; sourceTree = "<group>"; };
+		226B8A231FF7D3200023C54E /* MIPV1DeviceMethodDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1DeviceMethodDecoder.swift; sourceTree = "<group>"; };
+		226B8A261FF7D3700023C54E /* MIPV1DeviceMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1DeviceMethod.swift; sourceTree = "<group>"; };
+		226B8A291FF7D64B0023C54E /* MIPV1ServiceMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1ServiceMethod.swift; sourceTree = "<group>"; };
+		226B8A2C1FF7D7030023C54E /* MIPV1SeviceMethodDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1SeviceMethodDecoder.swift; sourceTree = "<group>"; };
+		226B8A2F1FF7D7560023C54E /* MIPV1ResourceMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1ResourceMethod.swift; sourceTree = "<group>"; };
+		226B8A321FF7D9C60023C54E /* MIPV1ResourceMethodDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1ResourceMethodDecoder.swift; sourceTree = "<group>"; };
+		226B8A351FF7DBEF0023C54E /* MIPV1DeviceNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1DeviceNotification.swift; sourceTree = "<group>"; };
+		226B8A381FF7DCD80023C54E /* MIPV1DeviceNotificationDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1DeviceNotificationDecoder.swift; sourceTree = "<group>"; };
+		226B8A3B1FF7DD530023C54E /* MIPV1ServiceNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1ServiceNotification.swift; sourceTree = "<group>"; };
+		226B8A3E1FF7DDD70023C54E /* MIPV1ServiceNotificationDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1ServiceNotificationDecoder.swift; sourceTree = "<group>"; };
+		226B8A411FF7DE310023C54E /* MIPV1ResourceNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1ResourceNotification.swift; sourceTree = "<group>"; };
+		226B8A441FF7DEB10023C54E /* MIPV1ResourceNotificationDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1ResourceNotificationDecoder.swift; sourceTree = "<group>"; };
+		229A325C1FB08DB3001F9094 /* RPCV1Sync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCV1Sync.swift; sourceTree = "<group>"; };
+		229A32651FB08DED001F9094 /* RPCV1Async.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCV1Async.swift; sourceTree = "<group>"; };
+		229A32681FB08E0E001F9094 /* RPCV1Reply.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCV1Reply.swift; sourceTree = "<group>"; };
+		229A32891FB1D956001F9094 /* RPCV1MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPCV1MessageType.swift; sourceTree = "<group>"; };
+		22A152401FB72E02006802D0 /* MIPV1MethodCodingKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1MethodCodingKeys.swift; sourceTree = "<group>"; };
+		22A152431FB73777006802D0 /* MIPV1Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1Route.swift; sourceTree = "<group>"; };
+		22A152501FB872BD006802D0 /* MIPV1DeviceUpdateName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1DeviceUpdateName.swift; sourceTree = "<group>"; };
+		22A152531FB8747E006802D0 /* MIPV1ServiceUpdateName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1ServiceUpdateName.swift; sourceTree = "<group>"; };
+		22B143951E8936A5005A35B9 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Main.swift; path = Source/Main.swift; sourceTree = SOURCE_ROOT; };
+		22C542081FB8835900340082 /* MIPV1DeviceGetProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIPV1DeviceGetProfile.swift; sourceTree = "<group>"; };
+		22C5420B1FB8858B00340082 /* AuthenticateV1MessageCoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateV1MessageCoder.swift; sourceTree = "<group>"; };
 		22CA1F9A1E883B490091CB87 /* MedKitMIP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MedKitMIP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22CA1F9C1E883B490091CB87 /* MedKitMIP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MedKitMIP.h; sourceTree = "<group>"; };
 		22CA1F9D1E883B490091CB87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -233,51 +368,39 @@
 		22CA1FC31E883B5B0091CB87 /* MedKitMIP_macOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedKitMIP_macOSTests.swift; sourceTree = "<group>"; };
 		22CA1FC51E883B5B0091CB87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22CA1FCE1E883CCF0091CB87 /* MedKitCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MedKitCore.xcodeproj; path = ../MedKitCore-Swift/MedKitCore.xcodeproj; sourceTree = "<group>"; };
-		22CA1FE31E883D580091CB87 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPClient.swift; path = Source/HTTPClient.swift; sourceTree = "<group>"; };
-		22CA1FE51E883D580091CB87 /* HTTPHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPHeader.swift; path = Source/HTTPHeader.swift; sourceTree = "<group>"; };
-		22CA1FE61E883D580091CB87 /* HTTPMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPMessage.swift; path = Source/HTTPMessage.swift; sourceTree = "<group>"; };
-		22CA1FE71E883D580091CB87 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPMethod.swift; path = Source/HTTPMethod.swift; sourceTree = "<group>"; };
-		22CA1FE81E883D580091CB87 /* HTTPReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPReader.swift; path = Source/HTTPReader.swift; sourceTree = "<group>"; };
-		22CA1FE91E883D580091CB87 /* HTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPRequest.swift; path = Source/HTTPRequest.swift; sourceTree = "<group>"; };
-		22CA1FEA1E883D580091CB87 /* HTTPResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPResponse.swift; path = Source/HTTPResponse.swift; sourceTree = "<group>"; };
-		22CA1FEB1E883D580091CB87 /* HTTPServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPServer.swift; path = Source/HTTPServer.swift; sourceTree = "<group>"; };
-		22CA1FEC1E883D580091CB87 /* HTTPStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPStatus.swift; path = Source/HTTPStatus.swift; sourceTree = "<group>"; };
-		22CA1FED1E883D580091CB87 /* MIPClientRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPClientRegistry.swift; path = Source/MIPClientRegistry.swift; sourceTree = "<group>"; };
-		22CA1FEE1E883D580091CB87 /* MIPServerRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPServerRegistry.swift; path = Source/MIPServerRegistry.swift; sourceTree = "<group>"; };
-		22CA1FEF1E883D580091CB87 /* MIPV1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1.swift; path = Source/MIPV1.swift; sourceTree = "<group>"; };
-		22CA1FF01E883D580091CB87 /* MIPV1Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1Client.swift; path = Source/MIPV1Client.swift; sourceTree = "<group>"; };
-		22CA1FF11E883D580091CB87 /* MIPV1ClientConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ClientConnection.swift; path = Source/MIPV1ClientConnection.swift; sourceTree = "<group>"; };
-		22CA1FF21E883D580091CB87 /* MIPV1ClientDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ClientDecoder.swift; path = Source/MIPV1ClientDecoder.swift; sourceTree = "<group>"; };
-		22CA1FF31E883D580091CB87 /* MIPV1ServerDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ServerDecoder.swift; path = Source/MIPV1ServerDecoder.swift; sourceTree = "<group>"; };
-		22CA1FF41E883D580091CB87 /* MIPV1DeviceProfile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MIPV1DeviceProfile.json; path = Source/MIPV1DeviceProfile.json; sourceTree = "<group>"; };
-		22CA1FF51E883D580091CB87 /* MIPV1DeviceSchema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1DeviceSchema.swift; path = Source/MIPV1DeviceSchema.swift; sourceTree = "<group>"; };
-		22CA1FF61E883D580091CB87 /* MIPV1ServerEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ServerEncoder.swift; path = Source/MIPV1ServerEncoder.swift; sourceTree = "<group>"; };
-		22CA1FF71E883D580091CB87 /* MIPV1MessageSchema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MIPV1MessageSchema.json; path = Source/MIPV1MessageSchema.json; sourceTree = "<group>"; };
-		22CA1FF81E883D580091CB87 /* MIPV1MessageSchema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1MessageSchema.swift; path = Source/MIPV1MessageSchema.swift; sourceTree = "<group>"; };
-		22CA1FF91E883D580091CB87 /* MIPV1ResourceSchema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ResourceSchema.swift; path = Source/MIPV1ResourceSchema.swift; sourceTree = "<group>"; };
-		22CA1FFA1E883D580091CB87 /* MIPV1Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1Server.swift; path = Source/MIPV1Server.swift; sourceTree = "<group>"; };
-		22CA1FFB1E883D580091CB87 /* MIPV1ServerConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ServerConnection.swift; path = Source/MIPV1ServerConnection.swift; sourceTree = "<group>"; };
-		22CA1FFC1E883D580091CB87 /* MIPV1ServiceSchema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ServiceSchema.swift; path = Source/MIPV1ServiceSchema.swift; sourceTree = "<group>"; };
-		22CA1FFD1E883D580091CB87 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = Source/WebSocket.swift; sourceTree = "<group>"; };
-		22CA1FFE1E883D580091CB87 /* WebSocketClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSocketClient.swift; path = Source/WebSocketClient.swift; sourceTree = "<group>"; };
-		22CA1FFF1E883D580091CB87 /* WebSocketServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSocketServer.swift; path = Source/WebSocketServer.swift; sourceTree = "<group>"; };
-		22CA20001E883D580091CB87 /* WSFP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSFP.swift; path = Source/WSFP.swift; sourceTree = "<group>"; };
-		22CA20011E883D580091CB87 /* WSFPReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSFPReader.swift; path = Source/WSFPReader.swift; sourceTree = "<group>"; };
-		22CA20021E883D580091CB87 /* WSFPReaderWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSFPReaderWriter.swift; path = Source/WSFPReaderWriter.swift; sourceTree = "<group>"; };
-		22CA20031E883D580091CB87 /* WSFPWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSFPWriter.swift; path = Source/WSFPWriter.swift; sourceTree = "<group>"; };
-		22CA202C1E883E500091CB87 /* RPCV1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = RPCV1.json; path = Source/RPCV1.json; sourceTree = "<group>"; };
-		22CA202D1E883E500091CB87 /* RPCV1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RPCV1.swift; path = Source/RPCV1.swift; sourceTree = "<group>"; };
-		22CA202E1E883E500091CB87 /* RPCV1Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RPCV1Schema.swift; path = Source/RPCV1Schema.swift; sourceTree = "<group>"; };
-		22CA20341E8842A00091CB87 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Authenticator.swift; path = Source/Authenticator.swift; sourceTree = "<group>"; };
-		22CA20351E8842A00091CB87 /* AuthenticatorV1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthenticatorV1.swift; path = Source/AuthenticatorV1.swift; sourceTree = "<group>"; };
-		22CA20361E8842A00091CB87 /* AuthenticateV1Accept.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = AuthenticateV1Accept.json; path = Source/AuthenticateV1Accept.json; sourceTree = "<group>"; };
-		22CA20371E8842A00091CB87 /* AuthenticateV1Phase1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = AuthenticateV1Phase1.json; path = Source/AuthenticateV1Phase1.json; sourceTree = "<group>"; };
-		22CA20381E8842A00091CB87 /* AuthenticateV1Reject.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = AuthenticateV1Reject.json; path = Source/AuthenticateV1Reject.json; sourceTree = "<group>"; };
-		22CA20391E8842A00091CB87 /* AuthenticatV1Schema.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthenticatV1Schema.swift; path = Source/AuthenticatV1Schema.swift; sourceTree = "<group>"; };
-		22CB98131EB0CDE700F4A3D0 /* RPCV1MessageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RPCV1MessageHandler.swift; path = Source/RPCV1MessageHandler.swift; sourceTree = "<group>"; };
-		22DD6E521E8E97DE00F1B6D2 /* HTTPDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPDecoder.swift; path = Source/HTTPDecoder.swift; sourceTree = "<group>"; };
-		22DD6E541E8E980100F1B6D2 /* RPCDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RPCDecoder.swift; path = Source/RPCDecoder.swift; sourceTree = "<group>"; };
-		22FF29F31F68022700E0FE8A /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Bundle.swift; path = Tests/Bundle.swift; sourceTree = "<group>"; };
+		22CA1FE31E883D580091CB87 /* HTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPClient.swift; path = Source/HTTPClient.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FE51E883D580091CB87 /* HTTPHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPHeader.swift; path = Source/HTTPHeader.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FE61E883D580091CB87 /* HTTPMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPMessage.swift; path = Source/HTTPMessage.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FE71E883D580091CB87 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPMethod.swift; path = Source/HTTPMethod.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FE81E883D580091CB87 /* HTTPReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPReader.swift; path = Source/HTTPReader.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FE91E883D580091CB87 /* HTTPRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPRequest.swift; path = Source/HTTPRequest.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FEA1E883D580091CB87 /* HTTPResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPResponse.swift; path = Source/HTTPResponse.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FEB1E883D580091CB87 /* HTTPServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPServer.swift; path = Source/HTTPServer.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FEC1E883D580091CB87 /* HTTPStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPStatus.swift; path = Source/HTTPStatus.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FED1E883D580091CB87 /* MIPClientRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPClientRegistry.swift; path = Source/MIPClientRegistry.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FEE1E883D580091CB87 /* MIPServerRegistry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPServerRegistry.swift; path = Source/MIPServerRegistry.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FEF1E883D580091CB87 /* MIPV1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1.swift; path = Source/MIPV1.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FF01E883D580091CB87 /* MIPV1Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1Client.swift; path = Source/MIPV1Client.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FF11E883D580091CB87 /* MIPV1ClientConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ClientConnection.swift; path = Source/MIPV1ClientConnection.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FF21E883D580091CB87 /* MIPV1ClientDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ClientDecoder.swift; path = Source/MIPV1ClientDecoder.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FF31E883D580091CB87 /* MIPV1ServerDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ServerDecoder.swift; path = Source/MIPV1ServerDecoder.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FF61E883D580091CB87 /* MIPV1ServerEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ServerEncoder.swift; path = Source/MIPV1ServerEncoder.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FFA1E883D580091CB87 /* MIPV1Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1Server.swift; path = Source/MIPV1Server.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FFB1E883D580091CB87 /* MIPV1ServerConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIPV1ServerConnection.swift; path = Source/MIPV1ServerConnection.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FFD1E883D580091CB87 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSocket.swift; path = Source/WebSocket.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FFE1E883D580091CB87 /* WebSocketClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSocketClient.swift; path = Source/WebSocketClient.swift; sourceTree = SOURCE_ROOT; };
+		22CA1FFF1E883D580091CB87 /* WebSocketServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebSocketServer.swift; path = Source/WebSocketServer.swift; sourceTree = SOURCE_ROOT; };
+		22CA20001E883D580091CB87 /* WSFP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSFP.swift; path = Source/WSFP.swift; sourceTree = SOURCE_ROOT; };
+		22CA20011E883D580091CB87 /* WSFPReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSFPReader.swift; path = Source/WSFPReader.swift; sourceTree = SOURCE_ROOT; };
+		22CA20021E883D580091CB87 /* WSFPReaderWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSFPReaderWriter.swift; path = Source/WSFPReaderWriter.swift; sourceTree = SOURCE_ROOT; };
+		22CA20031E883D580091CB87 /* WSFPWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WSFPWriter.swift; path = Source/WSFPWriter.swift; sourceTree = SOURCE_ROOT; };
+		22CA202D1E883E500091CB87 /* RPCV1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RPCV1.swift; path = Source/RPCV1.swift; sourceTree = SOURCE_ROOT; };
+		22CA20341E8842A00091CB87 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Authenticator.swift; path = Source/Authenticator.swift; sourceTree = SOURCE_ROOT; };
+		22CA20351E8842A00091CB87 /* AuthenticatorV1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthenticatorV1.swift; path = Source/AuthenticatorV1.swift; sourceTree = SOURCE_ROOT; };
+		22CB98131EB0CDE700F4A3D0 /* RPCV1MessageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RPCV1MessageHandler.swift; path = Source/RPCV1MessageHandler.swift; sourceTree = SOURCE_ROOT; };
+		22DD6E521E8E97DE00F1B6D2 /* HTTPDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HTTPDecoder.swift; path = Source/HTTPDecoder.swift; sourceTree = SOURCE_ROOT; };
+		22DD6E541E8E980100F1B6D2 /* RPCDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RPCDecoder.swift; path = Source/RPCDecoder.swift; sourceTree = SOURCE_ROOT; };
+		22FF29F31F68022700E0FE8A /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Bundle.swift; path = Tests/Bundle.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,7 +444,7 @@
 			children = (
 				22FF29EC1F6801ED00E0FE8A /* Extensions */,
 			);
-			name = Tests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		222320231F14501000E5CDC7 /* Products */ = {
@@ -331,6 +454,47 @@
 				2223202E1F14501000E5CDC7 /* SecurityKit iOSTests.xctest */,
 				222320301F14501000E5CDC7 /* SecurityKit.framework */,
 				222320321F14501000E5CDC7 /* SecurityKit macOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		22343A571FFCF90A0075B62A /* Methods */ = {
+			isa = PBXGroup;
+			children = (
+				226B8A321FF7D9C60023C54E /* MIPV1ResourceMethodDecoder.swift */,
+				226B8A2F1FF7D7560023C54E /* MIPV1ResourceMethod.swift */,
+				22343A511FFCF74F0075B62A /* MIPV1ResourceCall.swift */,
+				22343A5B1FFCF9D20075B62A /* MIPV1ResourceEnableNotification.swift */,
+			);
+			name = Methods;
+			sourceTree = "<group>";
+		};
+		22343A5E1FFCFA4B0075B62A /* Methods */ = {
+			isa = PBXGroup;
+			children = (
+				226B8A231FF7D3200023C54E /* MIPV1DeviceMethodDecoder.swift */,
+				226B8A261FF7D3700023C54E /* MIPV1DeviceMethod.swift */,
+				22C542081FB8835900340082 /* MIPV1DeviceGetProfile.swift */,
+				22A152501FB872BD006802D0 /* MIPV1DeviceUpdateName.swift */,
+			);
+			name = Methods;
+			sourceTree = "<group>";
+		};
+		22343A5F1FFCFA570075B62A /* Methods */ = {
+			isa = PBXGroup;
+			children = (
+				226B8A2C1FF7D7030023C54E /* MIPV1SeviceMethodDecoder.swift */,
+				226B8A291FF7D64B0023C54E /* MIPV1ServiceMethod.swift */,
+				22A152531FB8747E006802D0 /* MIPV1ServiceUpdateName.swift */,
+			);
+			name = Methods;
+			sourceTree = "<group>";
+		};
+		2254FCBB1FA745E400ADC90B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2254FCC01FA745E400ADC90B /* MedKitAssignedNumbers.framework */,
+				2254FCC21FA745E400ADC90B /* MedKitAssignedNumbers.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -352,7 +516,7 @@
 				220A34281EBE17460024DF9E /* LICENSE.txt */,
 				225A467D1EB37E39004EE389 /* Release Notes.rtf */,
 			);
-			name = Documentation;
+			path = Documentation;
 			sourceTree = "<group>";
 		};
 		22B143941E893690005A35B9 /* Main */ = {
@@ -367,17 +531,85 @@
 			isa = PBXGroup;
 			children = (
 				22CA20351E8842A00091CB87 /* AuthenticatorV1.swift */,
-				22CA20391E8842A00091CB87 /* AuthenticatV1Schema.swift */,
-				22CA20361E8842A00091CB87 /* AuthenticateV1Accept.json */,
-				22CA20371E8842A00091CB87 /* AuthenticateV1Phase1.json */,
-				22CA20381E8842A00091CB87 /* AuthenticateV1Reject.json */,
+				22C5420B1FB8858B00340082 /* AuthenticateV1MessageCoder.swift */,
+				222BEC6F1FB322E40059CCCE /* AuthenticateV1Message.swift */,
+				222BEC721FB323450059CCCE /* AuthenticateV1MessageType.swift */,
+				222BEC751FB324B00059CCCE /* AuthenticateV1Phase1.swift */,
+				222BEC781FB328240059CCCE /* AuthenticateV1Phase2.swift */,
+				222BEC7B1FB32B560059CCCE /* AuthenticateV1Phase3.swift */,
+				222BEC7E1FB32D0A0059CCCE /* AuthenticateV1Accept.swift */,
+				222BEC811FB32D910059CCCE /* AuthenticateV1Reject.swift */,
 			);
 			name = V1;
+			sourceTree = "<group>";
+		};
+		22B4C1E120063D5500A5C9EC /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				22343A5E1FFCFA4B0075B62A /* Methods */,
+				22B4C1E420063DCA00A5C9EC /* Notifications */,
+			);
+			name = Device;
+			sourceTree = "<group>";
+		};
+		22B4C1E220063D6500A5C9EC /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				226B8A441FF7DEB10023C54E /* MIPV1ResourceNotificationDecoder.swift */,
+				226B8A411FF7DE310023C54E /* MIPV1ResourceNotification.swift */,
+				22343A4E1FFBB35D0075B62A /* MIPV1ResourceNotify.swift */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
+		22B4C1E320063D7300A5C9EC /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				226B8A3E1FF7DDD70023C54E /* MIPV1ServiceNotificationDecoder.swift */,
+				226B8A3B1FF7DD530023C54E /* MIPV1ServiceNotification.swift */,
+				2244CD2E1FBB0BBA00216EB6 /* MIPV1ServiceDidUpdateName.swift */,
+				2244CD371FBB0C5D00216EB6 /* MIPV1ServiceDidAddResource.swift */,
+				2244CD3A1FBB0D1100216EB6 /* MIPV1ServiceDidRemoveResource.swift */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
+		22B4C1E420063DCA00A5C9EC /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				226B8A381FF7DCD80023C54E /* MIPV1DeviceNotificationDecoder.swift */,
+				226B8A351FF7DBEF0023C54E /* MIPV1DeviceNotification.swift */,
+				2244CC961FB8BAD100216EB6 /* MIPV1DeviceDidUpdateName.swift */,
+				2244CCA01FB8BC8600216EB6 /* MIPV1DeviceDidAddBridgedDevice.swift */,
+				2244CD3D1FBB0E1B00216EB6 /* MIPV1DeviceDidRemoveBridgedDevice.swift */,
+				2244CD401FBB0EA700216EB6 /* MIPV1DeviceDidAddService.swift */,
+				2244CD431FBB0EF500216EB6 /* MIPV1DeviceDidRemoveService.swift */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
+		22B4C1E720063E0D00A5C9EC /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				22343A571FFCF90A0075B62A /* Methods */,
+				22B4C1E220063D6500A5C9EC /* Notifications */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
+		22B4C1E820063E2900A5C9EC /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				22343A5F1FFCFA570075B62A /* Methods */,
+				22B4C1E320063D7300A5C9EC /* Notifications */,
+			);
+			name = Service;
 			sourceTree = "<group>";
 		};
 		22CA1F551E883AEE0091CB87 = {
 			isa = PBXGroup;
 			children = (
+				2254FCBA1FA745E400ADC90B /* MedKitAssignedNumbers.xcodeproj */,
 				222320221F14501000E5CDC7 /* SecurityKit.xcodeproj */,
 				22CA1FCE1E883CCF0091CB87 /* MedKitCore.xcodeproj */,
 				225A467C1EB37E28004EE389 /* Documentation */,
@@ -449,7 +681,7 @@
 				22CA202A1E883E420091CB87 /* RPC */,
 				22CA20291E883D950091CB87 /* WebSocket */,
 			);
-			name = Source;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		22CA1FCF1E883CCF0091CB87 /* Products */ = {
@@ -484,7 +716,6 @@
 			children = (
 				22CA1FED1E883D580091CB87 /* MIPClientRegistry.swift */,
 				22CA1FEE1E883D580091CB87 /* MIPServerRegistry.swift */,
-				225A465F1EB36763004EE389 /* Extensions */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -494,6 +725,7 @@
 			children = (
 				22CA20281E883D890091CB87 /* V1 */,
 				22CA20261E883D6F0091CB87 /* Shared */,
+				225A465F1EB36763004EE389 /* Extensions */,
 			);
 			name = MIP;
 			sourceTree = "<group>";
@@ -502,9 +734,13 @@
 			isa = PBXGroup;
 			children = (
 				22CA1FEF1E883D580091CB87 /* MIPV1.swift */,
+				22A152431FB73777006802D0 /* MIPV1Route.swift */,
+				22A152401FB72E02006802D0 /* MIPV1MethodCodingKeys.swift */,
+				22B4C1E120063D5500A5C9EC /* Device */,
+				22B4C1E720063E0D00A5C9EC /* Resource */,
+				22B4C1E820063E2900A5C9EC /* Service */,
 				22F0959C1E8958AC000AC0A4 /* Client */,
 				22F0959F1E8958B6000AC0A4 /* Server */,
-				22F095A11E8958D3000AC0A4 /* Schemas */,
 			);
 			name = V1;
 			sourceTree = "<group>";
@@ -528,8 +764,13 @@
 			children = (
 				22CA202D1E883E500091CB87 /* RPCV1.swift */,
 				22CB98131EB0CDE700F4A3D0 /* RPCV1MessageHandler.swift */,
-				22CA202E1E883E500091CB87 /* RPCV1Schema.swift */,
-				22CA202C1E883E500091CB87 /* RPCV1.json */,
+				229A32891FB1D956001F9094 /* RPCV1MessageType.swift */,
+				2254FCCF1FA890A200ADC90B /* RPCV1MessageDecodable.swift */,
+				226B89E31FF55F490023C54E /* RPCV1MessageEncodable.swift */,
+				226B8A1D1FF680E50023C54E /* RPCV1Message.swift */,
+				229A325C1FB08DB3001F9094 /* RPCV1Sync.swift */,
+				229A32681FB08E0E001F9094 /* RPCV1Reply.swift */,
+				229A32651FB08DED001F9094 /* RPCV1Async.swift */,
 			);
 			name = RPC;
 			sourceTree = "<group>";
@@ -576,26 +817,13 @@
 			name = Server;
 			sourceTree = "<group>";
 		};
-		22F095A11E8958D3000AC0A4 /* Schemas */ = {
-			isa = PBXGroup;
-			children = (
-				22CA1FF51E883D580091CB87 /* MIPV1DeviceSchema.swift */,
-				22CA1FF81E883D580091CB87 /* MIPV1MessageSchema.swift */,
-				22CA1FF91E883D580091CB87 /* MIPV1ResourceSchema.swift */,
-				22CA1FFC1E883D580091CB87 /* MIPV1ServiceSchema.swift */,
-				22CA1FF71E883D580091CB87 /* MIPV1MessageSchema.json */,
-				22CA1FF41E883D580091CB87 /* MIPV1DeviceProfile.json */,
-			);
-			name = Schemas;
-			sourceTree = "<group>";
-		};
 		22FF29EC1F6801ED00E0FE8A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				22FF29F31F68022700E0FE8A /* Bundle.swift */,
 			);
 			name = Extensions;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -631,6 +859,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2254FCCC1FA7461000ADC90B /* PBXTargetDependency */,
 				22CA1FE21E883CEF0091CB87 /* PBXTargetDependency */,
 			);
 			name = "MedKitMIP iOS";
@@ -668,6 +897,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2254FCCE1FA7461400ADC90B /* PBXTargetDependency */,
 				22CA1FE01E883CEA0091CB87 /* PBXTargetDependency */,
 			);
 			name = "MedKitMIP macOS";
@@ -735,6 +965,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 2254FCBB1FA745E400ADC90B /* Products */;
+					ProjectRef = 2254FCBA1FA745E400ADC90B /* MedKitAssignedNumbers.xcodeproj */;
+				},
+				{
 					ProductGroup = 22CA1FCF1E883CCF0091CB87 /* Products */;
 					ProjectRef = 22CA1FCE1E883CCF0091CB87 /* MedKitCore.xcodeproj */;
 				},
@@ -782,6 +1016,20 @@
 			remoteRef = 222320311F14501000E5CDC7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		2254FCC01FA745E400ADC90B /* MedKitAssignedNumbers.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MedKitAssignedNumbers.framework;
+			remoteRef = 2254FCBF1FA745E400ADC90B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2254FCC21FA745E400ADC90B /* MedKitAssignedNumbers.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MedKitAssignedNumbers.framework;
+			remoteRef = 2254FCC11FA745E400ADC90B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		22CA1FD61E883CCF0091CB87 /* MedKitCore.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -817,12 +1065,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22CA20301E883E500091CB87 /* RPCV1.json in Resources */,
-				22CA20181E883D580091CB87 /* MIPV1MessageSchema.json in Resources */,
-				22CA203E1E8842A00091CB87 /* AuthenticateV1Reject.json in Resources */,
-				22CA20151E883D580091CB87 /* MIPV1DeviceProfile.json in Resources */,
-				22CA203D1E8842A00091CB87 /* AuthenticateV1Phase1.json in Resources */,
-				22CA203C1E8842A00091CB87 /* AuthenticateV1Accept.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -837,12 +1079,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				224DD8301E88445D00727706 /* RPCV1.json in Resources */,
-				224DD8111E88444900727706 /* AuthenticateV1Accept.json in Resources */,
-				224DD8281E88445400727706 /* MIPV1MessageSchema.json in Resources */,
-				224DD8251E88445400727706 /* MIPV1DeviceProfile.json in Resources */,
-				224DD8121E88444900727706 /* AuthenticateV1Phase1.json in Resources */,
-				224DD8131E88444900727706 /* AuthenticateV1Reject.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -860,51 +1096,88 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				222BEC761FB324B00059CCCE /* AuthenticateV1Phase1.swift in Sources */,
+				226B8A391FF7DCD80023C54E /* MIPV1DeviceNotificationDecoder.swift in Sources */,
 				22CA20141E883D580091CB87 /* MIPV1ServerDecoder.swift in Sources */,
-				22CA20321E883E500091CB87 /* RPCV1Schema.swift in Sources */,
+				226B8A451FF7DEB10023C54E /* MIPV1ResourceNotificationDecoder.swift in Sources */,
+				2244CD381FBB0C5D00216EB6 /* MIPV1ServiceDidAddResource.swift in Sources */,
+				229A32661FB08DED001F9094 /* RPCV1Async.swift in Sources */,
+				226B8A2A1FF7D64B0023C54E /* MIPV1ServiceMethod.swift in Sources */,
 				22DD6E551E8E980100F1B6D2 /* RPCDecoder.swift in Sources */,
+				22343A5C1FFCF9D20075B62A /* MIPV1ResourceEnableNotification.swift in Sources */,
 				22CA200F1E883D580091CB87 /* MIPServerRegistry.swift in Sources */,
-				22CA203F1E8842A00091CB87 /* AuthenticatV1Schema.swift in Sources */,
+				229A32691FB08E0E001F9094 /* RPCV1Reply.swift in Sources */,
+				2244CCA11FB8BC8600216EB6 /* MIPV1DeviceDidAddBridgedDevice.swift in Sources */,
 				22CA20061E883D580091CB87 /* HTTPHeader.swift in Sources */,
+				226B8A3F1FF7DDD70023C54E /* MIPV1ServiceNotificationDecoder.swift in Sources */,
+				222BEC701FB322E40059CCCE /* AuthenticateV1Message.swift in Sources */,
 				22CA20111E883D580091CB87 /* MIPV1Client.swift in Sources */,
 				22CA201E1E883D580091CB87 /* WebSocket.swift in Sources */,
 				22CA20211E883D580091CB87 /* WSFP.swift in Sources */,
 				22CA200E1E883D580091CB87 /* MIPClientRegistry.swift in Sources */,
+				226B8A241FF7D3200023C54E /* MIPV1DeviceMethodDecoder.swift in Sources */,
+				229A328A1FB1D956001F9094 /* RPCV1MessageType.swift in Sources */,
+				226B8A271FF7D3700023C54E /* MIPV1DeviceMethod.swift in Sources */,
 				22CA20231E883D580091CB87 /* WSFPReaderWriter.swift in Sources */,
+				2244CD2F1FBB0BBA00216EB6 /* MIPV1ServiceDidUpdateName.swift in Sources */,
 				22CA20221E883D580091CB87 /* WSFPReader.swift in Sources */,
+				22C542091FB8835900340082 /* MIPV1DeviceGetProfile.swift in Sources */,
 				22CA20071E883D580091CB87 /* HTTPMessage.swift in Sources */,
+				222BEC7C1FB32B560059CCCE /* AuthenticateV1Phase3.swift in Sources */,
+				226B8A331FF7D9C60023C54E /* MIPV1ResourceMethodDecoder.swift in Sources */,
+				2244CC971FB8BAD100216EB6 /* MIPV1DeviceDidUpdateName.swift in Sources */,
 				22CA203A1E8842A00091CB87 /* Authenticator.swift in Sources */,
+				22343A4F1FFBB35D0075B62A /* MIPV1ResourceNotify.swift in Sources */,
 				22CA20131E883D580091CB87 /* MIPV1ClientDecoder.swift in Sources */,
 				22CA20241E883D580091CB87 /* WSFPWriter.swift in Sources */,
+				22A152411FB72E02006802D0 /* MIPV1MethodCodingKeys.swift in Sources */,
+				229A325D1FB08DB3001F9094 /* RPCV1Sync.swift in Sources */,
 				22CA201B1E883D580091CB87 /* MIPV1Server.swift in Sources */,
-				22CA20161E883D580091CB87 /* MIPV1DeviceSchema.swift in Sources */,
+				226B89E41FF55F490023C54E /* RPCV1MessageEncodable.swift in Sources */,
 				22CA20311E883E500091CB87 /* RPCV1.swift in Sources */,
+				22A152541FB8747E006802D0 /* MIPV1ServiceUpdateName.swift in Sources */,
 				22B143961E8936A5005A35B9 /* Main.swift in Sources */,
-				22CA201D1E883D580091CB87 /* MIPV1ServiceSchema.swift in Sources */,
+				22A152441FB73777006802D0 /* MIPV1Route.swift in Sources */,
 				22CA201C1E883D580091CB87 /* MIPV1ServerConnection.swift in Sources */,
 				22CA203B1E8842A00091CB87 /* AuthenticatorV1.swift in Sources */,
+				222BEC791FB328240059CCCE /* AuthenticateV1Phase2.swift in Sources */,
 				22CA20081E883D580091CB87 /* HTTPMethod.swift in Sources */,
 				22CA201F1E883D580091CB87 /* WebSocketClient.swift in Sources */,
-				22CA20191E883D580091CB87 /* MIPV1MessageSchema.swift in Sources */,
+				222BEC731FB323450059CCCE /* AuthenticateV1MessageType.swift in Sources */,
 				220CDF311EE9A5EE006ECEBA /* MIPV1ClientPolicy.swift in Sources */,
+				2244CD411FBB0EA700216EB6 /* MIPV1DeviceDidAddService.swift in Sources */,
+				226B8A361FF7DBEF0023C54E /* MIPV1DeviceNotification.swift in Sources */,
 				22CA20171E883D580091CB87 /* MIPV1ServerEncoder.swift in Sources */,
+				22343A521FFCF74F0075B62A /* MIPV1ResourceCall.swift in Sources */,
+				226B8A421FF7DE310023C54E /* MIPV1ResourceNotification.swift in Sources */,
+				2254FCD01FA890A200ADC90B /* RPCV1MessageDecodable.swift in Sources */,
 				225A46681EB368BB004EE389 /* Resource.swift in Sources */,
 				225A46661EB36894004EE389 /* Service.swift in Sources */,
+				226B8A3C1FF7DD530023C54E /* MIPV1ServiceNotification.swift in Sources */,
 				22CA20101E883D580091CB87 /* MIPV1.swift in Sources */,
 				22CA200B1E883D580091CB87 /* HTTPResponse.swift in Sources */,
-				22CA201A1E883D580091CB87 /* MIPV1ResourceSchema.swift in Sources */,
 				220CDF351EE9A629006ECEBA /* MIPV1ServerPolicy.swift in Sources */,
 				22CA200A1E883D580091CB87 /* HTTPRequest.swift in Sources */,
+				22C5420C1FB8858B00340082 /* AuthenticateV1MessageCoder.swift in Sources */,
+				226B8A301FF7D7560023C54E /* MIPV1ResourceMethod.swift in Sources */,
+				22A152511FB872BD006802D0 /* MIPV1DeviceUpdateName.swift in Sources */,
 				22CB98141EB0CDE700F4A3D0 /* RPCV1MessageHandler.swift in Sources */,
 				22CA20201E883D580091CB87 /* WebSocketServer.swift in Sources */,
+				2244CD441FBB0EF500216EB6 /* MIPV1DeviceDidRemoveService.swift in Sources */,
 				225A466C1EB36C28004EE389 /* MIPV1ClientEncoder.swift in Sources */,
+				222BEC821FB32D910059CCCE /* AuthenticateV1Reject.swift in Sources */,
 				22CA20091E883D580091CB87 /* HTTPReader.swift in Sources */,
 				22CA20041E883D580091CB87 /* HTTPClient.swift in Sources */,
 				22CA20121E883D580091CB87 /* MIPV1ClientConnection.swift in Sources */,
 				22CA200C1E883D580091CB87 /* HTTPServer.swift in Sources */,
+				2244CD3B1FBB0D1100216EB6 /* MIPV1ServiceDidRemoveResource.swift in Sources */,
 				22CA200D1E883D580091CB87 /* HTTPStatus.swift in Sources */,
+				222BEC7F1FB32D0A0059CCCE /* AuthenticateV1Accept.swift in Sources */,
 				22DD6E531E8E97DE00F1B6D2 /* HTTPDecoder.swift in Sources */,
+				226B8A2D1FF7D7030023C54E /* MIPV1SeviceMethodDecoder.swift in Sources */,
 				225A46631EB36847004EE389 /* Device.swift in Sources */,
+				226B8A1E1FF680E50023C54E /* RPCV1Message.swift in Sources */,
+				2244CD3E1FBB0E1B00216EB6 /* MIPV1DeviceDidRemoveBridgedDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -921,51 +1194,88 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				222BEC771FB324B00059CCCE /* AuthenticateV1Phase1.swift in Sources */,
+				226B8A3A1FF7DCD80023C54E /* MIPV1DeviceNotificationDecoder.swift in Sources */,
 				224DD82E1E88445900727706 /* MIPClientRegistry.swift in Sources */,
+				226B8A461FF7DEB10023C54E /* MIPV1ResourceNotificationDecoder.swift in Sources */,
+				2244CD391FBB0C5D00216EB6 /* MIPV1ServiceDidAddResource.swift in Sources */,
+				229A32671FB08DED001F9094 /* RPCV1Async.swift in Sources */,
+				226B8A2B1FF7D64B0023C54E /* MIPV1ServiceMethod.swift in Sources */,
 				224DD8241E88445400727706 /* MIPV1ServerDecoder.swift in Sources */,
+				22343A5D1FFCF9D20075B62A /* MIPV1ResourceEnableNotification.swift in Sources */,
 				220CDF361EE9A640006ECEBA /* MIPV1ServerPolicy.swift in Sources */,
 				22DD6E571E8E985100F1B6D2 /* RPCDecoder.swift in Sources */,
+				2244CCA21FB8BC8600216EB6 /* MIPV1DeviceDidAddBridgedDevice.swift in Sources */,
 				224DD8371E88446300727706 /* WSFPReader.swift in Sources */,
+				226B8A401FF7DDD70023C54E /* MIPV1ServiceNotificationDecoder.swift in Sources */,
+				229A326A1FB08E0E001F9094 /* RPCV1Reply.swift in Sources */,
 				224DD81E1E88444E00727706 /* HTTPServer.swift in Sources */,
+				222BEC711FB322E40059CCCE /* AuthenticateV1Message.swift in Sources */,
 				224DD80F1E88444900727706 /* Authenticator.swift in Sources */,
 				224DD8211E88445400727706 /* MIPV1Client.swift in Sources */,
+				226B8A251FF7D3200023C54E /* MIPV1DeviceMethodDecoder.swift in Sources */,
 				224DD8361E88446300727706 /* WSFP.swift in Sources */,
+				226B8A281FF7D3700023C54E /* MIPV1DeviceMethod.swift in Sources */,
 				224DD8351E88446300727706 /* WebSocketServer.swift in Sources */,
+				2244CD301FBB0BBA00216EB6 /* MIPV1ServiceDidUpdateName.swift in Sources */,
+				229A328B1FB1D956001F9094 /* RPCV1MessageType.swift in Sources */,
+				22C5420A1FB8835900340082 /* MIPV1DeviceGetProfile.swift in Sources */,
 				224DD8191E88444E00727706 /* HTTPMessage.swift in Sources */,
 				224DD81D1E88444E00727706 /* HTTPResponse.swift in Sources */,
+				226B8A341FF7D9C60023C54E /* MIPV1ResourceMethodDecoder.swift in Sources */,
+				2244CC9F1FB8BC3700216EB6 /* MIPV1DeviceDidUpdateName.swift in Sources */,
 				224DD8311E88445D00727706 /* RPCV1.swift in Sources */,
+				22343A501FFBB35D0075B62A /* MIPV1ResourceNotify.swift in Sources */,
+				222BEC7D1FB32B560059CCCE /* AuthenticateV1Phase3.swift in Sources */,
 				224DD8231E88445400727706 /* MIPV1ClientDecoder.swift in Sources */,
 				224DD81A1E88444E00727706 /* HTTPMethod.swift in Sources */,
 				224DD82B1E88445400727706 /* MIPV1Server.swift in Sources */,
-				224DD8261E88445400727706 /* MIPV1DeviceSchema.swift in Sources */,
-				224DD82D1E88445400727706 /* MIPV1ServiceSchema.swift in Sources */,
+				22A152421FB72E02006802D0 /* MIPV1MethodCodingKeys.swift in Sources */,
+				226B89E51FF55F490023C54E /* RPCV1MessageEncodable.swift in Sources */,
+				229A325E1FB08DB3001F9094 /* RPCV1Sync.swift in Sources */,
+				22A152551FB8747E006802D0 /* MIPV1ServiceUpdateName.swift in Sources */,
 				224DD82C1E88445400727706 /* MIPV1ServerConnection.swift in Sources */,
 				224DD8381E88446300727706 /* WSFPReaderWriter.swift in Sources */,
+				22A152451FB73777006802D0 /* MIPV1Route.swift in Sources */,
 				22B144511E893E55005A35B9 /* Main.swift in Sources */,
 				224DD8101E88444900727706 /* AuthenticatorV1.swift in Sources */,
 				225A466D1EB36CDD004EE389 /* MIPV1ClientEncoder.swift in Sources */,
+				222BEC7A1FB328240059CCCE /* AuthenticateV1Phase2.swift in Sources */,
 				224DD8331E88446300727706 /* WebSocket.swift in Sources */,
-				224DD8291E88445400727706 /* MIPV1MessageSchema.swift in Sources */,
+				222BEC741FB323450059CCCE /* AuthenticateV1MessageType.swift in Sources */,
 				224DD8271E88445400727706 /* MIPV1ServerEncoder.swift in Sources */,
-				224DD8321E88445D00727706 /* RPCV1Schema.swift in Sources */,
+				226B8A371FF7DBEF0023C54E /* MIPV1DeviceNotification.swift in Sources */,
+				2244CD421FBB0EA700216EB6 /* MIPV1DeviceDidAddService.swift in Sources */,
+				22343A531FFCF74F0075B62A /* MIPV1ResourceCall.swift in Sources */,
+				226B8A431FF7DE310023C54E /* MIPV1ResourceNotification.swift in Sources */,
 				224DD8201E88445400727706 /* MIPV1.swift in Sources */,
+				2254FCD11FA890A200ADC90B /* RPCV1MessageDecodable.swift in Sources */,
 				224DD8341E88446300727706 /* WebSocketClient.swift in Sources */,
+				226B8A3D1FF7DD530023C54E /* MIPV1ServiceNotification.swift in Sources */,
 				225A466A1EB3699E004EE389 /* Resource.swift in Sources */,
 				225A46691EB3699B004EE389 /* Service.swift in Sources */,
 				224DD8181E88444E00727706 /* HTTPHeader.swift in Sources */,
-				224DD82A1E88445400727706 /* MIPV1ResourceSchema.swift in Sources */,
 				224DD8171E88444E00727706 /* HTTPClient.swift in Sources */,
+				22C5420D1FB8858B00340082 /* AuthenticateV1MessageCoder.swift in Sources */,
+				226B8A311FF7D7560023C54E /* MIPV1ResourceMethod.swift in Sources */,
+				22A152521FB872BD006802D0 /* MIPV1DeviceUpdateName.swift in Sources */,
 				224DD81C1E88444E00727706 /* HTTPRequest.swift in Sources */,
 				220CDF371EE9A644006ECEBA /* MIPV1ClientPolicy.swift in Sources */,
+				2244CD451FBB0EF500216EB6 /* MIPV1DeviceDidRemoveService.swift in Sources */,
 				22CB98171EB0CDEB00F4A3D0 /* RPCV1MessageHandler.swift in Sources */,
 				224DD81B1E88444E00727706 /* HTTPReader.swift in Sources */,
+				222BEC831FB32D910059CCCE /* AuthenticateV1Reject.swift in Sources */,
 				224DD8221E88445400727706 /* MIPV1ClientConnection.swift in Sources */,
-				224DD8141E88444900727706 /* AuthenticatV1Schema.swift in Sources */,
 				224DD82F1E88445900727706 /* MIPServerRegistry.swift in Sources */,
 				224DD8391E88446300727706 /* WSFPWriter.swift in Sources */,
+				2244CD3C1FBB0D1100216EB6 /* MIPV1ServiceDidRemoveResource.swift in Sources */,
 				224DD81F1E88444E00727706 /* HTTPStatus.swift in Sources */,
+				222BEC801FB32D0A0059CCCE /* AuthenticateV1Accept.swift in Sources */,
 				22DD6E561E8E984E00F1B6D2 /* HTTPDecoder.swift in Sources */,
+				226B8A2E1FF7D7030023C54E /* MIPV1SeviceMethodDecoder.swift in Sources */,
 				225A46641EB36849004EE389 /* Device.swift in Sources */,
+				226B8A1F1FF680E50023C54E /* RPCV1Message.swift in Sources */,
+				2244CD3F1FBB0E1B00216EB6 /* MIPV1DeviceDidRemoveBridgedDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -974,6 +1284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22CA1FC41E883B5B0091CB87 /* MedKitMIP_macOSTests.swift in Sources */,
+				22A1523F1FB72D27006802D0 /* RPCV1.swift in Sources */,
 				22FF29F51F68022700E0FE8A /* Bundle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -981,6 +1292,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2254FCCC1FA7461000ADC90B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "MedKitAssignedNumbers iOS";
+			targetProxy = 2254FCCB1FA7461000ADC90B /* PBXContainerItemProxy */;
+		};
+		2254FCCE1FA7461400ADC90B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "MedKitAssignedNumbers macOS";
+			targetProxy = 2254FCCD1FA7461400ADC90B /* PBXContainerItemProxy */;
+		};
 		22CA1FA51E883B490091CB87 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 22CA1F991E883B490091CB87 /* MedKitMIP iOS */;
@@ -1034,7 +1355,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 49;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1095,7 +1416,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 49;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1124,11 +1445,11 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 49;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 46;
+				DYLIB_CURRENT_VERSION = 49;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "MedKitMIP iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1148,11 +1469,11 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 49;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 46;
+				DYLIB_CURRENT_VERSION = 49;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "MedKitMIP iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1199,11 +1520,11 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 49;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 46;
+				DYLIB_CURRENT_VERSION = 49;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "MedKitMIP macOS/Info.plist";
@@ -1224,11 +1545,11 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 49;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 46;
+				DYLIB_CURRENT_VERSION = 49;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "MedKitMIP macOS/Info.plist";

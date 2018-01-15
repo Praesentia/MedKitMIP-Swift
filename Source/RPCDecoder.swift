@@ -2,7 +2,7 @@
  -----------------------------------------------------------------------------
  This source file is part of MedKitMIP.
  
- Copyright 2017 Jon Griffeth
+ Copyright 2017-2018 Jon Griffeth
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -24,34 +24,17 @@ import MedKitCore
 
 
 public class RPCDecoder: DataDecoder {
-    
+
+    // MARK: - Class Properties
     public static let factory : DataDecoderFactory = RPCDecoderFactory()
-    
+
     // MARK: - Private
-    private let Sync   = "RPC.Sync"
-    private let Reply  = "RPC.Reply"
-    private let Async  = "RPC.Async"
-    
+    private let decoder = JSONDecoder()
+
     public func type(data: Data) -> String?
     {
-        let message: JSON? = try? JSONParser.parse(data: data)
-        
-        if let message = message {
-            if let messageType = RPCV1.MessageType(rawValue: message[KeyType]) {
-                switch messageType {
-                case .Sync :
-                    return Sync
-         
-                case .Reply :
-                    return Reply
-         
-                case .Async :
-                    return Async
-                }
-            }
-        }
-        
-        return "Bad"
+        let message = try? decoder.decode(RPCV1MessageDecodable.self, from: data)
+        return "Bad" //message?.content.type.localizedDescription ?? "Bad"
     }
     
     public func string(data: Data) -> String?

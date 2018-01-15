@@ -2,7 +2,7 @@
  -----------------------------------------------------------------------------
  This source file is part of MedKitMIP.
  
- Copyright 2016-2017 Jon Griffeth
+ Copyright 2016-2018 Jon Griffeth
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,10 +31,7 @@ extension Resource {
     /**
      Make path.
      */
-    var path: JSON
-    {
-        return JSON([ JSON(service!.device!.identifier), JSON(service!.identifier), JSON(identifier) ])
-    }
+    var path: [UUID] { return [ service!.device!.identifier, service!.identifier, identifier ] }
     
 }
 
@@ -46,10 +43,7 @@ extension ResourceBackend {
     /**
      Make path.
      */
-    var path: JSON
-    {
-        return JSON([ JSON(serviceBackend.deviceBackend.identifier), JSON(serviceBackend.identifier), JSON(identifier) ])
-    }
+    var path: [UUID] { return [ serviceBackend.deviceBackend.identifier, serviceBackend.identifier, identifier ] }
     
 }
 

@@ -2,7 +2,7 @@
  -----------------------------------------------------------------------------
  This source file is part of MedKitMIP.
  
- Copyright 2016-2017 Jon Griffeth
+ Copyright 2016-2018 Jon Griffeth
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -115,7 +115,7 @@ class WSFPReader: WSFPReaderWriter {
             
             var headerSize       : Int = MinSize
             var headerBuf        : [UInt8]!
-            var maskingKeyOffset : Int = MinSize
+            var maskingkeyOffset : Int = MinSize
             var payloadMode      : UInt8
             
             headerBuf = queue.peek(count: headerSize)
@@ -126,11 +126,11 @@ class WSFPReader: WSFPReaderWriter {
             switch payloadMode {
             case PayloadMode16Bit :
                 headerSize       += 2
-                maskingKeyOffset += 2
+                maskingkeyOffset += 2
                 
             case PayloadMode64Bit :
                 headerSize       += 8
-                maskingKeyOffset += 8
+                maskingkeyOffset += 8
                 
             default :
                 break
@@ -163,7 +163,7 @@ class WSFPReader: WSFPReaderWriter {
                 }
                 
                 if (headerBuf[1] & MASKING_KEY) != 0 {
-                    maskingKey = Array<UInt8>(headerBuf[maskingKeyOffset..<headerBuf.count])
+                    maskingKey = Array<UInt8>(headerBuf[maskingkeyOffset..<headerBuf.count])
                 }
             }
             
@@ -218,7 +218,7 @@ class WSFPReader: WSFPReaderWriter {
     private func getPayload(from queue: DataQueue) -> [UInt8]?
     {
         if queue.count >= payloadSize {
-            var payload = queue.read(count: payloadSize)
+            var payload = queue.read(count: Int(payloadSize))
             
             if let maskingKey = self.maskingKey {
                 for i in 0..<payload.count {

@@ -2,7 +2,7 @@
  -----------------------------------------------------------------------------
  This source file is part of MedKitMIP.
  
- Copyright 2016-2017 Jon Griffeth
+ Copyright 2016-2018 Jon Griffeth
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,10 +30,6 @@ class MIPV1ServerEncoder {
     
     var rpc: RPCV1
     
-    private let schemaDevice   = MIPV1DeviceSchema()
-    private let schemaService  = MIPV1ServiceSchema()
-    private let schemaResource = MIPV1ResourceSchema()
-    
     /**
      Initialize instance.
      */
@@ -42,263 +38,55 @@ class MIPV1ServerEncoder {
         self.rpc = rpc
     }
     
-    // MARK: - Client
-    
     func device(_ device: Device, didUpdateName name: String)
     {
-        let message = JSON()
-        
-        message[KeyPath]          = device.path
-        message[KeyMethod]        = MIPV1DeviceNotification.DidUpdateName.rawValue
-        message[KeyArgs][KeyName] = name
-        
-        rpc.async(message: message)
+        rpc.async(content: try! AnyCodable(MIPV1DeviceDidUpdateName(name)))
     }
     
-    func device(_ device: Device, didAddBridgedDevice profile: JSON)
+    func device(_ device: Device, didAddBridgedDevice profile: DeviceProfile)
     {
-        let message = JSON()
-        
-        message[KeyPath]                   = device.path
-        message[KeyMethod]                 = MIPV1DeviceNotification.DidAddBridgedDevice.rawValue
-        message[KeyArgs][KeyBridgedDevice] = profile
-        
-        rpc.async(message: message)
+        rpc.async(content: try! AnyCodable(MIPV1DeviceDidAddBridgedDevice(profile)))
     }
     
     func device(_ device: Device, didRemoveBridgedDevice identifier: UUID)
     {
-        let message = JSON()
-        
-        message[KeyPath]                   = device.path
-        message[KeyMethod]                 = MIPV1DeviceNotification.DidRemoveBridgedDevice.rawValue
-        message[KeyArgs][KeyBridgedDevice] = identifier
-        
-        rpc.async(message: message)
+        rpc.async(content: try! AnyCodable(MIPV1DeviceDidRemoveBridgedDevice(identifier)))
     }
     
-    func device(_ device: Device, didAddService profile: JSON)
+    func device(_ device: Device, didAddService profile: ServiceProfile)
     {
-        let message = JSON()
-        
-        message[KeyPath]             = device.path
-        message[KeyMethod]           = MIPV1DeviceNotification.DidAddService.rawValue
-        message[KeyArgs][KeyService] = profile
-        
-        rpc.async(message: message)
+        rpc.async(content: try! AnyCodable(MIPV1DeviceDidAddService(profile)))
     }
     
     func device(_ device: Device, didRemoveService identifier: UUID)
     {
-        let message = JSON()
-        
-        message[KeyPath]             = device.path
-        message[KeyMethod]           = MIPV1DeviceNotification.DidRemoveService.rawValue
-        message[KeyArgs][KeyService] = identifier
-        
-        rpc.async(message: message)
+        rpc.async(content: try! AnyCodable(MIPV1DeviceDidRemoveService(identifier)))
     }
     
     func service(_ service: Service, didUpdateName name: String)
     {
-        let message = JSON()
-        
-        message[KeyPath]          = service.path
-        message[KeyMethod]        = MIPV1ServiceNotification.DidUpdateName.rawValue
-        message[KeyArgs][KeyName] = name
-        
-        rpc.async(message: message)
+        rpc.async(content: try! AnyCodable(MIPV1ServiceDidUpdateName(name)))
     }
     
-    func service(_ service: Service, didAddResource profile: JSON)
+    func service(_ service: Service, didAddResource profile: ResourceProfile)
     {
-        let message = JSON()
-        
-        message[KeyPath]              = service.path
-        message[KeyMethod]            = MIPV1ServiceNotification.DidAddResource.rawValue
-        message[KeyArgs][KeyResource] = profile
-        
-        rpc.async(message: message)
+        rpc.async(content: try! AnyCodable(MIPV1ServiceDidAddResource(profile)))
     }
     
     func service(_ service: Service, didRemoveResource identifier: UUID)
     {
-        let message = JSON()
-        
-        message[KeyPath]              = service.path
-        message[KeyMethod]            = MIPV1ServiceNotification.DidRemoveResource.rawValue
-        message[KeyArgs][KeyResource] = identifier
-        
-        rpc.async(message: message)
-    }
-    
-    func resource(_ resource: Resource, didUpdate changes: JSON?, at time: TimeInterval)
-    {
-        let message = JSON()
+        let content = MIPV1ServiceDidRemoveResource(identifier)
+        let message = MIPV1Route(path: service.path, content: try! AnyCodable(content))
 
-        message[KeyPath]                  = resource.path
-        message[KeyMethod]                = MIPV1ResourceNotification.DidUpdate.rawValue
-        message[KeyArgs][KeyTimeModified] = Double(Clock.convert(time: time))
-        message[KeyArgs][KeyChanges]      = changes
-        
-        rpc.async(message: message)
+        rpc.async(content: message)
     }
     
-    // MARK: - Server
-    
-    func deviceGetProfile(_ device: Device, completionHandler completion: @escaping (JSON?, Error?) -> Void)
+    func resource(_ resource: Resource, didNotifyWith notification: AnyCodable)
     {
-        let message = JSON()
-        
-        message[KeyPath]   = device.path
-        message[KeyMethod] = MIPV1DeviceMethod.GetProfile.rawValue
-        
-        rpc.sync(message: message) { reply, error in
-            var error = error
-            
-            if error == nil {
-                if !self.schemaDevice.verifyReply(method: .GetProfile, reply: reply) {
-                    error = MedKitError.badReply
-                }
-            }
-            
-            completion(reply, error)
-        }
-    }
-    
-    func deviceUpdateName(_ device: Device, name: String, completionHandler completion: @escaping (Error?) -> Void)
-    {
-        let message = JSON()
-        
-        message[KeyPath]          = device.path
-        message[KeyMethod]        = MIPV1DeviceMethod.UpdateName.rawValue
-        message[KeyArgs][KeyName] = name
-        
-        rpc.sync(message: message) { reply, error in
-            var error = error
-            
-            if error == nil {
-                if !self.schemaDevice.verifyReply(method: .UpdateName, reply: reply) {
-                    error = MedKitError.badReply
-                }
-            }
-            
-            completion(error)
-        }
-    }
-    
-    func serviceUpdateName(_ service: Service, name: String, completionHandler completion: @escaping (Error?) -> Void)
-    {
-        let message = JSON()
-        
-        message[KeyPath]          = service.path
-        message[KeyMethod]        = MIPV1ServiceMethod.UpdateName.rawValue
-        message[KeyArgs][KeyName] = name
-        
-        rpc.sync(message: message) { reply, error in
-            var error = error
-            
-            if error == nil {
-                if !self.schemaService.verifyReply(method: .UpdateName, reply: reply) {
-                    error = MedKitError.badReply
-                }
-            }
-            
-            completion(error)
-        }
-    }
-    
-    func resourceEnableNotification(_ resource: Resource, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
-    {
-        let message = JSON()
-        
-        message[KeyPath]   = resource.path
-        message[KeyMethod] = MIPV1ResourceMethod.EnableNotification.rawValue
-        
-        rpc.sync(message: message) { reply, error in
-            var error = error
-            var cache : ResourceCache?
-            
-            if error == nil {
-                if self.schemaResource.verifyReply(method: .EnableNotification, reply: reply) {
-                    cache = ResourceCacheBase(from: reply!)
-                }
-                else {
-                    error = MedKitError.badReply
-                }
-            }
-            
-            completion(cache, error)
-        }
-    }
-    
-    func resourceDisableNotification(_ resource: Resource, completionHandler completion: @escaping (Error?) -> Void)
-    {
-        let message = JSON()
-        
-        message[KeyPath]   = resource.path
-        message[KeyMethod] = MIPV1ResourceMethod.DisableNotification.rawValue
-        
-        rpc.sync(message: message) { reply, error in
-            var error = error
-            
-            if error == nil {
-                if !self.schemaResource.verifyReply(method: .DisableNotification, reply: reply) {
-                    error = MedKitError.badReply
-                }
-            }
-            
-            completion(error)
-        }
-    }
-    
-    func resourceReadValue(_ resource: Resource, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
-    {
-        let message = JSON()
-        
-        message[KeyPath]   = resource.path
-        message[KeyMethod] = MIPV1ResourceMethod.ReadValue.rawValue
-        
-        rpc.sync(message: message) { reply, error in
-            var error = error
-            var cache : ResourceCache?
-            
-            if error == nil {
-                if self.schemaResource.verifyReply(method: .ReadValue, reply: reply) {
-                    cache = ResourceCacheBase(from: reply!)
-                }
-                else {
-                    error = MedKitError.badReply
-                }
-            }
-            
-            completion(cache, error)
-        }
-    }
-    
-    func resourceWriteValue(_ resource: Resource, _ value: JSON?, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
-    {
-        let message = JSON()
-        
-        message[KeyPath]           = resource.path
-        message[KeyMethod]         = MIPV1ResourceMethod.WriteValue.rawValue
-        message[KeyArgs][KeyValue] = value! // TODO
-        
-        rpc.sync(message: message) { reply, error in
-            var error = error
-            var cache : ResourceCache?
-            
-            if error == nil {
-                if self.schemaResource.verifyReply(method: .WriteValue, reply: reply) {
-                    cache = ResourceCacheBase(from: reply!)
-                }
-                else {
-                    error = MedKitError.badReply
-                }
-            }
-            
-            completion(cache, error)
-        }
+        let content = MIPV1ResourceNotify(notification)
+        let message = MIPV1Route(path: resource.path, content: try! AnyCodable(content))
+
+        rpc.async(content: message)
     }
     
 }

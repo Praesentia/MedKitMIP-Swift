@@ -2,7 +2,7 @@
  -----------------------------------------------------------------------------
  This source file is part of MedKitMIP.
  
- Copyright 2016-2017 Jon Griffeth
+ Copyright 2016-2018 Jon Griffeth
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@
 
 
 import Foundation
+import MedKitAssignedNumbers
 import MedKitCore
 import SecurityKit
 
@@ -28,7 +29,7 @@ import SecurityKit
  Medical Interoperability Protocol backend.
  */
 class MIPV1Server: DeviceObserver, ServiceObserver, ResourceObserver {
-    
+
     let registry = MIPServerRegistry()
     
     private var client : MIPV1ServerEncoder
@@ -86,19 +87,19 @@ class MIPV1Server: DeviceObserver, ServiceObserver, ResourceObserver {
         registry.removeDevice(device)
     }
     
-    // MARK: - MIPV1Server1
+    // MARK: - MIPV1Server
     
-    func deviceGetProfile(_ principal: Principal?, _ device: DeviceFrontend, completionHandler completion: @escaping (JSON?, Error?) -> Void)
+    func deviceGetProfile(_ device: DeviceFrontend, _ principal: Principal?, completionHandler completion: @escaping (AnyCodable?, Error?) -> Void)
     {
         if device.acl.authorized(principal: principal, operation: OperationTypeDeviceGetProfile) {
-            DispatchQueue.main.async { completion(device.profile, nil) }
+            DispatchQueue.main.async { completion(try! AnyCodable(device.profile), nil) }
         }
         else {
             DispatchQueue.main.async { completion(nil, MedKitError.notAuthorized) }
         }
     }
     
-    func device(_ principal: Principal?, _ device: DeviceFrontend, updateName name: String, completionHandler completion: @escaping (Error?) -> Void)
+    func device(_ device: DeviceFrontend, _ principal: Principal?, updateName name: String, completionHandler completion: @escaping (Error?) -> Void)
     {
         if device.acl.authorized(principal: principal, operation: OperationTypeDeviceUpdateName) {
             device.updateName(name, completionHandler: completion)
@@ -108,7 +109,7 @@ class MIPV1Server: DeviceObserver, ServiceObserver, ResourceObserver {
         }
     }
     
-    func service(_ principal: Principal?, _ service: Service, updateName name: String, completionHandler completion: @escaping (Error?) -> Void)
+    func service(_ service: Service, _ principal: Principal?, updateName name: String, completionHandler completion: @escaping (Error?) -> Void)
     {
         let acl = (service.device as! DeviceFrontend).acl
         
@@ -120,50 +121,29 @@ class MIPV1Server: DeviceObserver, ServiceObserver, ResourceObserver {
         }
     }
     
-    func resourceEnableNotifcation(_ principal: Principal?, _ resource: Resource, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
+    func resourceEnableNotification(_ resource: Resource, _ principal: Principal?, enable: Bool, completionHandler completion: @escaping (Error?) -> Void)
     {
         let acl = (resource.service!.device as! DeviceFrontend).acl
         
         if acl.authorized(principal: principal, operation: OperationTypeResourceEnableNotification) {
-            resource.addObserver(self) { error in
-                completion(resource.cache, error)
+            if enable {
+                resource.addObserver(self, completionHandler: completion)
             }
-        }
-        else {
-            DispatchQueue.main.async { completion(nil, MedKitError.notAuthorized) }
-        }
-    }
-    
-    func resourceDisableNotifcation(_ principal: Principal?, _ resource: Resource, completionHandler completion: @escaping (Error?) -> Void)
-    {
-        let acl = (resource.service!.device as! DeviceFrontend).acl
-        
-        if acl.authorized(principal: principal, operation: OperationTypeResourceEnableNotification) {
-            resource.removeObserver(self, completionHandler: completion)
+            else {
+                resource.removeObserver(self, completionHandler: completion)
+            }
         }
         else {
             DispatchQueue.main.async { completion(MedKitError.notAuthorized) }
         }
     }
     
-    func resourceReadValue(_ principal: Principal?, _ resource: Resource, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
+    func resource(_ resource: Resource, _ principal: Principal?, didCallWith message: AnyCodable, completionHandler completion: @escaping (AnyCodable?, Error?) -> Void) throws
     {
         let acl = (resource.service!.device as! DeviceFrontend).acl
         
         if acl.authorized(principal: principal, operation: OperationTypeResourceReadValue) {
-            resource.readValue(completionHandler: completion)
-        }
-        else {
-            DispatchQueue.main.async { completion(nil, MedKitError.notAuthorized) }
-        }
-    }
-    
-    func resourceWriteValue(_ principal: Principal?, _ resource: Resource, _ value: JSON?, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
-    {
-        let acl = (resource.service!.device as! DeviceFrontend).acl
-        
-        if acl.authorized(principal: principal, operation: OperationTypeResourceWriteValue) {
-            resource.writeValue(value, completionHandler: completion)
+            resource.call(message: message, completionHandler: completion)
         }
         else {
             DispatchQueue.main.async { completion(nil, MedKitError.notAuthorized) }
@@ -207,12 +187,10 @@ class MIPV1Server: DeviceObserver, ServiceObserver, ResourceObserver {
     }
     
     // MARK: - ResourceObserver
-    
-    func resourceDidUpdate(_ resource: Resource)
+
+    func resource(_ resource: Resource, didNotifyWith notification: AnyCodable)
     {
-        if let cache = resource.cache {
-            client.resource(resource, didUpdate: cache.value, at: cache.timeModified)
-        }
+        client.resource(resource, didNotifyWith: notification)
     }
     
 }

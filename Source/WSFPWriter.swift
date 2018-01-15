@@ -2,7 +2,7 @@
  -----------------------------------------------------------------------------
  This source file is part of MedKitMIP.
  
- Copyright 2016-2017 Jon Griffeth
+ Copyright 2016-2018 Jon Griffeth
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ class WSFPWriter: WSFPReaderWriter {
     {
         var frame            : [UInt8]
         var headerSize       = MinSize
-        var maskingKeyOffset : Int = MinSize
+        var maskingkeyOffset : Int = MinSize
         var payloadMode      : UInt8
         let payloadSize      = UInt64(payload.count)
         
@@ -51,13 +51,13 @@ class WSFPWriter: WSFPReaderWriter {
             if payloadSize >= PayloadMin64Bit {
                 payloadMode       = PayloadMode64Bit
                 headerSize       += 8
-                maskingKeyOffset += 8
+                maskingkeyOffset += 8
             }
             else
             {
                 payloadMode       = PayloadMode16Bit
                 headerSize       += 2
-                maskingKeyOffset += 2
+                maskingkeyOffset += 2
             }
         }
             
@@ -92,7 +92,7 @@ class WSFPWriter: WSFPReaderWriter {
 
             // copy key
             for i in 0..<maskingKey.count {
-                frame[maskingKeyOffset + i] = maskingKey[i]
+                frame[maskingkeyOffset + i] = maskingKey[i]
             }
             
             // mask payload

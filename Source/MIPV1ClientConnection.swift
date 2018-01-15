@@ -2,7 +2,7 @@
  -----------------------------------------------------------------------------
  This source file is part of MedKitMIP.
  
- Copyright 2016-2017 Jon Griffeth
+ Copyright 2016-2018 Jon Griffeth
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -68,9 +68,9 @@ class MIPV1ClientConnection: ClientConnectionBase {
     required init(to port: MedKitCore.Port, for device: DeviceBackend, using principalManager: PrincipalManager)
     {
         // tls
-        tlsPolicy        = MIPV1ClientPolicy(for: Identity(named: device.identifier.uuidstring, type: .device))
-        tls              = PortSecure(port: port, mode: .client)
-        tls.tls.delegate = tlsPolicy
+        tlsPolicy            = MIPV1ClientPolicy(for: Identity(named: device.identifier.uuidstring, type: .device))
+        tls                  = PortSecure(port: port, mode: .client)
+        tls.context.delegate = tlsPolicy
         
         // websocket
         wsfp          = WSFP(nil)

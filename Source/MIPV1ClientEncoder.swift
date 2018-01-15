@@ -2,7 +2,7 @@
  -----------------------------------------------------------------------------
  This source file is part of MedKitMIP.
  
- Copyright 2016-2017 Jon Griffeth
+ Copyright 2016-2018 Jon Griffeth
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,10 +30,6 @@ class MIPV1ClientEncoder {
     
     var rpc: RPCV1
     
-    private let schemaDevice   = MIPV1DeviceSchema()
-    private let schemaService  = MIPV1ServiceSchema()
-    private let schemaResource = MIPV1ResourceSchema()
-    
     /**
      Initialize instance.
      */
@@ -44,161 +40,73 @@ class MIPV1ClientEncoder {
  
     // MARK: - Server
     
-    func deviceGetProfile(_ device: DeviceBackend, completionHandler completion: @escaping (JSON?, Error?) -> Void)
+    func deviceGetProfile(_ device: DeviceBackend, completionHandler completion: @escaping (DeviceProfile?, Error?) -> Void)
     {
-        let message = JSON()
+        let method  = MIPV1DeviceGetProfile()
+        let message = MIPV1Route(path: device.path, content: try! AnyCodable(method))
         
-        message[KeyPath]   = device.path
-        message[KeyMethod] = MIPV1DeviceMethod.GetProfile.rawValue
-        
-        rpc.sync(message: message) { reply, error in
-            var error = error
+        rpc.sync(content: try! AnyCodable(message)) { reply, error in
+            var profile: DeviceProfile?
             
-            if error == nil {
-                if !self.schemaDevice.verifyReply(method: .GetProfile, reply: reply) {
-                    error = MedKitError.badReply
-                }
+            if error == nil, let decoder = reply?.decoder { // TODO
+                let container = try decoder.singleValueContainer()
+                profile = try container.decode(DeviceProfile.self)
             }
             
-            completion(reply, error)
+            completion(profile, error)
         }
     }
     
     func deviceUpdateName(_ device: DeviceBackend, name: String, completionHandler completion: @escaping (Error?) -> Void)
     {
-        let message = JSON()
-        
-        message[KeyPath]          = device.path
-        message[KeyMethod]        = MIPV1DeviceMethod.UpdateName.rawValue
-        message[KeyArgs][KeyName] = name
-        
-        rpc.sync(message: message) { reply, error in
-            var error = error
-            
-            if error == nil {
-                if !self.schemaDevice.verifyReply(method: .UpdateName, reply: reply) {
-                    error = MedKitError.badReply
-                }
-            }
-            
+        let method  = MIPV1DeviceUpdateName(name)
+        let message = MIPV1Route(path: device.path, content: try! AnyCodable(method))
+
+        rpc.sync(content: try! AnyCodable(message)) { _, error in
             completion(error)
         }
     }
     
     func serviceUpdateName(_ service: ServiceBackend, name: String, completionHandler completion: @escaping (Error?) -> Void)
     {
-        let message = JSON()
-        
-        message[KeyPath]          = service.path
-        message[KeyMethod]        = MIPV1ServiceMethod.UpdateName.rawValue
-        message[KeyArgs][KeyName] = name
-        
-        rpc.sync(message: message) { reply, error in
-            var error = error
-            
-            if error == nil {
-                if !self.schemaService.verifyReply(method: .UpdateName, reply: reply) {
-                    error = MedKitError.badReply
-                }
-            }
-            
+        let method  = MIPV1ServiceUpdateName(name)
+        let message = MIPV1Route(path: service.path, content: try! AnyCodable(method))
+
+        rpc.sync(content: try! AnyCodable(message)) { _, error in
             completion(error)
         }
     }
     
-    func resourceEnableNotification(_ resource: ResourceBackend, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
+    func resourceEnableNotification(_ resource: ResourceBackend, enable: Bool, completionHandler completion: @escaping (Error?) -> Void)
     {
-        let message = JSON()
-        
-        message[KeyPath]   = resource.path
-        message[KeyMethod] = MIPV1ResourceMethod.EnableNotification.rawValue
-        
-        rpc.sync(message: message) { reply, error in
-            var error = error
-            var cache : ResourceCache?
-            
-            if error == nil {
-                if self.schemaResource.verifyReply(method: .EnableNotification, reply: reply) {
-                    cache = ResourceCacheBase(from: reply!)
-                }
-                else {
-                    error = MedKitError.badReply
-                }
-            }
-            
-            completion(cache, error)
-        }
-    }
-    
-    func resourceDisableNotification(_ resource: ResourceBackend, completionHandler completion: @escaping (Error?) -> Void)
-    {
-        let message = JSON()
-        
-        message[KeyPath]   = resource.path
-        message[KeyMethod] = MIPV1ResourceMethod.DisableNotification.rawValue
-        
-        rpc.sync(message: message) { reply, error in
-            var error = error
-            
-            if error == nil {
-                if !self.schemaResource.verifyReply(method: .DisableNotification, reply: reply) {
-                    error = MedKitError.badReply
-                }
-            }
-            
+        let method  = MIPV1ResourceEnableNotification(enable: enable)
+        let message = MIPV1Route(path: resource.path, content: try! AnyCodable(method))
+
+        rpc.sync(content: try! AnyCodable(message)) { _, error in
             completion(error)
         }
     }
-    
-    func resourceReadValue(_ resource: ResourceBackend, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
+
+    func resource(_ resource: ResourceBackend, didCallWith message: AnyCodable, completionHandler completion: @escaping (AnyCodable?, Error?) -> Void)
     {
-        let message = JSON()
-        
-        message[KeyPath]   = resource.path
-        message[KeyMethod] = MIPV1ResourceMethod.ReadValue.rawValue
-        
-        rpc.sync(message: message) { reply, error in
-            var error = error
-            var cache : ResourceCache?
-            
-            if error == nil {
-                if self.schemaResource.verifyReply(method: .ReadValue, reply: reply) {
-                    cache = ResourceCacheBase(from: reply!)
-                }
-                else {
-                    error = MedKitError.badReply
-                }
+        let method  = MIPV1ResourceCall(message: message)
+        let message = MIPV1Route(path: resource.path, content: try! AnyCodable(method))
+
+        rpc.sync(content: try! AnyEncoder().encode(message)) { reply, error in
+            var reply: AnyCodable?
+
+            if error == nil, let decoder = reply?.decoder {
+                let container = try decoder.singleValueContainer()
+                reply = try container.decode(AnyCodable.self)
             }
-            
-            completion(cache, error)
+
+            completion(reply, error)
         }
     }
-    
-    func resourceWriteValue(_ resource: ResourceBackend, _ value: JSON?, completionHandler completion: @escaping (ResourceCache?, Error?) -> Void)
+
+    func resource(_ resource: ResourceBackend, didNotifyWith notification: AnyCodable)
     {
-        let message = JSON()
-        
-        message[KeyPath]           = resource.path
-        message[KeyMethod]         = MIPV1ResourceMethod.WriteValue.rawValue
-        message[KeyArgs][KeyValue] = value! // TODO
-        
-        rpc.sync(message: message) { reply, error in
-            var error = error
-            var cache : ResourceCache?
-            
-            if error == nil {
-                if self.schemaResource.verifyReply(method: .WriteValue, reply: reply) {
-                    cache = ResourceCacheBase(from: reply!)
-                }
-                else {
-                    error = MedKitError.badReply
-                }
-            }
-            
-            completion(cache, error)
-        }
     }
-    
 }
 
 

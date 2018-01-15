@@ -2,7 +2,7 @@
  -----------------------------------------------------------------------------
  This source file is part of MedKitMIP.
  
- Copyright 2016-2017 Jon Griffeth
+ Copyright 2016-2018 Jon Griffeth
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -75,13 +75,14 @@ class Authenticator {
     {
     }
     
-    func decode(method: Int, args: JSON, completionHandler completion: @escaping (JSON?, Error?) -> Void)
+    func received(message: AnyCodable, completionHandler completion: @escaping (AnyCodable?, Error?) -> Void) throws
     {
-        DispatchQueue.main.async { completion(nil, MedKitError.notSupported) }
+        throw MedKitError.notSupported
     }
     
-    func decode(method: Int, args: JSON)
+    func received(message: AnyCodable) throws
     {
+        throw MedKitError.notImplemented
     }
     
     /**
