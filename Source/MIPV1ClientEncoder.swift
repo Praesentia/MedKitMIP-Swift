@@ -45,7 +45,7 @@ class MIPV1ClientEncoder {
         let method  = MIPV1DeviceGetProfile()
         let message = MIPV1Route(path: device.path, content: try! AnyCodable(method))
         
-        rpc.sync(content: try! AnyCodable(message)) { reply, error in
+        rpc.sync(content: message) { reply, error in
             var profile: DeviceProfile?
             
             if error == nil, let decoder = reply?.decoder { // TODO
@@ -62,7 +62,7 @@ class MIPV1ClientEncoder {
         let method  = MIPV1DeviceUpdateName(name)
         let message = MIPV1Route(path: device.path, content: try! AnyCodable(method))
 
-        rpc.sync(content: try! AnyCodable(message)) { _, error in
+        rpc.sync(content: message) { _, error in
             completion(error)
         }
     }
@@ -72,7 +72,7 @@ class MIPV1ClientEncoder {
         let method  = MIPV1ServiceUpdateName(name)
         let message = MIPV1Route(path: service.path, content: try! AnyCodable(method))
 
-        rpc.sync(content: try! AnyCodable(message)) { _, error in
+        rpc.sync(content: message) { _, error in
             completion(error)
         }
     }
@@ -82,7 +82,7 @@ class MIPV1ClientEncoder {
         let method  = MIPV1ResourceEnableNotification(enable: enable)
         let message = MIPV1Route(path: resource.path, content: try! AnyCodable(method))
 
-        rpc.sync(content: try! AnyCodable(message)) { _, error in
+        rpc.sync(content: message) { _, error in
             completion(error)
         }
     }
@@ -92,16 +92,7 @@ class MIPV1ClientEncoder {
         let method  = MIPV1ResourceCall(message: message)
         let message = MIPV1Route(path: resource.path, content: try! AnyCodable(method))
 
-        rpc.sync(content: try! AnyEncoder().encode(message)) { reply, error in
-            var reply: AnyCodable?
-
-            if error == nil, let decoder = reply?.decoder {
-                let container = try decoder.singleValueContainer()
-                reply = try container.decode(AnyCodable.self)
-            }
-
-            completion(reply, error)
-        }
+        rpc.sync(content: message, completionHandler: completion)
     }
 
     func resource(_ resource: ResourceBackend, didNotifyWith notification: AnyCodable)

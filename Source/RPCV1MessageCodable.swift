@@ -23,41 +23,53 @@ import Foundation
 import MedKitCore
 
 
-class RPCV1MessageDecodable: Decodable {
+/**
+ RPCV1 Message Decodable
+ */
+class RPCV1MessageCodable: Codable {
 
     // MARK: - Properties
-    let content: RPCV1Message
+    let message: RPCV1Message
 
-    // MARK: - Private
-    private enum CodingKeys: CodingKey {
-        case type
-        case content
+    // MARK: - Initializers
+
+    init(message: RPCV1Message)
+    {
+        self.message = message
     }
 
-    // MARK: - Decodable
+    // MARK: - Codable
 
     required init(from decoder: Decoder) throws
     {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let type      = try container.decode(RPCV1MessageType.self, forKey: CodingKeys.type)
+        let container = try decoder.container(keyedBy: RPCV1MessageCodingKeys.self)
+        let type      = try container.decode(RPCV1MessageType.self, forKey: .type)
 
         switch type {
         case .sync :
-            content = try container.decode(RPCV1Sync.self, forKey: .content)
+            message = try container.decode(RPCV1Sync.self, forKey: .content)
 
         case .reply :
-            content = try container.decode(RPCV1Reply.self, forKey: .content)
+            message = try container.decode(RPCV1Reply.self, forKey: .content)
 
         case .async :
-            content = try container.decode(RPCV1Async.self, forKey: .content)
+            message = try container.decode(RPCV1Async.self, forKey: .content)
         }
     }
 
-    // MARK: - RPCV1Decodable
+    func encode(to encoder: Encoder) throws
+    {
+        var container = encoder.container(keyedBy: RPCV1MessageCodingKeys.self)
+
+        try container.encode(message.type,               forKey: .type)
+        try container.encode(ConcreteEncodable(message), forKey: .content)
+    }
+
+    // MARK: -
 
     func send(to rpc: RPCV1) throws
     {
-        try content.send(to: rpc)
+        try message.send(to: rpc)
     }
 
 }

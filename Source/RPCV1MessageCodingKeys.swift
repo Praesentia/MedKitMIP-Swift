@@ -20,37 +20,14 @@
 
 
 import Foundation
-import MedKitCore
 
 
-class RPCV1MessageEncodable: Encodable {
-
-    // MARK: - Properties
-    let content : RPCV1Message
-
-    // MARK: - Private
-    private enum CodingKeys: CodingKey {
-        case type
-        case content
-    }
-
-    // MARK: - Initializers
-
-    init(content: RPCV1Message)
-    {
-        self.content = content
-    }
-
-    // MARK: - Encodable
-
-    func encode(to encoder: Encoder) throws
-    {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-
-        try container.encode(content.type,               forKey: .type)
-        try container.encode(ConcreteEncodable(content), forKey: .content)
-    }
-
+/**
+ RPCV1 Message Coding Keys
+ */
+enum RPCV1MessageCodingKeys: CodingKey {
+    case type
+    case content
 }
 
 

@@ -33,7 +33,7 @@ class MIPV1: ProtocolPlugin {
     
     static let main = MIPV1()
 
-    let localizedDescription : String       = "Medical Interoperability Protocol, Version 1 Beta (1)"
+    let localizedDescription : String       = "Medical Interoperability Protocol, Version 1 Beta"
     let priority             : Int          = 0
     let type                 : ProtocolType = ProtocolType(withIdentifier: ProtocolNameMIPV1)
     let version              : String       = "1"

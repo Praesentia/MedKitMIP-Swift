@@ -28,49 +28,108 @@ import MedKitCore
  */
 class RPCV1: ProtocolStackBase {
 
-    weak var messageHandler: RPCV1MessageHandler?
+    /**
+     Message delegate.
+     */
+    weak var messageDelegate: RPCV1MessageDelegate?
 
-    typealias CompletionHandler = (AnyCodable?, Error?) throws -> Void //: Completion handler signature for synchronous messages.
+    /**
+     Completion handler type.
+
+     The type of the completion handler used to receive replies to synchronous
+     messages.
+
+     Completion handlers may throw exceptions to indicate an error when
+     decoding a reply.
+     */
+    typealias CompletionHandler = RPCV1Sequencer.CompletionHandler
 
     // MARK: - Private
-    private let decoder            = JSONDecoder()
-    private let encoder            = JSONEncoder()
-    private var completionHandlers = [Int : CompletionHandler]()
-    private var nextID             : Int { return generateMessageID() }
-    private var sequence           : Int = 0
+    private let decoder   = JSONDecoder()
+    private let encoder   = JSONEncoder()
+    private let sequencer = RPCV1Sequencer()
 
     // MARK: - Send
+
+    /**
+     Send synchronous message.
+
+     - Parameters:
+        - content: The content of the message to be sent.
+     */
+    func sync(content: Encodable, completionHandler completion: @escaping (AnyCodable?, Error?) throws -> Void)
+    {
+        do {
+            let id      = sequencer.push(completionHandler: completion)
+            let content = RPCV1Sync(id: id, content: try AnyCodable(content))
+            let message = RPCV1MessageCodable(message: content)
+            let data    = try encoder.encode(message)
+
+            port.send(data)
+        }
+        catch let error {
+            port.shutdown(for: error)
+        }
+    }
     
     /**
      Send synchronous message.
      
      - Parameters:
         - content:    The content of the message to be sent.
-        - completion: A completion handler used to handle the reply.
+        - completion: A completion handler used to receive the reply.
      */
     func sync(content: AnyCodable, completionHandler completion: @escaping (AnyCodable?, Error?) throws -> Void)
     {
-        let id = nextID
-
         do {
+            let id      = sequencer.push(completionHandler: completion)
             let content = RPCV1Sync(id: id, content: content)
-            let message = RPCV1MessageEncodable(content: content)
+            let message = RPCV1MessageCodable(message: content)
             let data    = try encoder.encode(message)
 
-            completionHandlers[id] = completion
             port.send(data)
         }
         catch let error {
-            completionHandlers[id] = nil
-            try? completion(nil, error)
             port.shutdown(for: error)
         }
     }
 
+    /**
+     Send reply.
+
+     - Parameters:
+        - id:      The identifier assigned to the sychronous message.
+        - content: The content of the reply.
+        - error:   The reply error.
+     */
+    private func reply(id: RPCV1Reply.IDType, content: AnyCodable?, error: MedKitError?)
+    {
+        do {
+            let content = RPCV1Reply(id: id, content: content, error: error)
+            let message = RPCV1MessageCodable(message: content)
+            let data    = try encoder.encode(message)
+
+            port.send(data)
+        }
+        catch let error {
+            port.shutdown(for: error)
+        }
+    }
+
+    /**
+     Send asynchronous message.
+
+     - Parameters:
+        - content: The content of the message to be sent.
+     */
     func async(content: Encodable)
     {
         do {
-            async(content: try AnyCodable(content))
+            let content = RPCV1Async(content: try AnyCodable(content))
+            let message = RPCV1MessageCodable(message: content)
+            let data    = try encoder.encode(message)
+
+            port.send(data)
         }
         catch let error {
             port.shutdown(for: error)
@@ -87,7 +146,7 @@ class RPCV1: ProtocolStackBase {
     {
         do {
             let content = RPCV1Async(content: content)
-            let message = RPCV1MessageEncodable(content: content)
+            let message = RPCV1MessageCodable(message: content)
             let data    = try encoder.encode(message)
 
             port.send(data)
@@ -97,70 +156,18 @@ class RPCV1: ProtocolStackBase {
         }
     }
 
-    /**
-     Send reply.
-
-     - Parameters:
-        - message:
-     */
-    private func sendReply(id: Int, error: MedKitError?, content: AnyCodable?)
-    {
-        do {
-            let content = RPCV1Reply(id: id, error: error, content: content)
-            let data    = try encoder.encode(RPCV1MessageEncodable(content: content))
-
-            port.send(data)
-        }
-        catch let error {
-            port.shutdown(for: error)
-        }
-    }
-    
-    /**
-     Pop completion handler.
-     
-     - Parameters:
-        - id: A message identifier.
-     
-     - Returns:
-        Returns the completion handler assigned to the message ID, or nil if
-        no such completion handler exists.
-     */
-    private func pop(_ id: Int) throws -> CompletionHandler
-    {
-        if let completion = completionHandlers[id] {
-            completionHandlers.removeValue(forKey: id)
-            return completion
-        }
-        
-        throw MedKitError.failed
-    }
-    
-    /**
-     Generate message ID.
-     
-     - Returns:
-        Returns the generated message ID.
-     */
-    private func generateMessageID() -> Int
-    {
-        let id = sequence
-        sequence += 1
-        return id
-    }
-
     // MARK: - Receive
     
     /**
      Received synchronous message.
      
      - Parameters:
-        - message: A JSON message received from downstream.
+        - message: A message received from downstream.
      */
     func received(message: RPCV1Sync) throws
     {
-        try messageHandler?.rpc(self, didReceive: message.content) { reply, error in
-            self.sendReply(id: message.id, error: error as? MedKitError, content: reply) // TODO: error
+        try messageDelegate?.rpc(self, didReceive: message.content) { reply, error in
+            self.reply(id: message.id, content: reply, error: error as? MedKitError) // TODO: error
         }
     }
     
@@ -168,26 +175,31 @@ class RPCV1: ProtocolStackBase {
      Received reply.
      
      - Parameters:
-        - message: A JSON message received from downstream.
+        - message: A message received from downstream.
      */
     func received(message: RPCV1Reply) throws
     {
-        let completion = try pop(message.id)
-        try completion(message.content, message.error)
+        try sequencer.complete(id: message.id, reply: message.content, error: message.error)
     }
     
     /**
      Received asynchronous message.
      
      - Parameters:
-        - message: A JSON message received from downstream.
+        - message: A message received from downstream.
      */
     func received(message: RPCV1Async) throws
     {
-        try messageHandler?.rpc(self, didReceive: message.content)
+        try messageDelegate?.rpc(self, didReceive: message.content)
     }
     
-    // MARK: - PortDelegate interface
+    // MARK: - PortDelegate
+
+    override func portDidClose(_ port: MedKitCore.Port, for reason: Error?)
+    {
+        super.portDidClose(port, for: reason)
+        sequencer.shutdown(for: reason)
+    }
     
     /**
      Port did receive data.
@@ -202,7 +214,7 @@ class RPCV1: ProtocolStackBase {
     override func port(_ port: MedKitCore.Port, didReceive data: Data)
     {
         do {
-            let message = try decoder.decode(RPCV1MessageDecodable.self, from: data)
+            let message = try decoder.decode(RPCV1MessageCodable.self, from: data)
             try message.send(to: self)
         }
         catch let error {

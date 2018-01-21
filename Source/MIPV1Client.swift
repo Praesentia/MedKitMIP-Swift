@@ -136,7 +136,7 @@ class MIPV1Client: Backend {
 
     func resource(_ resource: ResourceBackend, didNotifyWith notification: AnyCodable)
     {
-        try? resource.notify(notification)
+        resource.notify(notification)
     }
     
     // MARK: - DeviceBackendDelegate

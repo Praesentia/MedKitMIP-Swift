@@ -26,7 +26,7 @@ import MedKitCore
 /**
  MIPV1 client-side decoder.
  */
-class MIPV1ClientDecoder: RPCV1MessageHandler {
+class MIPV1ClientDecoder: RPCV1MessageDelegate {
    
     weak var client: MIPV1Client!
 
@@ -67,7 +67,7 @@ class MIPV1ClientDecoder: RPCV1MessageHandler {
         throw MedKitError.notSupported
     }
     
-    // MARK: - RPCV1MessageHandler
+    // MARK: - RPCV1MessageDelegate
     
     /**
      RPC did receive call.

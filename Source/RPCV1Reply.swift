@@ -25,26 +25,28 @@ import MedKitCore
 
 class RPCV1Reply: RPCV1Message {
 
+    typealias IDType = RPCV1Sequencer.IDType
+
     // MARK: - Properties
     var type    : RPCV1MessageType { return .reply }
-    let id      : Int
+    let id      : IDType
     let error   : MedKitError?
     let content : AnyCodable?
 
     // MARK: - Private
     private enum CodingKeys: CodingKey {
         case id
-        case error
         case content
+        case error
     }
 
     // MARK: - Initializers
 
-    init(id: Int, error: MedKitError?, content: AnyCodable?)
+    init(id: IDType, content: AnyCodable?, error: MedKitError?)
     {
         self.id      = id
-        self.error   = error
         self.content = content
+        self.error   = error
     }
 
     // MARK: - Codable
@@ -53,21 +55,18 @@ class RPCV1Reply: RPCV1Message {
     {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        id      = try container.decode(Int.self, forKey: .id)
+        id      = try container.decode(IDType.self, forKey: .id)
+        content = try container.decodeIfPresent(AnyCodable.self,  forKey: .content)
         error   = try container.decodeIfPresent(MedKitError.self, forKey: .error)
-        content = try container.decodeIfPresent(AnyCodable.self, forKey: .content)
     }
 
     func encode(to encoder: Encoder) throws
     {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
-        try container.encode(id, forKey: .id)
-        try container.encode(error, forKey: .error)
-
-        if let content = self.content {
-            try container.encode(content, forKey: .content)
-        }
+        try container.encode(id,      forKey: .id)
+        try container.encode(content, forKey: .content)
+        try container.encode(error,   forKey: .error)
     }
 
     // MARK: - RPCV1Decodable

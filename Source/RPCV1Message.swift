@@ -22,10 +22,19 @@
 import Foundation
 
 
+/**
+ RPCV1 Message protocol.
+ */
 protocol RPCV1Message: Codable {
 
+    /**
+     Message type.
+     */
     var type: RPCV1MessageType { get }
 
+    /**
+     Send to RPC instance.
+     */
     func send(to rpc: RPCV1) throws
 
 }

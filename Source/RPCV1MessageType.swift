@@ -23,27 +23,33 @@ import Foundation
 import MedKitCore
 
 
+/**
+ RPCV1 Message Type
+ */
 enum RPCV1MessageType: Int, Codable {
-    case sync  = 1
-    case reply = 2
-    case async = 3
+    case sync  = 1 // Synchronous message.
+    case reply = 2 // Reply message.
+    case async = 3 // Asynchronous message.
 }
 
+/**
+ RPCV1 Message Type extensions.
+ */
 extension RPCV1MessageType {
 
     var localizedDescription : String { return getString() }
 
-    func getString() -> String
+    private func getString() -> String
     {
         switch self {
         case .sync :
-            return "RPC.Sync"
+            return "RPC.V1.Sync"
 
         case .reply :
-            return "RPC.Reply"
+            return "RPC.V1.Reply"
 
         case .async :
-            return "RPC.Async"
+            return "RPC.V1.Async"
         }
     }
 

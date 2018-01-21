@@ -77,7 +77,7 @@ class MIPV1ServerConnection: ServerConnectionBase {
         mip           = MIPV1Server(device: device, encoder: encoder)
         decoder       = MIPV1ServerDecoder(authenticator: authenticator)
         
-        rpc.messageHandler = decoder
+        rpc.messageDelegate = decoder
         decoder.server     = mip
 
         // http

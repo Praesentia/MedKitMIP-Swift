@@ -25,9 +25,11 @@ import MedKitCore
 
 class RPCV1Sync: RPCV1Message {
 
+    typealias IDType = RPCV1Sequencer.IDType
+
     // MARK: - Properties
     var type    : RPCV1MessageType { return .sync }
-    let id      : Int
+    let id      : IDType
     let content : AnyCodable
 
     // MARK: - Private
@@ -38,7 +40,7 @@ class RPCV1Sync: RPCV1Message {
 
     // MARK: - Initializers
 
-    init(id: Int, content: AnyCodable)
+    init(id: IDType, content: AnyCodable)
     {
         self.id      = id
         self.content = content
@@ -50,7 +52,7 @@ class RPCV1Sync: RPCV1Message {
     {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        id      = try container.decode(Int.self, forKey: .id)
+        id      = try container.decode(IDType.self, forKey: .id)
         content = try container.decode(AnyCodable.self, forKey: .content)
     }
 

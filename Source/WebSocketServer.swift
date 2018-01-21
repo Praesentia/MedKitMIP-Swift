@@ -47,7 +47,7 @@ class WebSocketServer: WebSocket, HTTPServerRouter {
         
         super.init()
         
-        http.messageHandler = self
+        http.messageDelegate = self
     }
     
     private func verify(request: HTTPRequest) -> HTTPResponse

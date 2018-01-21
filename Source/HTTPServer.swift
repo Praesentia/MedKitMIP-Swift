@@ -38,7 +38,7 @@ protocol HTTPServerRouter: class {
 class HTTPServer: ProtocolStackBase {
     
     // MARK: - Properties
-    weak var messageHandler: HTTPServerRouter?
+    weak var messageDelegate: HTTPServerRouter?
 
     // MARK: - Private
     private var input  = DataQueue()
@@ -49,7 +49,7 @@ class HTTPServer: ProtocolStackBase {
      */
     private func receive(_ request: HTTPRequest)
     {
-        messageHandler?.server(self, didReceive: request) { response, error in
+        messageDelegate?.server(self, didReceive: request) { response, error in
             if let data = response?.toData() {
                 self.port.send(data)
             }

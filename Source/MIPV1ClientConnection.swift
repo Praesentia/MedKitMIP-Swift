@@ -81,7 +81,7 @@ class MIPV1ClientConnection: ClientConnectionBase {
         mip           = MIPV1Client(encoder: encoder, authenticator: authenticator)
         decoder       = MIPV1ClientDecoder(authenticator: authenticator)
         
-        rpc.messageHandler = decoder
+        rpc.messageDelegate = decoder
         decoder.client     = mip
         
         // http

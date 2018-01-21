@@ -23,6 +23,9 @@ import Foundation
 import MedKitCore
 
 
+/**
+ Asynchronous message.
+ */
 class RPCV1Async: RPCV1Message {
 
     // MARK: - Properties

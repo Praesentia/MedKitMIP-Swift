@@ -33,8 +33,8 @@ public class RPCDecoder: DataDecoder {
 
     public func type(data: Data) -> String?
     {
-        let message = try? decoder.decode(RPCV1MessageDecodable.self, from: data)
-        return "Bad" //message?.content.type.localizedDescription ?? "Bad"
+        let message = try? decoder.decode(RPCV1MessageCodable.self, from: data)
+        return message?.message.type.localizedDescription ?? "RPC.V1 Decoding Error"
     }
     
     public func string(data: Data) -> String?

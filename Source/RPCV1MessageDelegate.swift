@@ -24,11 +24,30 @@ import MedKitCore
 
 
 /**
- RPC message handler protocol.
+ RPCV1 Message Delegate protocol.
+
+ A delegate used to process messages received from an RPCV1 protocol instance.
  */
-protocol RPCV1MessageHandler: class {
-    
+protocol RPCV1MessageDelegate: class {
+
+    /**
+     Did receive synchronous message.
+
+     - Parameters:
+        - rpc:        The RPC instance from which the message is received.
+        - message:    The content of the synchronous message.
+        - completion: A completion handler used to reply to the message.
+     */
     func rpc(_ rpc: RPCV1, didReceive message: AnyCodable, completionHandler completion: @escaping (AnyCodable?, Error?) -> Void) throws
+
+    /**
+     Did receive asynchronous message.
+
+
+     - Parameters:
+        - rpc:     The RPC instance from which the message is received.
+        - message: The content of the asynchronous message.
+     */
     func rpc(_ rpc: RPCV1, didReceive message: AnyCodable) throws
     
 }
