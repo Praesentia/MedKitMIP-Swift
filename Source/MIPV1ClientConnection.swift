@@ -68,7 +68,7 @@ class MIPV1ClientConnection: ClientConnectionBase {
     required init(to port: MedKitCore.Port, for device: DeviceBackend, using principalManager: PrincipalManager)
     {
         // tls
-        tlsPolicy            = MIPV1ClientPolicy(for: Identity(named: device.identifier.uuidstring, type: .device))
+        tlsPolicy            = MIPV1ClientPolicy(for: Identity(named: device.identifier.uuidLowercase, type: .device))
         tls                  = PortSecure(port: port, mode: .client)
         tls.context.delegate = tlsPolicy
         

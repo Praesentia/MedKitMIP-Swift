@@ -42,7 +42,7 @@ class AuthenticateV1Phase1: AuthenticateV1Message {
         let container   = try decoder.container(keyedBy: CodingKeys.self)
         let nonceString = try container.decode(String.self, forKey: .nonce)
         
-        nonce = Data(base64Encoded: nonceString)!
+        nonce = try Data(base64: nonceString)
     }
 
     func encode(to encoder: Encoder) throws

@@ -46,7 +46,7 @@ class AuthenticateV1Phase3: AuthenticateV1Message {
         let container   = try decoder.container(keyedBy: CodingKeys.self)
         let keyString   = try container.decode(String.self, forKey: .key)
 
-        key       = Data(base64Encoded: keyString)!
+        key       = try Data(base64: keyString)
         principal = try container.decode(Principal.self, forKey: .principal)
     }
 

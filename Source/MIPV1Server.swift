@@ -188,9 +188,9 @@ class MIPV1Server: DeviceObserver, ServiceObserver, ResourceObserver {
     
     // MARK: - ResourceObserver
 
-    func resource(_ resource: Resource, didNotifyWith notification: AnyCodable)
+    func resource(_ resource: Resource, didNotify notification: AnyCodable)
     {
-        client.resource(resource, didNotifyWith: notification)
+        client.resource(resource, didNotify: notification)
     }
     
 }

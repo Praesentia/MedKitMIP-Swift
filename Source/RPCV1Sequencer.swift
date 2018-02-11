@@ -114,7 +114,7 @@ class RPCV1Sequencer {
             return completion
         }
 
-        throw MedKitError.failed
+        throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: "Unexpected message idenitfier."))
     }
 
 }

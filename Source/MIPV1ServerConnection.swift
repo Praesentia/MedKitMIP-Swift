@@ -30,7 +30,7 @@ import SecurityKit
 class MIPV1ServerConnection: ServerConnectionBase {
     
     // MARK: - Class Properties
-    static let factory = ServerConnectionFactoryTemplate<MIPV1ServerConnection>(protocolType: "mip-v1")
+    static let factory = ServerConnectionFactoryTemplate<MIPV1ServerConnection>(protocolType: ProtocolType(withIdentifier: "mip-v1"))
     
     // MARK: - Properties
     override var dataTap: DataTap? {

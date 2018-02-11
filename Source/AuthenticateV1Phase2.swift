@@ -50,8 +50,8 @@ class AuthenticateV1Phase2: AuthenticateV1Message {
         let keyString   = try container.decode(String.self, forKey: .key)
         let nonceString = try container.decode(String.self, forKey: .nonce)
 
-        key       = Data(base64Encoded: keyString)!
-        nonce     = Data(base64Encoded: nonceString)!
+        key       = try Data(base64: keyString)
+        nonce     = try Data(base64: nonceString)
         principal = try container.decode(Principal.self, forKey: .principal)
     }
 

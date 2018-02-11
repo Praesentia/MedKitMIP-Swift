@@ -81,7 +81,7 @@ class MIPV1ServerEncoder {
         rpc.async(content: message)
     }
     
-    func resource(_ resource: Resource, didNotifyWith notification: AnyCodable)
+    func resource(_ resource: Resource, didNotify notification: AnyCodable)
     {
         let content = MIPV1ResourceNotify(notification)
         let message = MIPV1Route(path: resource.path, content: try! AnyCodable(content))

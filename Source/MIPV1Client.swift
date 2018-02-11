@@ -134,7 +134,7 @@ class MIPV1Client: Backend {
         service.removeResource(withIdentifier: identifier, notify: true)
     }
 
-    func resource(_ resource: ResourceBackend, didNotifyWith notification: AnyCodable)
+    func resource(_ resource: ResourceBackend, didNotify notification: AnyCodable)
     {
         resource.notify(notification)
     }

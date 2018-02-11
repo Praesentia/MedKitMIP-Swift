@@ -54,7 +54,7 @@ class MIPV1ResourceNotify: MIPV1ResourceNotification {
 
     func send(to client: MIPV1Client, from resource: ResourceBackend)
     {
-        client.resource(resource, didNotifyWith: args)
+        client.resource(resource, didNotify: args)
     }
 
 }

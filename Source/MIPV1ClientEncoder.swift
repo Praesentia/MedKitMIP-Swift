@@ -95,7 +95,7 @@ class MIPV1ClientEncoder {
         rpc.sync(content: message, completionHandler: completion)
     }
 
-    func resource(_ resource: ResourceBackend, didNotifyWith notification: AnyCodable)
+    func resource(_ resource: ResourceBackend, didNotify notification: AnyCodable)
     {
     }
 }
